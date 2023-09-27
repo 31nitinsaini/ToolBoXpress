@@ -1,0 +1,397 @@
+/* Reset some default browser styles */
+body,
+h1,
+h2,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #e0f2f7;
+    margin: 0;
+    padding: 0;
+}
+
+/* Use a dark blue color for the header and footer */
+header,
+footer {
+    background-color: #003c71;
+    color: white;
+    padding: 20px;
+}
+
+/* Use a white color for the main content */
+main {
+    background-color: white;
+    padding: 20px;
+}
+
+/* Use a sans-serif font for the text */
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Center the header text and make it larger */
+header h1 {
+    text-align: center;
+    font-size: 48px;
+}
+
+/* Center the header subtitle and make it smaller */
+header p {
+    text-align: center;
+    font-size: 24px;
+}
+
+/* Use a horizontal list for the navigation bar */
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* Float the list items to the left and add some spacing */
+nav li {
+    float: left;
+    margin-right: 20px;
+}
+
+/* Style the links in the navigation bar */
+nav a {
+    display: block;
+    color: black;
+    text-decoration: none;
+    padding: 10px;
+}
+
+/* Change the link color on hover */
+nav a:hover {
+    color: white;
+    background-color: #003c71;
+    text-decoration: none;
+
+}
+
+
+
+
+/* Add some spacing between the main headings and paragraphs */
+main h2,
+main h3,
+main p {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/*  CSS for the hero section */
+.hero-section {
+    background-image: url('https://via.placeholder.com/1920x1080');
+    /* Placeholder image URL */
+    /* Replace with your hero image URL */
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+    padding: 100px 0;
+}
+
+.hero-heading {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.hero-subheading {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.btn-hero {
+    background-color: #007bff;
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-hero:hover {
+    background-color: #0056b3;
+}
+
+
+/* Basic styling for the main section */
+.main-section {
+    background-color: #e0f2f7;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.tool-overview {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.tool {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px;
+    transition: transform 0.3s;
+}
+
+.tool:hover {
+    transform: translateY(-5px);
+}
+
+.tool img {
+    max-width: 100%;
+}
+
+.tool h2 {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.tool p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.tool a {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.tool a:hover {
+    background-color: #0056b3;
+}
+
+.tool-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Styling for the  about section */
+.about-section {
+    background-color: #fff;
+    padding: 40px 0;
+}
+
+.about-section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.about-section p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* Center the image on small screens */
+@media (max-width: 768px) {
+    .about-section img {
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+/* CSS for user poll section */
+.user-polls-section {
+    background-color: #e0f2f7;
+    padding: 40px 0;
+    text-align: center;
+}
+
+/* CSS for poll questions container */
+.poll-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* Center the questions horizontally */
+}
+
+/* CSS for individual poll questions */
+.poll-question {
+    width: calc(50% - 20px);
+    /* 50% width with some spacing */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+    /* Add some margin between questions */
+    text-align: left;
+    /* Align text to the left within the card */
+}
+
+/* CSS for question options */
+.poll-option {
+    margin-top: 10px;
+    /* Add spacing between options */
+}
+
+/* CSS for poll controls */
+.poll-controls {
+    margin-top: 20px;
+    /* Add spacing between questions and controls */
+}
+
+/* CSS to make buttons display horizontally */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Responsive layout for larger devices */
+@media (min-width: 992px) {
+    .poll-question {
+        width: calc(33.33% - 20px);
+        /* 33.33% width with some spacing */
+    }
+}
+
+.user-polls-section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.user-polls-section p {
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
+.poll-question h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.poll-option {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.poll-option h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.poll-option label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.poll-controls button {
+    background-color: #0056b3;
+
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.poll-controls button[disabled] {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.poll-controls button:hover {
+    background-color: #003c71;
+
+}
+
+#submitPoll {
+    display: none;
+}
+
+/* CSS to make buttons display horizontally and center them */
+.button-container {
+    display: flex;
+    justify-content: center;
+    /* Center buttons horizontally */
+}
+
+/* Style each button */
+.poll-button {
+    margin: 5px 10px;
+
+}
+
+/*  CSS for Footer */
+.footer {
+    background-color: #003c71;
+    color: #ffffff;
+    padding: 30px 0;
+}
+
+.footer h4 {
+    color: #ffffff;
+}
+
+.footer p {
+    color: #ffffff;
+    margin: 0;
+}
+
+.footer ul li {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.footer ul li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.footer ul.social-icons {
+    list-style: none;
+    padding: 0;
+}
+
+.footer ul.social-icons li {
+    display: inline;
+    margin-right: 10px;
+}
+
+.footer ul.social-icons li a {
+    color: #ffffff;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+/* CSS for Divider */
+.divider {
+    border-top: 1px solid #e0f2f7;
+    /* Use your desired color code here */
+    margin-top: 20px;
+}
