@@ -54,12 +54,15 @@ const Header = () => {
   };
 
   return (
+    
     <div>
+    <style dangerouslySetInnerHTML={{__html: "/* Add this CSS to your main.css or a separate CSS file */\n@media (max-width: 768px) { /* Adjust the max-width to your desired breakpoint */\n  .hide-on-mobile {\n    display: none;\n  }\n}\n" }} />
+
       <header>
         <h1>ToolboXpress</h1>
         <p>Your Online Utility Store</p>
       </header>
-      <nav>
+      <nav className='hide-on-mobile'>
         <ul>
           <li><NavLink to="/">Home</NavLink></li>
           <li
