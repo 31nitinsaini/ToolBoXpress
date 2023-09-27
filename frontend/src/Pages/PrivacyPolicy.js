@@ -7,12 +7,11 @@ const PrivacyPolicy = () => {
         <>
             <Header />
             <main>
-
                 <PrivacyPolicyContainer />
             </main>
             <Footer />
         </>
-    )
+    ) 
 }
 const PrivacyPolicyContainer = () => {
     return (
