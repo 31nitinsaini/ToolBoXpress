@@ -3,14 +3,15 @@ import { Container, Typography, TextareaAutosize, Button, Card, CardContent, Gri
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 
-const RemoveSpace = () => {
+const ReverseWords = () => {
     const [inputText, setInputText] = useState('');
     const [outputText, setOutputText] = useState('');
     const [isCopied, setIsCopied] = useState(false);
 
     const handleConvert = () => {
-        const convertedText = inputText.replace(/\s/g, ''); // Remove spaces
-        setOutputText(convertedText);
+        const words = inputText.split(' ');
+        const reversedText = words.reverse().join(' ');
+        setOutputText(reversedText);
     };
 
     const handleCopyToClipboard = () => {
@@ -28,7 +29,7 @@ const RemoveSpace = () => {
             <main>
                 <Container maxWidth="md">
                     <Typography variant="h4" align="center" gutterBottom>
-                        Remove Spaces
+                        Reverse Text
                     </Typography>
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={12}>
@@ -109,7 +110,7 @@ const ToolArea = ({
                 style={{ padding: '10px 20px', borderRadius: '5px' }}
                 onClick={handleConvert}
             >
-                Remove Spaces
+                Reverse Text
             </Button>
             {outputText && (
                 <div style={{ marginTop: '20px', textAlign: 'center' }}>
@@ -158,15 +159,15 @@ const ExampleArea = ({ setInputTextExample }) => {
     const exampleTexts = [
         {
             input: 'Hello World',
-            output: 'HelloWorld',
+            output: 'World Hello',
         },
         {
             input: 'This is an example',
-            output: 'Thisisanexample',
+            output: 'example an is This',
         },
         {
-            input: 'Remove spaces from this text',
-            output: 'Removespacesfromthistext',
+            input: 'Reverse these words',
+            output: 'words these Reverse',
         },
     ];
 
@@ -197,4 +198,4 @@ const ExampleArea = ({ setInputTextExample }) => {
     );
 };
 
-export default RemoveSpace;
+export default ReverseWords;

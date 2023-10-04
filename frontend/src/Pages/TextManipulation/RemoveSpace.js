@@ -36,9 +36,7 @@ const RemoveSpace = () => {
                                 inputText={inputText}
                                 setInputText={setInputText}
                                 outputText={outputText}
-                                setOutputText={setOutputText}
                                 isCopied={isCopied}
-                                setIsCopied={setIsCopied}
                                 handleConvert={handleConvert}
                                 handleCopyToClipboard={handleCopyToClipboard}
                             />
@@ -53,35 +51,42 @@ const RemoveSpace = () => {
         </>
     );
 };
+
 const ToolArea = ({
     inputText,
     setInputText,
     outputText,
-    setOutputText,
     isCopied,
-    setIsCopied,
     handleConvert,
     handleCopyToClipboard,
 }) => {
+    const [scrollDisabled, setScrollDisabled] = useState(false);
+
     const isTextareaEmpty = inputText.trim() === '';
+
+    const handleScroll = (e) => {
+        // Check if the scroll position is at the bottom
+        if (e.target.scrollTop + e.target.clientHeight >= e.target.scrollHeight) {
+            setScrollDisabled(true); // Disable scrolling when at the bottom
+        } else {
+            setScrollDisabled(false); // Enable scrolling otherwise
+        }
+    };
 
     return (
         <div>
             <div
+                onScroll={handleScroll}
                 style={{
                     width: '100%',
-                    height: isTextareaEmpty ? '0' : 'auto', // Adjust the height property
-                    maxHeight: '200px', // Set a maximum height
+                    height: '200px', // Set the desired height here
                     borderRadius: '5px',
                     border: '1px solid #ccc',
-                    overflowY: 'scroll', // Always show scrollbar, but it will be disabled when empty
+                    overflowY: scrollDisabled ? 'hidden' : 'auto', // Hide scrollbar when disabled
                     padding: '10px',
-                    marginBottom: '20px',
-                    position: 'relative',
+                    marginBottom: '20px'
                 }}
             >
-
-
                 <TextareaAutosize
                     rowsMin={5}
                     placeholder="Enter text here..."
@@ -93,7 +98,8 @@ const ToolArea = ({
                         border: 'none', // Remove border for the textarea
                         outline: 'none', // Remove outline
                         resize: 'none', // Disable resizing
-                        background: 'transparent' // Make background transparent
+                        background: 'transparent', // Make background transparent
+                        overflow: scrollDisabled ? 'hidden' : 'auto', // Hide scrollbar when disabled
                     }}
                 />
             </div>
@@ -108,15 +114,17 @@ const ToolArea = ({
             {outputText && (
                 <div style={{ marginTop: '20px', textAlign: 'center' }}>
                     <Typography variant="h5">Result:</Typography>
-                    <div style={{
-                        width: '100%',
-                        height: '200px', // Set the desired height here
-                        borderRadius: '5px',
-                        border: '1px solid #ccc',
-                        overflowY: isTextareaEmpty ? 'hidden' : 'auto', // Hide scrollbar when empty
-                        padding: '10px',
-                        marginBottom: '20px'
-                    }}>
+                    <div
+                        style={{
+                            width: '100%',
+                            height: '200px', // Set the desired height here
+                            borderRadius: '5px',
+                            border: '1px solid #ccc',
+                            overflowY: 'auto', // Always show scrollbar
+                            padding: '10px',
+                            marginBottom: '20px'
+                        }}
+                    >
                         <TextareaAutosize
                             rowsMin={5}
                             value={outputText}
@@ -127,7 +135,7 @@ const ToolArea = ({
                                 border: 'none', // Remove border for the textarea
                                 outline: 'none', // Remove outline
                                 resize: 'none', // Disable resizing
-                                background: 'transparent' // Make background transparent
+                                background: 'transparent', // Make background transparent
                             }}
                         />
                     </div>
@@ -145,7 +153,6 @@ const ToolArea = ({
         </div>
     );
 };
-
 
 const ExampleArea = ({ setInputTextExample }) => {
     const exampleTexts = [
