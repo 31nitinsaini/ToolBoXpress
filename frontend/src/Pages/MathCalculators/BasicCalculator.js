@@ -5,6 +5,7 @@ import Footer from '../../Components/Footer';
 const BasicCalculator = () => {
   const [input, setInput] = useState('');
   const [result, setResult] = useState('');
+  const [lastButton, setLastButton] = useState('');
 
   useEffect(() => {
     document.addEventListener('keydown', handleKeyDown);
@@ -18,7 +19,7 @@ const BasicCalculator = () => {
     if (/[\d.+\-*/=]/.test(key)) {
       handleButtonClick(key);
     } else if (key === 'Enter') {
-      handleButtonClick('=');
+      handleButtonClick(lastButton || '=');
     } else if (key === 'Backspace') {
       handleBackspace();
     }
@@ -34,17 +35,20 @@ const BasicCalculator = () => {
         break;
       default:
         appendToInput(value);
+        setLastButton(value);
         break;
     }
   };
 
   const handleBackspace = () => {
     setInput((prevInput) => prevInput.slice(0, -1));
+    setLastButton('');
   };
 
   const clearInput = () => {
     setInput('');
     setResult('');
+    setLastButton('');
   };
 
   const appendToInput = (value) => {
@@ -128,6 +132,15 @@ const BasicCalculator = () => {
 
     .input-field.result-active {
       background-color: #eee; /* Change background color when result is displayed */
+    }
+
+    /* Responsive styles */
+    @media screen and (max-width: 600px) {
+      .calculator {
+        max-width: 100%;
+      }
+
+      /* Adjust other styles as needed for smaller screens */
     }
   `;
 
