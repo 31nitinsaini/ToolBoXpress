@@ -161,7 +161,7 @@ const Header = () => {
             {isFileDropdownVisible && (
               <div className="card" style={{ zIndex: 1000 }}>
                 <div className="card-body" style={{ maxHeight: '200px', overflowY: 'auto' }}>
-                  <div className='row'><NavLink to="#word-to-pdf">Word to PDF</NavLink></div>
+                  <div className='row'><NavLink to="/FileConversionTool/word-to-pdf">Word to PDF</NavLink></div>
                   <div className='row'><NavLink to="#pdf-to-word">PDF to Word</NavLink></div>
                   <div className='row'><NavLink to="#excel-to-pdf">Excel to PDF</NavLink></div>
                   <div className='row'><NavLink to="#pdf-to-excel">PDF to Excel</NavLink></div>
