@@ -52,7 +52,7 @@ const AverageRatingComponent = () => {
       <div className="mb-3">
        
           Average Rating:{' '}
-          <span style={ratingStyle}>{averageRating.toFixed(1)}</span> (from {ratingCount} ratings)
+          <span style={ratingStyle}>{averageRating}</span> (from {ratingCount} ratings)
        
       </div>
     </div>
