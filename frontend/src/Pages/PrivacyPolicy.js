@@ -1,13 +1,38 @@
 import React from 'react'
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
+import Helmet from 'react-helmet'
 
 const PrivacyPolicy = () => {
     return (
         <>
+          <Helmet>
+            <title>ToolboXpress - Privacy Policy</title>
+            <meta name="description" content="Read ToolboXpress's privacy policy to understand how we collect, use, and protect your personal information while using our online utility tools." />
+            <meta name="keywords" content="privacy policy, data protection, online tools, utility store, user information" />
+            <meta name="author" content="Your Name" />
+
+            {/* Open Graph meta tags for social media sharing */}
+            <meta property="og:title" content="ToolboXpress - Privacy Policy" />
+            <meta property="og:description" content="Read ToolboXpress's privacy policy to understand how we collect, use, and protect your personal information while using our online utility tools." />
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content={window.location.href} />
+
+            {/* Twitter Card meta tags for Twitter sharing */}
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content="ToolboXpress - Privacy Policy" />
+            <meta name="twitter:description" content="Read ToolboXpress's privacy policy to understand how we collect, use, and protect your personal information while using our online utility tools." />
+
+            {/* Canonical URL to specify the preferred version of a page */}
+            <link rel="canonical" href={window.location.href} />
+
+            {/* Favicon */}
+            <link rel="icon" href="/favicon.ico" />
+        </Helmet>
+
             <Header />
             <main>
-                <PrivacyPolicyContainer />
+            <PrivacyPolicyContainer />
             </main>
             <Footer />
         </>

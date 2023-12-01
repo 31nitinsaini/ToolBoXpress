@@ -10,6 +10,7 @@ import TextEncrypt from '../Pages/TextManipulation/TextEncrypt'
 import TextDecrypt from '../Pages/TextManipulation/TextDecrypt'
 import LoremGenrator from '../Pages/TextManipulation/LoremGenrator'
 import TextToSpeech from '../Pages/TextManipulation/TextToSpeech'
+import MorseCodeConverter from '../Pages/TextManipulation/MorseCodeConverter'
 
 const TextManipulationRoutes = () => {
   return (
@@ -24,6 +25,7 @@ const TextManipulationRoutes = () => {
     <Route path='/text-decryption' element={<TextDecrypt/>}/>
     <Route path='/lorem-genrator' element={<LoremGenrator/>}/>
     <Route path='/text-to-speech' element={<TextToSpeech/>}/>
+    <Route path='/morse-code' element={<MorseCodeConverter/>}/>
   </Routes>
 )}
 

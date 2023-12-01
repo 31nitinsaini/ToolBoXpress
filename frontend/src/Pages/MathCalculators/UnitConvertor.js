@@ -3,11 +3,11 @@ import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 
 const UnitConverter = () => {
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [inputValue, setInputValue] = useState('');
-  const [fromUnit, setFromUnit] = useState('');
-  const [toUnit, setToUnit] = useState('');
-  const [result, setResult] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('Temperature');
+  const [inputValue, setInputValue] = useState('1');
+  const [fromUnit, setFromUnit] = useState('Celsius');
+  const [toUnit, setToUnit] = useState('Fahrenheit');
+  const [result, setResult] = useState('33.8');
 
   const categories = [
     { label: 'Temperature', units: ['Celsius', 'Fahrenheit', 'Kelvin'] },
@@ -45,9 +45,149 @@ const UnitConverter = () => {
   };
 
   const convertUnits = (value, from, to) => {
-    // Implement unit conversion logic based on the selected category
-    // For simplicity, we'll just pass the value through without conversion for this example.
-    setResult(value);
+    if (selectedCategory === 'Temperature') {
+      setResult(convertTemperature(value, from, to));
+    } else if (selectedCategory === 'Length') {
+      setResult(convertLength(value, from, to));
+    } else if (selectedCategory === 'Volume') {
+      setResult(convertVolume(value, from, to));
+    } else if (selectedCategory === 'Weight') {
+      setResult(convertWeight(value, from, to));
+    } else if (selectedCategory === 'Time') {
+      setResult(convertTime(value, from, to));
+    } else if (selectedCategory === 'Area') {
+      setResult(convertArea(value, from, to));
+    } else if (selectedCategory === 'Speed') {
+      setResult(convertSpeed(value, from, to));
+    } else if (selectedCategory === 'Currency') {
+      setResult(convertCurrency(value, from, to));
+    }
+    // Add more categories and conversion functions as needed
+  };
+
+  const convertTemperature = (value, from, to) => {
+    if (from === 'Celsius' && to === 'Fahrenheit') {
+      return (value * 9/5) + 32;
+    }
+    if (from === 'Fahrenheit' && to === 'Celsius') {
+      return (value - 32) * 5/9;
+    }
+    if (from === 'Celsius' && to === 'Kelvin') {
+      return value + 273.15;
+    }
+    if (from === 'Kelvin' && to === 'Celsius') {
+      return value - 273.15;
+    }
+    return value;
+  };
+
+  const convertLength = (value, from, to) => {
+    if (from === 'Meter' && to === 'Foot') {
+      return value * 3.28084;
+    }
+    if (from === 'Foot' && to === 'Meter') {
+      return value / 3.28084;
+    }
+    return value;
+  };
+
+  const convertVolume = (value, from, to) => {
+    if (from === 'Liter' && to === 'Gallon') {
+      return value * 0.264172;
+    }
+    if (from === 'Gallon' && to === 'Liter') {
+      return value / 0.264172;
+    }
+    if (from === 'Liter' && to === 'Cubic Meter') {
+      return value * 0.001;
+    }
+    if (from === 'Cubic Meter' && to === 'Liter') {
+      return value * 1000;
+    }
+    return value;
+  };
+
+  const convertWeight = (value, from, to) => {
+    if (from === 'Kilogram' && to === 'Pound') {
+      return value * 2.20462;
+    }
+    if (from === 'Pound' && to === 'Kilogram') {
+      return value / 2.20462;
+    }
+    if (from === 'Kilogram' && to === 'Ounce') {
+      return value * 35.274;
+    }
+    if (from === 'Ounce' && to === 'Kilogram') {
+      return value / 35.274;
+    }
+    return value;
+  };
+
+  const convertTime = (value, from, to) => {
+    if (from === 'Second' && to === 'Minute') {
+      return value / 60;
+    }
+    if (from === 'Minute' && to === 'Second') {
+      return value * 60;
+    }
+    if (from === 'Hour' && to === 'Day') {
+      return value / 24;
+    }
+    if (from === 'Day' && to === 'Hour') {
+      return value * 24;
+    }
+    return value;
+  };
+
+  const convertArea = (value, from, to) => {
+    if (from === 'Square Meter' && to === 'Square Foot') {
+      return value * 10.764;
+    }
+    if (from === 'Square Foot' && to === 'Square Meter') {
+      return value / 10.764;
+    }
+    return value;
+  };
+
+  const convertSpeed = (value, from, to) => {
+    if (from === 'Meter/Second' && to === 'Kilometer/Hour') {
+      return value * 3.6;
+    }
+    if (from === 'Kilometer/Hour' && to === 'Meter/Second') {
+      return value / 3.6;
+    }
+    if (from === 'Mile/Hour' && to === 'Kilometer/Hour') {
+      return value * 1.60934;
+    }
+    if (from === 'Kilometer/Hour' && to === 'Mile/Hour') {
+      return value / 1.60934;
+    }
+    return value;
+  };
+
+  const convertCurrency = (value, from, to) => {
+    // Note: This is a placeholder; use a real API for accurate currency conversion rates
+    const conversionRates = {
+      'USD-EUR': 0.85,
+      'USD-JPY': 115.25,
+      'USD-GBP': 0.73,
+      'EUR-USD': 1.18,
+      'EUR-JPY': 135.59,
+      'EUR-GBP': 0.88,
+      'JPY-USD': 0.0087,
+      'JPY-EUR': 0.0074,
+      'JPY-GBP': 0.0065,
+      'GBP-USD': 1.37,
+      'GBP-EUR': 1.13,
+      'GBP-JPY': 153.69,
+    };
+
+    const rateKey = `${from}-${to}`;
+    if (conversionRates[rateKey]) {
+      return value * conversionRates[rateKey];
+    }
+
+    return value;
   };
 
   return (

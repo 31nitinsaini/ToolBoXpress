@@ -1,0 +1,79 @@
+// ImageResizeTool.js
+import React, { useState } from 'react';
+import Resizer from 'react-image-file-resizer';
+import Header from '../../Components/Header';
+import Footer from '../../Components/Footer';
+
+const ImageResizeTool = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [resizedImage, setResizedImage] = useState(null);
+  const [width, setWidth] = useState(300);
+  const [height, setHeight] = useState(300);
+  const [quality, setQuality] = useState(100);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
+    Resizer.imageFileResizer(
+      file,
+      width,
+      height,
+      'JPEG',
+      quality,
+      0,
+      (uri) => {
+        setResizedImage(uri);
+      },
+      'base64'
+    );
+
+    setSelectedImage(URL.createObjectURL(file));
+  };
+
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    link.href = resizedImage;
+    link.download = 'resized_image.jpg';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  return (
+    <>
+    <Header/>
+    <main style={{ textAlign: 'center', margin: '20px' }}>
+      <label>
+        Select an Image:
+        <input type="file" onChange={handleImageChange} />
+      </label>
+
+      <div style={{ marginTop: '20px' }}>
+        <label>
+          Width:
+          <input type="number" value={width} onChange={(e) => setWidth(e.target.value)} />
+        </label>
+        <label style={{ marginLeft: '10px' }}>
+          Height:
+          <input type="number" value={height} onChange={(e) => setHeight(e.target.value)} />
+        </label>
+        <label style={{ marginLeft: '10px' }}>
+          Quality:
+          <input type="number" value={quality} onChange={(e) => setQuality(e.target.value)} />
+        </label>
+      </div>
+
+      {resizedImage && (
+        <div>
+          <button onClick={handleDownload} style={{ marginTop: '20px' }}>
+            Download Resized Image
+          </button>
+        </div>
+      )}
+    </main>
+    <Footer/>
+    </>
+  );
+};
+
+export default ImageResizeTool;

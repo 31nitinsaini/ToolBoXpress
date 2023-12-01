@@ -1,137 +1,80 @@
 import React, { useState } from 'react';
-import { Grid, Button, TextField, Typography } from '@mui/material';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
+import './Calculator.css';
 
 const BasicCalculator = () => {
   const [input, setInput] = useState('');
   const [result, setResult] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [error, setError] = useState('');
 
   const handleButtonClick = (value) => {
-    setErrorMessage('');
-
-    const lastCharIsOperator = /[+\-*/]$/.test(input);
-    const isOperator = /[+\-*/]/.test(value);
-
-    if (lastCharIsOperator && isOperator) {
-      // Remove the last operator and append the new one
-      setInput(input.slice(0, -1) + value);
+    if (value === '=') {
+      calculateResult();
+    } else if (value === 'C') {
+      clearInput();
     } else {
-      setInput(input + value);
+      updateInput(value);
     }
   };
 
-  const handleCalculate = () => {
+  const calculateResult = () => {
     try {
-      if (input === '') {
-        setErrorMessage('Enter an expression.');
-        return;
-      }
-
       const calculatedResult = eval(input);
-      if (isNaN(calculatedResult) || !isFinite(calculatedResult)) {
-        setErrorMessage('Invalid expression.');
-        setResult('');
-      } else {
-        setResult(calculatedResult);
-      }
+      setResult(calculatedResult.toString());
+      setError('');
     } catch (error) {
-      setErrorMessage('Invalid expression.');
       setResult('');
+      setError('Error');
     }
   };
 
-  const handleClear = () => {
+  const clearInput = () => {
     setInput('');
     setResult('');
-    setErrorMessage('');
+    setError('');
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault(); // Prevent Enter key press
-      handleCalculate();
-    }
+  const updateInput = (value) => {
+    setInput((prevInput) => prevInput + value);
+    setResult('');
+    setError('');
   };
-
-  const buttonValues = [
-    '7', '8', '9', '/',
-    '4', '5', '6', '*',
-    '1', '2', '3', '-',
-    '0', '.', '+',
-  ];
 
   return (
-    <>
-      <Header />
-      <main className="calculator">
-        <Typography variant="h4" gutterBottom>
-          Basic Calculator
-        </Typography>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <TextField
-              variant="outlined"
-              fullWidth
-              className="input-field"
-              value={input}
-              disabled
-              onChange={(e) => setInput(e.target.value)}
-              onKeyPress={handleKeyPress} // Handle Enter key press
-              error={!!errorMessage}
-              helperText={errorMessage}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Grid container spacing={1}>
-              {buttonValues.map((value, index) => (
-                <Grid item key={index}>
-                  <Button
-                    variant="contained"
-                    fullWidth
-                    onClick={() => handleButtonClick(value)}
-                    className={`calculator-button ${isNaN(value) ? 'operator' : ''}`}
-                  >
-                    {value}
-                  </Button>
-                </Grid>
-              ))}
-              <Grid item xs={4}>
-                <Button
-                  variant="contained"
-                  fullWidth
-                  color="secondary"
-                  onClick={handleClear}
-                >
-                  C
-                </Button>
-              </Grid>
-              <Grid item xs={4}>
-                <Button
-                  variant="contained"
-                  fullWidth
-                  onClick={handleCalculate}
-                  className="calculator-button operator"
-                >
-                  =
-                </Button>
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              variant="outlined"
-              fullWidth
-              className={`input-field ${result ? 'result-active' : ''}`}
-              value={result}
-              disabled
-            />
-          </Grid>
-        </Grid>
-      </main>
-      <Footer />
-    </>
+   <>
+   <Header/>
+   <div className="calculator my-5">
+      <div className="input">{input}</div>
+      <div className="result">{result}</div>
+      {error && <div className="error">{error}</div>}
+
+      <div className="buttons">
+        <button onClick={() => handleButtonClick('7')}>7</button>
+        <button onClick={() => handleButtonClick('8')}>8</button>
+        <button onClick={() => handleButtonClick('9')}>9</button>
+        <button onClick={() => handleButtonClick('/')}>/</button>
+
+        <button onClick={() => handleButtonClick('4')}>4</button>
+        <button onClick={() => handleButtonClick('5')}>5</button>
+        <button onClick={() => handleButtonClick('6')}>6</button>
+        <button onClick={() => handleButtonClick('*')}>*</button>
+
+        <button onClick={() => handleButtonClick('1')}>1</button>
+        <button onClick={() => handleButtonClick('2')}>2</button>
+        <button onClick={() => handleButtonClick('3')}>3</button>
+        <button onClick={() => handleButtonClick('-')}>-</button>
+
+        <button onClick={() => handleButtonClick('0')}>0</button>
+        <button onClick={() => handleButtonClick('.')}>.</button>
+        <button onClick={calculateResult}>=</button>
+        <button onClick={() => handleButtonClick('+')}>+</button>
+
+        <button  onClick={clearInput}>Clear</button>
+      </div>
+    </div>
+   <Footer/>
+   </>
   );
 };
 

@@ -7,6 +7,8 @@ import TextManipulationRoutes from './TextManipulationRoutes'
 import UtilityRoutes from './UtilityRoutes'
 import CalculatorRoutes from './CalculatorRoutes'
 import FileConversionRoutes from './FileConversionRoutes'
+import ImageManipulationRoutes from './ImageManipulationRoutes'
+import CodeToolRoutes from './CodeToolRoutes'
 const AllRoutes = () => {
   return (
       <Routes>
@@ -17,8 +19,9 @@ const AllRoutes = () => {
         <Route path='/utility/*' element={<UtilityRoutes/>}/>
         <Route path='/MathCalculator/*' element={<CalculatorRoutes/>}/>
         <Route path='/FileConversionTool/*' element={<FileConversionRoutes/>}/>
+        <Route path='/ImageManipulation/*' element={<ImageManipulationRoutes/>}/>
+        <Route path='/CodingTool/*' element={<CodeToolRoutes/>}/>
       </Routes>
   )
-}
-
+};
 export default AllRoutes

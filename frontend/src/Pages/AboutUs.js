@@ -1,13 +1,36 @@
 import React from 'react'
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
+import Helmet from 'react-helmet';
 
 const AboutUs = () => {
     return (
         <>
+         <Helmet>
+                <title>ToolboXpress - Your Utility Store</title>
+                <meta name="description" content="Explore a variety of online utility tools at ToolboXpress, your one-stop utility store. Find text manipulation tools, file converters, coding utilities, and more." />
+                <meta name="keywords" content="utility store, online tools, text manipulation, file conversion, coding tools, utility website" />
+                <meta name="author" content="Your Name" />
+
+                {/* Open Graph meta tags for social media sharing */}
+                <meta property="og:title" content="ToolboXpress - Your Utility Store" />
+                <meta property="og:description" content="Explore a variety of online utility tools at ToolboXpress, your one-stop utility store. Find text manipulation tools, file converters, coding utilities, and more." />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={window.location.href} />
+
+                {/* Twitter Card meta tags for Twitter sharing */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="ToolboXpress - Your Utility Store" />
+                <meta name="twitter:description" content="Explore a variety of online utility tools at ToolboXpress, your one-stop utility store. Find text manipulation tools, file converters, coding utilities, and more." />
+
+                {/* Canonical URL to specify the preferred version of a page */}
+                <link rel="canonical" href={window.location.href} />
+
+                {/* Favicon */}
+                <link rel="icon" href="/favicon.ico" />
+            </Helmet>
             <Header />
             <main>
-
             <AboutUsContainer />
             </main>
             <Footer />
