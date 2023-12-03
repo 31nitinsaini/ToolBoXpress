@@ -2,6 +2,8 @@
 import React, { useState, useRef } from 'react';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
+import RatingComponent from '../../Components/RatingComponent';
+import { Helmet } from 'react-helmet';
 
 const ImageWatermarkTool = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -52,9 +54,32 @@ const ImageWatermarkTool = () => {
     link.click();
     document.body.removeChild(link);
   };
-
+  const currentUrl = window.location.href;
   return (
   <>
+   <Helmet>
+      <title>ToolboXpress - Image Watermark Tool</title>
+      <meta name="description" content="Add watermarks to your images easily with ToolboXpress Image Watermark Tool. Protect your visuals and maintain ownership. Fast, intuitive, and free!" />
+      <meta name="keywords" content="Image watermark tool, add watermarks, image protection, copyright, ToolboXpress" />
+      <meta name="author" content="Your Name" />
+
+      {/* Open Graph meta tags for social media sharing */}
+      <meta property="og:title" content="ToolboXpress - Image Watermark Tool" />
+      <meta property="og:description" content="Add watermarks to your images easily with ToolboXpress Image Watermark Tool. Protect your visuals and maintain ownership. Fast, intuitive, and free!" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={currentUrl} />
+
+      {/* Twitter Card meta tags for Twitter sharing */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="ToolboXpress - Image Watermark Tool" />
+      <meta name="twitter:description" content="Add watermarks to your images easily with ToolboXpress Image Watermark Tool. Protect your visuals and maintain ownership. Fast, intuitive, and free!" />
+
+      {/* Canonical URL to specify the preferred version of a page */}
+      <link rel="canonical" href={currentUrl} />
+
+      {/* Favicon */}
+      <link rel="icon" href="/favicon.ico" />
+    </Helmet>
   <Header/>
   <div style={{ textAlign: 'center', margin: '20px' }}>
       <label>
@@ -98,6 +123,7 @@ const ImageWatermarkTool = () => {
         </div>
       )}
     </div>
+    <RatingComponent/>
   <Footer/>
   </>
   );

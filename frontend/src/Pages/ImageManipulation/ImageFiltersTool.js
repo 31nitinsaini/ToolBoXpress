@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import ImageFilter from 'react-image-filter';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
+import RatingComponent from '../../Components/RatingComponent';
+import { Helmet } from 'react-helmet';
 
 
 const ImageFiltersTool = () => {
@@ -24,9 +26,32 @@ const ImageFiltersTool = () => {
     setBrightness(100);
     setContrast(100);
   };
-
+  const currentUrl = window.location.href;
   return (
     <>
+     <Helmet>
+      <title>ToolboXpress - Image Filter</title>
+      <meta name="description" content="Apply creative filters to your images with ToolboXpress Image Filter. Enhance and stylize your photos effortlessly. Fast, easy, and free!" />
+      <meta name="keywords" content="Image filter, photo filter, image enhancement, photo editing, ToolboXpress" />
+      <meta name="author" content="Your Name" />
+
+      {/* Open Graph meta tags for social media sharing */}
+      <meta property="og:title" content="ToolboXpress - Image Filter" />
+      <meta property="og:description" content="Apply creative filters to your images with ToolboXpress Image Filter. Enhance and stylize your photos effortlessly. Fast, easy, and free!" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={currentUrl} />
+
+      {/* Twitter Card meta tags for Twitter sharing */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="ToolboXpress - Image Filter" />
+      <meta name="twitter:description" content="Apply creative filters to your images with ToolboXpress Image Filter. Enhance and stylize your photos effortlessly. Fast, easy, and free!" />
+
+      {/* Canonical URL to specify the preferred version of a page */}
+      <link rel="canonical" href={currentUrl} />
+
+      {/* Favicon */}
+      <link rel="icon" href="/favicon.ico" />
+    </Helmet>
       <Header />
       <div className="container mt-5">
         <h1 className="mb-4">Image Filters Tool</h1>
@@ -105,6 +130,7 @@ const ImageFiltersTool = () => {
           </div>
         </div>
       </div>
+      <RatingComponent/>
       <Footer />
     </>
   );

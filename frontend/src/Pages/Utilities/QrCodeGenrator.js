@@ -4,6 +4,8 @@ import html2canvas from 'html2canvas';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import QRCodeWithLogo from 'react-qrcode-logo'; // Import the QRCodeWithLogo component
+import RatingComponent from '../../Components/RatingComponent';
+import { Helmet } from 'react-helmet';
 
 const QrCodeGenrator = () => {
     const [qrContent, setQrContent] = useState('');
@@ -63,9 +65,33 @@ const QrCodeGenrator = () => {
             // You can display an error message or take appropriate action
         }
     };
-
+    const currentUrl = window.location.href;
     return (
         <>
+         
+    <Helmet>
+      <title>ToolboXpress - QR Code Generator</title>
+      <meta name="description" content="Generate QR codes quickly with ToolboXpress QR Code Generator. Create codes for URLs, text, contacts, and more. Fast, easy, and free!" />
+      <meta name="keywords" content="QR code generator, create QR codes, URL QR code, text QR code, ToolboXpress" />
+      <meta name="author" content="Your Name" />
+
+      {/* Open Graph meta tags for social media sharing */}
+      <meta property="og:title" content="ToolboXpress - QR Code Generator" />
+      <meta property="og:description" content="Generate QR codes quickly with ToolboXpress QR Code Generator. Create codes for URLs, text, contacts, and more. Fast, easy, and free!" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={currentUrl} />
+
+      {/* Twitter Card meta tags for Twitter sharing */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="ToolboXpress - QR Code Generator" />
+      <meta name="twitter:description" content="Generate QR codes quickly with ToolboXpress QR Code Generator. Create codes for URLs, text, contacts, and more. Fast, easy, and free!" />
+
+      {/* Canonical URL to specify the preferred version of a page */}
+      <link rel="canonical" href={currentUrl} />
+
+      {/* Favicon */}
+      <link rel="icon" href="/favicon.ico" />
+    </Helmet>
             <Header />
             <main>
                 <Container>
@@ -130,6 +156,7 @@ const QrCodeGenrator = () => {
                     </Paper>
                 </Container>
             </main>
+            <RatingComponent/>
             <Footer />
         </>
     );

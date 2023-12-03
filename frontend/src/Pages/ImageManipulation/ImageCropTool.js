@@ -3,7 +3,9 @@ import React, { useState, useRef } from 'react';
 import Cropper from 'react-easy-crop';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
-
+import Rating from 'react-rating';
+import RatingComponent from '../../Components/RatingComponent';
+import { Helmet } from 'react-helmet';
 const ImageCropTool = () => {
   const [image, setImage] = useState(null);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
@@ -97,9 +99,32 @@ const ImageCropTool = () => {
       width: '100%',
     },
   };
-
+  const currentUrl = window.location.href;
   return (
     <>
+     <Helmet>
+      <title>ToolboXpress - Image Crop Tool</title>
+      <meta name="description" content="Crop images easily with ToolboXpress Image Crop Tool. Customize and resize images for your projects. Fast, intuitive, and free!" />
+      <meta name="keywords" content="Image crop tool, crop images, resize images, image customization, ToolboXpress" />
+      <meta name="author" content="Your Name" />
+
+      {/* Open Graph meta tags for social media sharing */}
+      <meta property="og:title" content="ToolboXpress - Image Crop Tool" />
+      <meta property="og:description" content="Crop images easily with ToolboXpress Image Crop Tool. Customize and resize images for your projects. Fast, intuitive, and free!" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={currentUrl} />
+
+      {/* Twitter Card meta tags for Twitter sharing */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="ToolboXpress - Image Crop Tool" />
+      <meta name="twitter:description" content="Crop images easily with ToolboXpress Image Crop Tool. Customize and resize images for your projects. Fast, intuitive, and free!" />
+
+      {/* Canonical URL to specify the preferred version of a page */}
+      <link rel="canonical" href={currentUrl} />
+
+      {/* Favicon */}
+      <link rel="icon" href="/favicon.ico" />
+    </Helmet>
       <Header />
       <main style={styles.container}>
         <div style={styles.card}>
@@ -123,6 +148,7 @@ const ImageCropTool = () => {
           )}
         </div>
       </main>
+      <RatingComponent/>
       <Footer />
     </>
   );

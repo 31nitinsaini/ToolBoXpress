@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { PDFDocument, rgb } from 'pdf-lib';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
+import RatingComponent from '../../Components/RatingComponent';
 
 const ImageToPdf = () => {
   const [image, setImage] = useState(null);
@@ -98,6 +99,7 @@ const ImageToPdf = () => {
         </div>
       )}
     </div>
+    <RatingComponent/>
   <Footer/>
   </>
   );

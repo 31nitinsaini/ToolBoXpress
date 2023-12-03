@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
-
+import RatingComponent from '../../Components/RatingComponent';
+import { Helmet } from 'react-helmet';
 const MarkdownEditor = () => {
   const [markdownContent, setMarkdownContent] = useState(`# Markdown Example
 
@@ -44,9 +45,33 @@ function greet(name) {
   const handleMarkdownChange = (e) => {
     setMarkdownContent(e.target.value);
   };
+  const currentUrl = window.location.href;
 
   return (
     <>
+     <Helmet>
+      <title>ToolboXpress - Markdown Editor</title>
+      <meta name="description" content="Create and edit Markdown content easily with ToolboXpress Markdown Editor. Write and format your documents with a simple and intuitive interface. Fast, easy, and free!" />
+      <meta name="keywords" content="Markdown editor, Markdown, document editor, text formatting, ToolboXpress" />
+      <meta name="author" content="Your Name" />
+
+      {/* Open Graph meta tags for social media sharing */}
+      <meta property="og:title" content="ToolboXpress - Markdown Editor" />
+      <meta property="og:description" content="Create and edit Markdown content easily with ToolboXpress Markdown Editor. Write and format your documents with a simple and intuitive interface. Fast, easy, and free!" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={currentUrl} />
+
+      {/* Twitter Card meta tags for Twitter sharing */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="ToolboXpress - Markdown Editor" />
+      <meta name="twitter:description" content="Create and edit Markdown content easily with ToolboXpress Markdown Editor. Write and format your documents with a simple and intuitive interface. Fast, easy, and free!" />
+
+      {/* Canonical URL to specify the preferred version of a page */}
+      <link rel="canonical" href={currentUrl} />
+
+      {/* Favicon */}
+      <link rel="icon" href="/favicon.ico" />
+    </Helmet>
       <Header />
 <style dangerouslySetInnerHTML={{__html: ".markdown-preview img {\n  max-width: 100%;\n  height: auto;\n}" }} />
 
@@ -70,6 +95,7 @@ function greet(name) {
           </div>
         </div>
       </div>
+      <RatingComponent/>
       <Footer />
     </>
   );

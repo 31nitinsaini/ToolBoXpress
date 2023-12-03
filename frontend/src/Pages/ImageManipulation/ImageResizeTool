@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import Resizer from 'react-image-file-resizer';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
+import RatingComponent from '../../Components/RatingComponent';
+import { Helmet } from 'react-helmet';
 
 const ImageResizeTool = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -38,9 +40,32 @@ const ImageResizeTool = () => {
     link.click();
     document.body.removeChild(link);
   };
-
+  const currentUrl = window.location.href;
   return (
     <>
+     <Helmet>
+      <title>ToolboXpress - Image Resize Tool</title>
+      <meta name="description" content="Resize images quickly and easily with ToolboXpress Image Resize Tool. Customize dimensions for web and print. Fast, intuitive, and free!" />
+      <meta name="keywords" content="Image resize tool, resize images, image dimensions, image customization, ToolboXpress" />
+      <meta name="author" content="Your Name" />
+
+      {/* Open Graph meta tags for social media sharing */}
+      <meta property="og:title" content="ToolboXpress - Image Resize Tool" />
+      <meta property="og:description" content="Resize images quickly and easily with ToolboXpress Image Resize Tool. Customize dimensions for web and print. Fast, intuitive, and free!" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={currentUrl} />
+
+      {/* Twitter Card meta tags for Twitter sharing */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="ToolboXpress - Image Resize Tool" />
+      <meta name="twitter:description" content="Resize images quickly and easily with ToolboXpress Image Resize Tool. Customize dimensions for web and print. Fast, intuitive, and free!" />
+
+      {/* Canonical URL to specify the preferred version of a page */}
+      <link rel="canonical" href={currentUrl} />
+
+      {/* Favicon */}
+      <link rel="icon" href="/favicon.ico" />
+    </Helmet>
     <Header/>
     <main style={{ textAlign: 'center', margin: '20px' }}>
       <label>
@@ -71,6 +96,7 @@ const ImageResizeTool = () => {
         </div>
       )}
     </main>
+    <RatingComponent/>
     <Footer/>
     </>
   );

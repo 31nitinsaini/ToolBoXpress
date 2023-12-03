@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
+import RatingComponent from '../../Components/RatingComponent';
 import { minify } from 'csso';
+import { Helmet } from 'react-helmet';
 
 const CssMinifier = () => {
   const [cssCode, setCssCode] = useState('body { margin: 0; padding: 0; }');
@@ -34,9 +36,33 @@ const CssMinifier = () => {
     setMinifiedCss('');
     setError('');
   };
-
+  const currentUrl = window.location.href;
   return (
     <>
+    <Helmet>
+      <title>ToolboXpress - CSS Minifier</title>
+      <meta name="description" content="Minify your CSS code quickly and efficiently with ToolboXpress CSS Minifier. Reduce file sizes for faster web page loading. Fast, easy, and free!" />
+      <meta name="keywords" content="CSS minifier, minify CSS, reduce file size, web development, optimization, ToolboXpress" />
+      <meta name="author" content="Your Name" />
+
+      {/* Open Graph meta tags for social media sharing */}
+      <meta property="og:title" content="ToolboXpress - CSS Minifier" />
+      <meta property="og:description" content="Minify your CSS code quickly and efficiently with ToolboXpress CSS Minifier. Reduce file sizes for faster web page loading. Fast, easy, and free!" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={currentUrl} />
+
+      {/* Twitter Card meta tags for Twitter sharing */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="ToolboXpress - CSS Minifier" />
+      <meta name="twitter:description" content="Minify your CSS code quickly and efficiently with ToolboXpress CSS Minifier. Reduce file sizes for faster web page loading. Fast, easy, and free!" />
+
+      {/* Canonical URL to specify the preferred version of a page */}
+      <link rel="canonical" href={currentUrl} />
+
+      {/* Favicon */}
+      <link rel="icon" href="/favicon.ico" />
+    </Helmet>
+
       <Header />
       <div className="container mt-5">
         <div className="row">
@@ -74,6 +100,7 @@ const CssMinifier = () => {
           </div>
         )}
       </div>
+      <RatingComponent/>
       <Footer />
     </>
   );

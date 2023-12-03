@@ -3,6 +3,8 @@ import './Calculator.css';
 import { evaluate } from 'mathjs';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
+import RatingComponent from '../../Components/RatingComponent';
+import { Helmet } from 'react-helmet';
 
 const Calculator = () => {
   const [input, setInput] = useState('');
@@ -42,9 +44,33 @@ const Calculator = () => {
     setResult('');
     setError('');
   };
-
+  const currentUrl = window.location.href;
   return (
    <>
+    <Helmet>
+      <title>ToolboXpress - Scientific Calculator</title>
+      <meta name="description" content="Perform advanced mathematical calculations with ToolboXpress Scientific Calculator. Solve trigonometric, logarithmic, and other complex functions. Fast, intuitive, and free!" />
+      <meta name="keywords" content="Scientific calculator, mathematical calculations, trigonometry, logarithm, ToolboXpress" />
+      <meta name="author" content="Your Name" />
+
+      {/* Open Graph meta tags for social media sharing */}
+      <meta property="og:title" content="ToolboXpress - Scientific Calculator" />
+      <meta property="og:description" content="Perform advanced mathematical calculations with ToolboXpress Scientific Calculator. Solve trigonometric, logarithmic, and other complex functions. Fast, intuitive, and free!" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={currentUrl} />
+
+      {/* Twitter Card meta tags for Twitter sharing */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="ToolboXpress - Scientific Calculator" />
+      <meta name="twitter:description" content="Perform advanced mathematical calculations with ToolboXpress Scientific Calculator. Solve trigonometric, logarithmic, and other complex functions. Fast, intuitive, and free!" />
+
+      {/* Canonical URL to specify the preferred version of a page */}
+      <link rel="canonical" href={currentUrl} />
+
+      {/* Favicon */}
+      <link rel="icon" href="/favicon.ico" />
+    </Helmet>
+
    <Header/>
    <div className="calculator">
    <div className="input">{input}</div>
@@ -87,6 +113,7 @@ const Calculator = () => {
      <button onClick={() => handleButtonClick('^')}>^</button>
    </div>
  </div>
+ <RatingComponent/>
    <Footer/>
    </>
   );

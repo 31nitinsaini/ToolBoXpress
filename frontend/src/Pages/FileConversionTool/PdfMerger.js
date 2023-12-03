@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { PDFDocument } from 'pdf-lib';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
+import Rating from 'react-rating';
+import RatingComponent from '../../Components/RatingComponent';
 
 const PdfMerger = () => {
   const [file1, setFile1] = useState(null);
@@ -90,6 +92,7 @@ const PdfMerger = () => {
           </div>
         )}
       </main>
+      <RatingComponent/>
       <Footer />
     </>
   );

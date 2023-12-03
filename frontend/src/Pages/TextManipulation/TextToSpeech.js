@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
+import RatingComponent from '../../Components/RatingComponent';
 
 const TextToSpeech = () => {
   const [inputText, setInputText] = useState('');
@@ -203,6 +204,7 @@ const TextToSpeech = () => {
           </Grid>
         </Container>
       </main>
+      <RatingComponent/>
       <Footer />
     </>
   );

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../../Components/Header';
+import { Helmet } from 'react-helmet';
 import Footer from '../../Components/Footer';
+import RatingComponent from '../../Components/RatingComponent';
 
 const CodeSnippetGenerator = () => {
   const [language, setLanguage] = useState('');
@@ -37,9 +39,34 @@ ${code}
     setGeneratedSnippet(snippet);
     setCopied(false);
   };
-
+  const currentUrl = window.location.href;
   return (
     <>
+    <Helmet>
+        <title>ToolBoXpress - Code Snippet Generator</title>
+        <meta name="description" content="Generate custom code snippets easily with ToolBoXpress Code Snippet Generator. Create snippets for HTML, CSS, JavaScript, and more. Simplify your coding process." />
+        <meta name="keywords" content="code snippet generator, HTML code, CSS code, JavaScript code, coding tool, ToolBoXpress" />
+
+        {/* Open Graph meta tags for social media sharing */}
+        <meta property="og:title" content="ToolBoXpress - Code Snippet Generator" />
+        <meta property="og:description" content="Generate custom code snippets easily with ToolBoXpress Code Snippet Generator. Create snippets for HTML, CSS, JavaScript, and more. Simplify your coding process." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={currentUrl} />
+        
+
+        {/* Twitter Card meta tags for Twitter sharing */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="ToolBoXpress - Code Snippet Generator" />
+        <meta name="twitter:description" content="Generate custom code snippets easily with ToolBoXpress Code Snippet Generator. Create snippets for HTML, CSS, JavaScript, and more. Simplify your coding process." />
+        
+
+        {/* Canonical URL to specify the preferred version of a page */}
+        <link rel="canonical" href={currentUrl} />
+
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.ico" />
+      </Helmet>
+
       <Header />
       <main>
         <div className="container mt-5">
@@ -97,6 +124,7 @@ ${code}
           )}
         </div>
       </main>
+      <RatingComponent/>
       <Footer />
     </>
   );

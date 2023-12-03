@@ -12,6 +12,7 @@ import html2canvas from 'html2canvas';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import { Helmet } from 'react-helmet';
+import RatingComponent from '../../Components/RatingComponent';
 
 const BarCodeGenerator = () => {
     const [barcodeValue, setBarcodeValue] = useState('');
@@ -115,6 +116,7 @@ const BarCodeGenerator = () => {
                     </Paper>
                 </Container>
             </main>
+            <RatingComponent/>
             <Footer />
         </>
     );

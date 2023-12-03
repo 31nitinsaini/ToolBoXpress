@@ -189,6 +189,7 @@
                 </div>
               )}
             </li>
+            
             {/* Add other tools and sub-tools in a similar fashion */}
           </ul>
         </nav>

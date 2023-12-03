@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
+import RatingComponent from '../../Components/RatingComponent';
+import { Helmet } from 'react-helmet';
 
 const UnitConverter = () => {
   const [selectedCategory, setSelectedCategory] = useState('Temperature');
@@ -189,9 +191,32 @@ const UnitConverter = () => {
 
     return value;
   };
-
+  const currentUrl = window.location.href;
   return (
     <>
+     <Helmet>
+      <title>ToolboXpress - Unit Converter</title>
+      <meta name="description" content="Convert units easily with ToolboXpress Unit Converter. Switch between different measurement systems for accurate conversions. Fast, intuitive, and free!" />
+      <meta name="keywords" content="Unit converter, convert units, measurement conversion, ToolboXpress" />
+      <meta name="author" content="Your Name" />
+
+      {/* Open Graph meta tags for social media sharing */}
+      <meta property="og:title" content="ToolboXpress - Unit Converter" />
+      <meta property="og:description" content="Convert units easily with ToolboXpress Unit Converter. Switch between different measurement systems for accurate conversions. Fast, intuitive, and free!" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={currentUrl} />
+
+      {/* Twitter Card meta tags for Twitter sharing */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="ToolboXpress - Unit Converter" />
+      <meta name="twitter:description" content="Convert units easily with ToolboXpress Unit Converter. Switch between different measurement systems for accurate conversions. Fast, intuitive, and free!" />
+
+      {/* Canonical URL to specify the preferred version of a page */}
+      <link rel="canonical" href={currentUrl} />
+
+      {/* Favicon */}
+      <link rel="icon" href="/favicon.ico" />
+    </Helmet>
       <Header />
       <main className="container mt-5">
         <h1 className="mb-4">Unit Converter</h1>
@@ -268,6 +293,7 @@ const UnitConverter = () => {
           </div>
         )}
       </main>
+      <RatingComponent/>
       <Footer />
     </>
   );

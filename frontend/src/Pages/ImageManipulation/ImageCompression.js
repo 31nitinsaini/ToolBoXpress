@@ -1,6 +1,10 @@
 // ImageResizeTool.js
 import React, { useState } from 'react';
 import Resizer from 'react-image-file-resizer';
+import Header from '../../Components/Header';
+import Footer from '../../Components/Footer';
+import RatingComponent from '../../Components/RatingComponent';
+import { Helmet } from 'react-helmet';
 
 const ImageResizeTool = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -36,8 +40,33 @@ const ImageResizeTool = () => {
     link.click();
     document.body.removeChild(link);
   };
+  const currentUrl = window.location.href;
 
   return (
+    <>
+    <Helmet>
+      <title>ToolboXpress - Image Compression</title>
+      <meta name="description" content="Compress images quickly and efficiently with ToolboXpress Image Compression. Reduce file sizes for faster web page loading. Fast, easy, and free!" />
+      <meta name="keywords" content="Image compression, compress images, reduce file size, web development, optimization, ToolboXpress" />
+      <meta name="author" content="Your Name" />
+
+      {/* Open Graph meta tags for social media sharing */}
+      <meta property="og:title" content="ToolboXpress - Image Compression" />
+      <meta property="og:description" content="Compress images quickly and efficiently with ToolboXpress Image Compression. Reduce file sizes for faster web page loading. Fast, easy, and free!" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={currentUrl} />
+
+      {/* Twitter Card meta tags for Twitter sharing */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="ToolboXpress - Image Compression" />
+      <meta name="twitter:description" content="Compress images quickly and efficiently with ToolboXpress Image Compression. Reduce file sizes for faster web page loading. Fast, easy, and free!" />
+
+      {/* Canonical URL to specify the preferred version of a page */}
+      <link rel="canonical" href={currentUrl} />
+
+      {/* Favicon */}
+      <link rel="icon" href="/favicon.ico" />
+    </Helmet>    <Header/>
     <div style={{ textAlign: 'center', margin: '20px' }}>
       <label>
         Select an Image:
@@ -63,6 +92,10 @@ const ImageResizeTool = () => {
         </div>
       )}
     </div>
+    <RatingComponent/>
+    <Footer/>
+    
+    </>
   );
 };
 

@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
+import RatingComponent from '../../Components/RatingComponent';
 
 const TextCount = () => {
   const [inputText, setInputText] = useState('');
@@ -225,6 +226,7 @@ const TextCount = () => {
           </Grid>
         </Container>
       </main>
+      <RatingComponent/>
       <Footer />
     </>
   );

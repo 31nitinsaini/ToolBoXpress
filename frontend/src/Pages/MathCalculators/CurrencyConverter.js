@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
+import RatingComponent from '../../Components/RatingComponent';
+import { Helmet } from 'react-helmet';
 
 const CurrencyConverter = () => {
   const [amount, setAmount] = useState(1);
@@ -45,9 +47,32 @@ const CurrencyConverter = () => {
   const handleToCurrencyChange = (e) => {
     setToCurrency(e.target.value);
   };
-
+  const currentUrl = window.location.href;
   return (
     <>
+    <Helmet>
+      <title>ToolboXpress - Currency Converter</title>
+      <meta name="description" content="Convert currencies with up-to-date exchange rates using ToolboXpress Currency Converter. Get accurate conversions for your financial transactions. Fast, intuitive, and free!" />
+      <meta name="keywords" content="Currency converter, exchange rates, currency conversion, financial tools, ToolboXpress" />
+      <meta name="author" content="Your Name" />
+
+      {/* Open Graph meta tags for social media sharing */}
+      <meta property="og:title" content="ToolboXpress - Currency Converter" />
+      <meta property="og:description" content="Convert currencies with up-to-date exchange rates using ToolboXpress Currency Converter. Get accurate conversions for your financial transactions. Fast, intuitive, and free!" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={currentUrl} />
+
+      {/* Twitter Card meta tags for Twitter sharing */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="ToolboXpress - Currency Converter" />
+      <meta name="twitter:description" content="Convert currencies with up-to-date exchange rates using ToolboXpress Currency Converter. Get accurate conversions for your financial transactions. Fast, intuitive, and free!" />
+
+      {/* Canonical URL to specify the preferred version of a page */}
+      <link rel="canonical" href={currentUrl} />
+
+      {/* Favicon */}
+      <link rel="icon" href="/favicon.ico" />
+    </Helmet>
       <Header />
       <div className="container mt-5 mb-4">
         <h2>Currency Converter</h2>
@@ -91,6 +116,7 @@ const CurrencyConverter = () => {
           </div>
         )}
       </div>
+      <RatingComponent/>
       <Footer />
     </>
   );

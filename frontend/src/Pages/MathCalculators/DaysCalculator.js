@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './DaysCalculator.css'; // Import your CSS file
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
+import RatingComponent from '../../Components/RatingComponent';
+import { Helmet } from 'react-helmet';
 
 const DaysCalculator = () => {
   const [startDate, setStartDate] = useState('');
@@ -31,9 +33,32 @@ const DaysCalculator = () => {
     );
   };
   
-
+  const currentUrl = window.location.href;
   return (
    <>
+    <Helmet>
+      <title>ToolboXpress - Days Calculator</title>
+      <meta name="description" content="Calculate the number of days between two dates with ToolboXpress Days Calculator. Plan events, track durations, and more. Fast, intuitive, and free!" />
+      <meta name="keywords" content="Days calculator, date calculator, calculate duration, date difference, ToolboXpress" />
+      <meta name="author" content="Your Name" />
+
+      {/* Open Graph meta tags for social media sharing */}
+      <meta property="og:title" content="ToolboXpress - Days Calculator" />
+      <meta property="og:description" content="Calculate the number of days between two dates with ToolboXpress Days Calculator. Plan events, track durations, and more. Fast, intuitive, and free!" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={currentUrl} />
+
+      {/* Twitter Card meta tags for Twitter sharing */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="ToolboXpress - Days Calculator" />
+      <meta name="twitter:description" content="Calculate the number of days between two dates with ToolboXpress Days Calculator. Plan events, track durations, and more. Fast, intuitive, and free!" />
+
+      {/* Canonical URL to specify the preferred version of a page */}
+      <link rel="canonical" href={currentUrl} />
+
+      {/* Favicon */}
+      <link rel="icon" href="/favicon.ico" />
+    </Helmet>
    <Header/>
    <div className="container mt-5">
       <h2>Days Calculator</h2>
@@ -68,6 +93,7 @@ const DaysCalculator = () => {
         </div>
       )}
     </div>
+    <RatingComponent/>
    <Footer/>
    </>
   );

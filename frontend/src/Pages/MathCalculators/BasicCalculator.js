@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
+import RatingComponent from '../../Components/RatingComponent';
 import './Calculator.css';
+import { Helmet } from 'react-helmet';
 
 const BasicCalculator = () => {
   const [input, setInput] = useState('');
@@ -40,9 +42,33 @@ const BasicCalculator = () => {
     setResult('');
     setError('');
   };
-
+  const currentUrl = window.location.href;
   return (
    <>
+    <Helmet>
+      <title>ToolboXpress - Basic Calculator</title>
+      <meta name="description" content="Perform basic arithmetic operations with ToolboXpress Basic Calculator. Add, subtract, multiply, and divide effortlessly. Fast, intuitive, and free!" />
+      <meta name="keywords" content="Basic calculator, arithmetic operations, addition, subtraction, multiplication, division, ToolboXpress" />
+      <meta name="author" content="Your Name" />
+
+      {/* Open Graph meta tags for social media sharing */}
+      <meta property="og:title" content="ToolboXpress - Basic Calculator" />
+      <meta property="og:description" content="Perform basic arithmetic operations with ToolboXpress Basic Calculator. Add, subtract, multiply, and divide effortlessly. Fast, intuitive, and free!" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={currentUrl} />
+
+      {/* Twitter Card meta tags for Twitter sharing */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="ToolboXpress - Basic Calculator" />
+      <meta name="twitter:description" content="Perform basic arithmetic operations with ToolboXpress Basic Calculator. Add, subtract, multiply, and divide effortlessly. Fast, intuitive, and free!" />
+
+      {/* Canonical URL to specify the preferred version of a page */}
+      <link rel="canonical" href={currentUrl} />
+
+      {/* Favicon */}
+      <link rel="icon" href="/favicon.ico" />
+    </Helmet>
+
    <Header/>
    <div className="calculator my-5">
       <div className="input">{input}</div>
@@ -73,6 +99,7 @@ const BasicCalculator = () => {
         <button  onClick={clearInput}>Clear</button>
       </div>
     </div>
+    <RatingComponent/>
    <Footer/>
    </>
   );

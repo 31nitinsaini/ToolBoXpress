@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Container, Typography, TextareaAutosize, Button, Card, CardContent, Grid } from '@mui/material';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
+import RatingComponent from '../../Components/RatingComponent';
 
 const ReverseWords = () => {
     const [inputText, setInputText] = useState('');
@@ -48,6 +49,7 @@ const ReverseWords = () => {
                     </Grid>
                 </Container>
             </main>
+            <RatingComponent/>
             <Footer />
         </>
     );

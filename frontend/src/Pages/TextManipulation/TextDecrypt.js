@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
+import RatingComponent from '../../Components/RatingComponent';
 
 const TextDecrypt = () => {
   const [inputText, setInputText] = useState('');
@@ -61,6 +62,7 @@ const TextDecrypt = () => {
           </Grid>
         </Container>
       </main>
+      <RatingComponent/>
       <Footer />
     </>
   );

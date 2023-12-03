@@ -14,6 +14,8 @@ import FileCopyIcon from '@mui/icons-material/FileCopy';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import randomstring from 'crypto-random-string';
+import RatingComponent from '../../Components/RatingComponent';
+import { Helmet } from 'react-helmet';
 
 const PasswordGenerator = () => {
   const [passwordLength, setPasswordLength] = useState(12);
@@ -53,9 +55,32 @@ const PasswordGenerator = () => {
     setGeneratedPassword(password);
     setIsCopied(false); // Reset the copied state
   };
-
+  const currentUrl = window.location.href;
   return (
     <>
+     <Helmet>
+      <title>ToolboXpress - Password Generator</title>
+      <meta name="description" content="Create strong and secure passwords with ToolboXpress Password Generator. Customize length, include symbols, and ensure password strength. Fast, easy, and free!" />
+      <meta name="keywords" content="Password generator, secure passwords, strong passwords, ToolboXpress" />
+      <meta name="author" content="Your Name" />
+
+      {/* Open Graph meta tags for social media sharing */}
+      <meta property="og:title" content="ToolboXpress - Password Generator" />
+      <meta property="og:description" content="Create strong and secure passwords with ToolboXpress Password Generator. Customize length, include symbols, and ensure password strength. Fast, easy, and free!" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={currentUrl} />
+
+      {/* Twitter Card meta tags for Twitter sharing */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="ToolboXpress - Password Generator" />
+      <meta name="twitter:description" content="Create strong and secure passwords with ToolboXpress Password Generator. Customize length, include symbols, and ensure password strength. Fast, easy, and free!" />
+
+      {/* Canonical URL to specify the preferred version of a page */}
+      <link rel="canonical" href={currentUrl} />
+
+      {/* Favicon */}
+      <link rel="icon" href="/favicon.ico" />
+    </Helmet>
       <Header />
       <main>
         <Container>
@@ -147,6 +172,7 @@ const PasswordGenerator = () => {
           </Paper>
         </Container>
       </main>
+      <RatingComponent/>
       <Footer />
     </>
   );

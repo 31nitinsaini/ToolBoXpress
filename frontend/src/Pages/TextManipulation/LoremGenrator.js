@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
+import RatingComponent from '../../Components/RatingComponent';
 import axios from 'axios';
 
 const LoremGenerator = () => {
@@ -172,6 +173,7 @@ const LoremGenerator = () => {
           </Grid>
         </Container>
       </main>
+      <RatingComponent/>
       <Footer />
     </>
   );

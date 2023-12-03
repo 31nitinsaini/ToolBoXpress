@@ -15,6 +15,7 @@ import {
 } from '@mui/material';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
+import RatingComponent from '../../Components/RatingComponent';
 
 const ReplaceWords = () => {
   const [inputText, setInputText] = useState('');
@@ -91,6 +92,7 @@ const ReplaceWords = () => {
           </Grid>
         </Container>
       </main>
+      <RatingComponent/>
       <Footer />
     </>
   );

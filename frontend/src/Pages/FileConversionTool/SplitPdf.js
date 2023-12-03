@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { PDFDocument } from 'pdf-lib';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
+import RatingComponent from '../../Components/RatingComponent';
 
 const SplitPdf = () => {
   const [file, setFile] = useState(null);
@@ -119,6 +120,7 @@ const splitPDF = async () => {
           </div>
         )}
       </main>
+      <RatingComponent/>
       <Footer />
     </>
   );

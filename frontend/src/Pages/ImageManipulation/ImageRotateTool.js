@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import Footer from '../../Components/Footer';
 import Header from '../../Components/Header';
+import RatingComponent from '../../Components/RatingComponent';
+import { Helmet } from 'react-helmet';
 
 const ImageRotateTool = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -15,9 +17,32 @@ const ImageRotateTool = () => {
   const handleRotate = (degrees) => {
     setRotation((prevRotation) => (prevRotation + degrees) % 360);
   };
-
+  const currentUrl = window.location.href;
   return (
     <>
+    <Helmet>
+      <title>ToolboXpress - Image Rotate Tool</title>
+      <meta name="description" content="Rotate and flip your images easily with ToolboXpress Image Rotate Tool. Adjust orientation for better presentation. Fast, intuitive, and free!" />
+      <meta name="keywords" content="Image rotate tool, flip images, rotate pictures, image orientation, ToolboXpress" />
+      <meta name="author" content="Your Name" />
+
+      {/* Open Graph meta tags for social media sharing */}
+      <meta property="og:title" content="ToolboXpress - Image Rotate Tool" />
+      <meta property="og:description" content="Rotate and flip your images easily with ToolboXpress Image Rotate Tool. Adjust orientation for better presentation. Fast, intuitive, and free!" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={currentUrl} />
+
+      {/* Twitter Card meta tags for Twitter sharing */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="ToolboXpress - Image Rotate Tool" />
+      <meta name="twitter:description" content="Rotate and flip your images easily with ToolboXpress Image Rotate Tool. Adjust orientation for better presentation. Fast, intuitive, and free!" />
+
+      {/* Canonical URL to specify the preferred version of a page */}
+      <link rel="canonical" href={currentUrl} />
+
+      {/* Favicon */}
+      <link rel="icon" href="/favicon.ico" />
+    </Helmet>
     <Header/>
     <div style={{ textAlign: 'center', margin: '20px' }}>
       <label>
@@ -42,6 +67,7 @@ const ImageRotateTool = () => {
         </div>
       )}
     </div>
+    <RatingComponent/>
     <Footer/>
     </>
     
