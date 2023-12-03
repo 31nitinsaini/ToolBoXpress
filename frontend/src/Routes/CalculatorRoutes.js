@@ -5,6 +5,8 @@ import ScientificCalculatror from '../Pages/MathCalculators/ScientificCalculatro
 import UnitConvertor from '../Pages/MathCalculators/UnitConvertor'
 import CurrencyConverter from '../Pages/MathCalculators/CurrencyConverter'
 import DaysCalculator from '../Pages/MathCalculators/DaysCalculator'
+import AgeCalculator from '../Pages/MathCalculators/AgeCalculator'
+import TimeCalculator from '../Pages/MathCalculators/TimeCalculator'
 const CalculatorRoutes = () => {
   return (
     <Routes>
@@ -13,6 +15,8 @@ const CalculatorRoutes = () => {
         <Route path='unit-converter' element={<UnitConvertor/>}/>
         <Route path='currency-converter' element={<CurrencyConverter/>}/>
         <Route path='days-calculator' element={<DaysCalculator/>}/>
+        <Route path='age-calculator' element={<AgeCalculator/>}/>
+        <Route path='time-calculator' element={<TimeCalculator/>}/>
     </Routes>
   )
 }

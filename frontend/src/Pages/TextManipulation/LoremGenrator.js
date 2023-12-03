@@ -14,6 +14,7 @@ import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import RatingComponent from '../../Components/RatingComponent';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 
 const LoremGenerator = () => {
   const [generatedText, setGeneratedText] = useState('');
@@ -73,8 +74,34 @@ const LoremGenerator = () => {
     setCopyStatus('copied'); // Set copy status to 'copied' when text is copied
   };
 
+  const currentUrl = window.location.href;
+
   return (
     <>
+      <Helmet>
+      <title>ToolboXpress - Lorem Ipsum Generator</title>
+      <meta name="description" content="Generate placeholder text with ToolboXpress Lorem Ipsum Generator. Create dummy text for your design projects. Fast, easy, and free!" />
+      <meta name="keywords" content="Lorem Ipsum generator, placeholder text, dummy text, design projects, ToolboXpress" />
+      <meta name="author" content="Your Name" />
+
+      {/* Open Graph meta tags for social media sharing */}
+      <meta property="og:title" content="ToolboXpress - Lorem Ipsum Generator" />
+      <meta property="og:description" content="Generate placeholder text with ToolboXpress Lorem Ipsum Generator. Create dummy text for your design projects. Fast, easy, and free!" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={currentUrl} />
+
+      {/* Twitter Card meta tags for Twitter sharing */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="ToolboXpress - Lorem Ipsum Generator" />
+      <meta name="twitter:description" content="Generate placeholder text with ToolboXpress Lorem Ipsum Generator. Create dummy text for your design projects. Fast, easy, and free!" />
+
+      {/* Canonical URL to specify the preferred version of a page */}
+      <link rel="canonical" href={currentUrl} />
+
+      {/* Favicon */}
+      <link rel="icon" href="/favicon.ico" />
+    </Helmet>
+
       <Header />
       <main>
         <Container maxWidth="md">

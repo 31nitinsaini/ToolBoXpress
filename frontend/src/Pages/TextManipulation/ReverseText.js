@@ -3,6 +3,7 @@ import { Container, Typography, TextareaAutosize, Button, Card, CardContent, Gri
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import RatingComponent from '../../Components/RatingComponent';
+import { Helmet } from 'react-helmet';
 
 const ReverseWords = () => {
     const [inputText, setInputText] = useState('');
@@ -24,8 +25,34 @@ const ReverseWords = () => {
         setInputText(exampleText);
     };
 
+    const currentUrl = window.location.href;
+
     return (
-        <>
+        <>  
+            <Helmet>
+      <title>ToolboXpress - Reverse Text</title>
+      <meta name="description" content="Reverse your text easily with ToolboXpress Reverse Text tool. Flip your words or sentences for creative and fun effects. Fast, intuitive, and free!" />
+      <meta name="keywords" content="Reverse text, flip words, backward text, ToolboXpress" />
+      <meta name="author" content="Your Name" />
+
+      {/* Open Graph meta tags for social media sharing */}
+      <meta property="og:title" content="ToolboXpress - Reverse Text" />
+      <meta property="og:description" content="Reverse your text easily with ToolboXpress Reverse Text tool. Flip your words or sentences for creative and fun effects. Fast, intuitive, and free!" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={currentUrl} />
+
+      {/* Twitter Card meta tags for Twitter sharing */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="ToolboXpress - Reverse Text" />
+      <meta name="twitter:description" content="Reverse your text easily with ToolboXpress Reverse Text tool. Flip your words or sentences for creative and fun effects. Fast, intuitive, and free!" />
+
+      {/* Canonical URL to specify the preferred version of a page */}
+      <link rel="canonical" href={currentUrl} />
+
+      {/* Favicon */}
+      <link rel="icon" href="/favicon.ico" />
+    </Helmet>
+
             <Header />
             <main>
                 <Container maxWidth="md">

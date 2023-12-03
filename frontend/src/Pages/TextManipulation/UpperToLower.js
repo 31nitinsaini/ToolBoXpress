@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container, Typography, TextareaAutosize, Button, Card, CardContent, Grid } from '@mui/material';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
-
+import { Helmet } from 'react-helmet';
 const UpperToLower = () => {
     const [inputText, setInputText] = useState('');
     const [outputText, setOutputText] = useState('');
@@ -21,9 +21,35 @@ const UpperToLower = () => {
     const setInputTextExample = (exampleText) => {
         setInputText(exampleText);
     };
+    const currentUrl = window.location.href;
 
     return (
         <>
+
+<Helmet>
+      <title>ToolboXpress - Upper to Lower Text Converter</title>
+      <meta name="description" content="Convert uppercase text to lowercase with ToolboXpress Upper to Lower Text Converter. Change the case of your text easily. Fast, intuitive, and free!" />
+      <meta name="keywords" content="Upper to lower text converter, convert case, change text case, ToolboXpress" />
+      <meta name="author" content="Your Name" />
+
+      {/* Open Graph meta tags for social media sharing */}
+      <meta property="og:title" content="ToolboXpress - Upper to Lower Text Converter" />
+      <meta property="og:description" content="Convert uppercase text to lowercase with ToolboXpress Upper to Lower Text Converter. Change the case of your text easily. Fast, intuitive, and free!" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={currentUrl} />
+
+      {/* Twitter Card meta tags for Twitter sharing */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="ToolboXpress - Upper to Lower Text Converter" />
+      <meta name="twitter:description" content="Convert uppercase text to lowercase with ToolboXpress Upper to Lower Text Converter. Change the case of your text easily. Fast, intuitive, and free!" />
+
+      {/* Canonical URL to specify the preferred version of a page */}
+      <link rel="canonical" href={currentUrl} />
+
+      {/* Favicon */}
+      <link rel="icon" href="/favicon.ico" />
+    </Helmet>
+
             <Header />
             <main>
                 <Container maxWidth="md">

@@ -11,6 +11,7 @@ import {
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import RatingComponent from '../../Components/RatingComponent';
+import { Helmet } from 'react-helmet';
 
 const TextDecrypt = () => {
   const [inputText, setInputText] = useState('');
@@ -35,8 +36,34 @@ const TextDecrypt = () => {
     setInputText(exampleText);
   };
 
+  const currentUrl = window.location.href;
+
   return (
     <>
+       <Helmet>
+      <title>ToolboXpress - Text Decryption Tool</title>
+      <meta name="description" content="Decrypt encoded text with ToolboXpress Text Decryption Tool. Decode encrypted messages and reveal the original content. Fast, intuitive, and free!" />
+      <meta name="keywords" content="Text decryption tool, decrypt text, decode messages, ToolboXpress" />
+      <meta name="author" content="Your Name" />
+
+      {/* Open Graph meta tags for social media sharing */}
+      <meta property="og:title" content="ToolboXpress - Text Decryption Tool" />
+      <meta property="og:description" content="Decrypt encoded text with ToolboXpress Text Decryption Tool. Decode encrypted messages and reveal the original content. Fast, intuitive, and free!" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={currentUrl} />
+
+      {/* Twitter Card meta tags for Twitter sharing */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="ToolboXpress - Text Decryption Tool" />
+      <meta name="twitter:description" content="Decrypt encoded text with ToolboXpress Text Decryption Tool. Decode encrypted messages and reveal the original content. Fast, intuitive, and free!" />
+
+      {/* Canonical URL to specify the preferred version of a page */}
+      <link rel="canonical" href={currentUrl} />
+
+      {/* Favicon */}
+      <link rel="icon" href="/favicon.ico" />
+    </Helmet>
+
       <Header />
       <main>
         <Container maxWidth="md">

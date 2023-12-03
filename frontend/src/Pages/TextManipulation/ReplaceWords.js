@@ -16,6 +16,7 @@ import {
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import RatingComponent from '../../Components/RatingComponent';
+import { Helmet } from 'react-helmet';
 
 const ReplaceWords = () => {
   const [inputText, setInputText] = useState('');
@@ -57,8 +58,34 @@ const ReplaceWords = () => {
     setOutputText('');
   };
 
+  const currentUrl = window.location.href;
+
   return (
     <>
+       (
+    <Helmet>
+      <title>ToolboXpress - Replace Word</title>
+      <meta name="description" content="Replace words in your text with ToolboXpress Replace Word tool. Quickly substitute specific words or phrases. Fast, intuitive, and free!" />
+      <meta name="keywords" content="Replace word, text replacement, word substitution, ToolboXpress" />
+      <meta name="author" content="Your Name" />
+
+      {/* Open Graph meta tags for social media sharing */}
+      <meta property="og:title" content="ToolboXpress - Replace Word" />
+      <meta property="og:description" content="Replace words in your text with ToolboXpress Replace Word tool. Quickly substitute specific words or phrases. Fast, intuitive, and free!" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={currentUrl} />
+
+      {/* Twitter Card meta tags for Twitter sharing */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="ToolboXpress - Replace Word" />
+      <meta name="twitter:description" content="Replace words in your text with ToolboXpress Replace Word tool. Quickly substitute specific words or phrases. Fast, intuitive, and free!" />
+
+      {/* Canonical URL to specify the preferred version of a page */}
+      <link rel="canonical" href={currentUrl} />
+
+      {/* Favicon */}
+      <link rel="icon" href="/favicon.ico" />
+    </Helmet>
       <Header />
       <main>
         <Container maxWidth="md">

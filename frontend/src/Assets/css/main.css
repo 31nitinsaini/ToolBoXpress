@@ -74,9 +74,6 @@ nav a:hover {
 
 }
 
-
-
-
 /* Add some spacing between the main headings and paragraphs */
 main h2,
 main h3,
@@ -87,7 +84,7 @@ main p {
 
 /*  CSS for the hero section */
 .hero-section {
-    background-image: url('https://via.placeholder.com/1920x1080');
+    background-image: url('./banner.jpg');
     /* Placeholder image URL */
     /* Replace with your hero image URL */
     background-size: cover;

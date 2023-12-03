@@ -3,7 +3,7 @@ import { Container, Typography, TextareaAutosize, Button, Card, CardContent, Gri
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import RatingComponent from '../../Components/RatingComponent';
-
+import { Helmet } from 'react-helmet';
 const RemoveSpace = () => {
     const [inputText, setInputText] = useState('');
     const [outputText, setOutputText] = useState('');
@@ -23,8 +23,33 @@ const RemoveSpace = () => {
         setInputText(exampleText);
     };
 
+    const currentUrl = window.location.href;
+    
     return (
         <>
+            <Helmet>
+      <title>ToolboXpress - Space Remover</title>
+      <meta name="description" content="Remove extra spaces from text with ToolboXpress Space Remover. Clean up your text by eliminating unnecessary spaces. Fast, intuitive, and free!" />
+      <meta name="keywords" content="Space remover, remove extra spaces, text cleaner, ToolboXpress" />
+      <meta name="author" content="Your Name" />
+
+      {/* Open Graph meta tags for social media sharing */}
+      <meta property="og:title" content="ToolboXpress - Space Remover" />
+      <meta property="og:description" content="Remove extra spaces from text with ToolboXpress Space Remover. Clean up your text by eliminating unnecessary spaces. Fast, intuitive, and free!" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={currentUrl} />
+
+      {/* Twitter Card meta tags for Twitter sharing */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="ToolboXpress - Space Remover" />
+      <meta name="twitter:description" content="Remove extra spaces from text with ToolboXpress Space Remover. Clean up your text by eliminating unnecessary spaces. Fast, intuitive, and free!" />
+
+      {/* Canonical URL to specify the preferred version of a page */}
+      <link rel="canonical" href={currentUrl} />
+
+      {/* Favicon */}
+      <link rel="icon" href="/favicon.ico" />
+    </Helmet>
             <Header />
             <main>
                 <Container maxWidth="md">

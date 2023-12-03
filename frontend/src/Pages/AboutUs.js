@@ -6,7 +6,7 @@ import Helmet from 'react-helmet';
 const AboutUs = () => {
     return (
         <>
-         <Helmet>
+            <Helmet>
                 <title>ToolboXpress - Your Utility Store</title>
                 <meta name="description" content="Explore a variety of online utility tools at ToolboXpress, your one-stop utility store. Find text manipulation tools, file converters, coding utilities, and more." />
                 <meta name="keywords" content="utility store, online tools, text manipulation, file conversion, coding tools, utility website" />
@@ -31,7 +31,7 @@ const AboutUs = () => {
             </Helmet>
             <Header />
             <main>
-            <AboutUsContainer />
+                <AboutUsContainer />
             </main>
             <Footer />
         </>
@@ -41,9 +41,10 @@ const AboutUsContainer = () => {
     return (
 
         <>
-            <style dangerouslySetInnerHTML={{__html: "\n        /* Add your CSS styles here */\n        .about-container {\n            max-width: 800px;\n            margin: 20px auto;\n            padding: 20px;\n            background-color: #fff;\n            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n        }\n    " }} />
+            <style dangerouslySetInnerHTML={{ __html: "\n        /* Add your CSS styles here */\n        .about-container {\n            max-width: 800px;\n            margin: 20px auto;\n            padding: 20px;\n            background-color: #fff;\n            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n        }\n    " }} />
 
             <div className="about-container">
+                <img src="logo.png" alt="" className="img-thumbnail" />
                 <h2>Welcome to ToolboXpress!</h2>
                 <p>At ToolboXpress, we are passionate about providing you with a comprehensive collection of tools to meet your needs. Whether you're a professional tradesperson or a DIY enthusiast, our mission is to make your projects easier and more efficient by offering a wide range of high-quality tools.</p>
                 <p>Our journey began in 2010 when a group of tool enthusiasts came together with a shared vision. Over the years, we have grown into a trusted resource for tool users worldwide. We take pride in our commitment to innovation and quality, and we're constantly researching and testing new tools to ensure we offer the latest and most reliable options for our customers.</p>

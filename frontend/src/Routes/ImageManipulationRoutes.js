@@ -1,11 +1,11 @@
 import React from 'react'
 import { Routes,Route } from 'react-router-dom'
-import WordToPdf from '../Pages/FileConversionTool/WordToPdf'
 import ImageResizeTool from '../Pages/ImageManipulation/ImageResizeTool'
 import ImageRotateTool from '../Pages/ImageManipulation/ImageRotateTool'
 import ImageWatermarkTool from '../Pages/ImageManipulation/ImageWatermarkTool'
 import ImageFiltersTool from '../Pages/ImageManipulation/ImageFiltersTool'
 import ImageCropTool from '../Pages/ImageManipulation/ImageCropTool'
+import ImageConversion from '../Pages/ImageManipulation/ImageConversion'
 
 const ImageManipulationRoutes = () => {
   return (
@@ -15,6 +15,7 @@ const ImageManipulationRoutes = () => {
         <Route path='image-water-mark' element={<ImageWatermarkTool/>}/>
         <Route path='image-filter' element={<ImageFiltersTool/>}/>
         <Route path='image-crop' element={<ImageCropTool/>}/>
+        <Route path='image-conversion' element={<ImageConversion/>}/>
     </Routes>
   )
 }

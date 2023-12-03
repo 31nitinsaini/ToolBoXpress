@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import RatingComponent from '../../Components/RatingComponent';
-
+import { Helmet } from 'react-helmet';
 const MorseCodeConverter = () => {
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
@@ -52,8 +52,33 @@ const MorseCodeConverter = () => {
     setInputText(text);
   };
 
+  const currentUrl = window.location.href;
+
   return (
     <>
+    <Helmet>
+      <title>ToolboXpress - Morse Code Converter</title>
+      <meta name="description" content="Convert text to Morse code and vice versa with ToolboXpress Morse Code Converter. Translate messages using the Morse code system. Fast, intuitive, and free!" />
+      <meta name="keywords" content="Morse Code Converter, text to Morse code, Morse code translation, ToolboXpress" />
+      <meta name="author" content="Your Name" />
+
+      {/* Open Graph meta tags for social media sharing */}
+      <meta property="og:title" content="ToolboXpress - Morse Code Converter" />
+      <meta property="og:description" content="Convert text to Morse code and vice versa with ToolboXpress Morse Code Converter. Translate messages using the Morse code system. Fast, intuitive, and free!" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={currentUrl} />
+
+      {/* Twitter Card meta tags for Twitter sharing */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="ToolboXpress - Morse Code Converter" />
+      <meta name="twitter:description" content="Convert text to Morse code and vice versa with ToolboXpress Morse Code Converter. Translate messages using the Morse code system. Fast, intuitive, and free!" />
+
+      {/* Canonical URL to specify the preferred version of a page */}
+      <link rel="canonical" href={currentUrl} />
+
+      {/* Favicon */}
+      <link rel="icon" href="/favicon.ico" />
+    </Helmet>
       <Header />
       <div className="container mt-5 mb-5">
         <h2 className="mb-3">Morse Code Converter</h2>

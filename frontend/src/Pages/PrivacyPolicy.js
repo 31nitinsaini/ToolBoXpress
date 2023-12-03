@@ -6,37 +6,37 @@ import Helmet from 'react-helmet'
 const PrivacyPolicy = () => {
     return (
         <>
-          <Helmet>
-            <title>ToolboXpress - Privacy Policy</title>
-            <meta name="description" content="Read ToolboXpress's privacy policy to understand how we collect, use, and protect your personal information while using our online utility tools." />
-            <meta name="keywords" content="privacy policy, data protection, online tools, utility store, user information" />
-            <meta name="author" content="Your Name" />
+            <Helmet>
+                <title>ToolboXpress - Privacy Policy</title>
+                <meta name="description" content="Read ToolboXpress's privacy policy to understand how we collect, use, and protect your personal information while using our online utility tools." />
+                <meta name="keywords" content="privacy policy, data protection, online tools, utility store, user information" />
+                <meta name="author" content="Your Name" />
 
-            {/* Open Graph meta tags for social media sharing */}
-            <meta property="og:title" content="ToolboXpress - Privacy Policy" />
-            <meta property="og:description" content="Read ToolboXpress's privacy policy to understand how we collect, use, and protect your personal information while using our online utility tools." />
-            <meta property="og:type" content="website" />
-            <meta property="og:url" content={window.location.href} />
+                {/* Open Graph meta tags for social media sharing */}
+                <meta property="og:title" content="ToolboXpress - Privacy Policy" />
+                <meta property="og:description" content="Read ToolboXpress's privacy policy to understand how we collect, use, and protect your personal information while using our online utility tools." />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={window.location.href} />
 
-            {/* Twitter Card meta tags for Twitter sharing */}
-            <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:title" content="ToolboXpress - Privacy Policy" />
-            <meta name="twitter:description" content="Read ToolboXpress's privacy policy to understand how we collect, use, and protect your personal information while using our online utility tools." />
+                {/* Twitter Card meta tags for Twitter sharing */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="ToolboXpress - Privacy Policy" />
+                <meta name="twitter:description" content="Read ToolboXpress's privacy policy to understand how we collect, use, and protect your personal information while using our online utility tools." />
 
-            {/* Canonical URL to specify the preferred version of a page */}
-            <link rel="canonical" href={window.location.href} />
+                {/* Canonical URL to specify the preferred version of a page */}
+                <link rel="canonical" href={window.location.href} />
 
-            {/* Favicon */}
-            <link rel="icon" href="/favicon.ico" />
-        </Helmet>
+                {/* Favicon */}
+                <link rel="icon" href="/favicon.ico" />
+            </Helmet>
 
             <Header />
             <main>
-            <PrivacyPolicyContainer />
+                <PrivacyPolicyContainer />
             </main>
             <Footer />
         </>
-    ) 
+    )
 }
 const PrivacyPolicyContainer = () => {
     return (
@@ -45,9 +45,9 @@ const PrivacyPolicyContainer = () => {
             <style dangerouslySetInnerHTML={{ __html: "\n        /* Add your CSS styles here */\n        .privacy-container {\n            max-width: 800px;\n            margin: 20px auto;\n            padding: 20px;\n            background-color: #fff;\n            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n        }\n    " }} />
 
             <div className="privacy-container">
-
-                <h2>Last Updated: [Date]</h2>
-                <p>Welcome to ToolboXpress ("we", "our", or "us"). We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy outlines how we collect, use, disclose, and protect the information you provide to us when using our website, located at [URL] (the "Service").</p>
+                <img src="logo.png" alt="" className="img-thumbnail" />
+                <h2>Last Updated: 03/12/2023</h2>
+                <p>Welcome to ToolboXpress ("we", "our", or "us"). We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy outlines how we collect, use, disclose, and protect the information you provide to us when using our website, located at <a href="http://toolboxpress.vercel.app/">[ToolboXpress]</a> (the "Service").</p>
                 <h2>1. Information We Collect</h2>
                 <p><strong>1.1. Information You Provide:</strong> We may collect personal information that you voluntarily submit when using the Service. This may include, but is not limited to, your name, email address, and any other information you provide through forms, surveys, or other interactions with the Service.</p>
                 <p><strong>1.2. Automatically Collected Information:</strong> We may collect certain information automatically when you visit our website, such as your IP address, browser type, device information, and usage data. This information is collected using cookies and similar technologies.</p>
