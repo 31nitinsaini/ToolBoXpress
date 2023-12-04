@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "react-scripts": "latest",
   "proxy": "http://localhost:5000",
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -113,6 +114,7 @@
     "mammoth": false
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "react-app-rewired": "^2.2.1"
   }
 }
