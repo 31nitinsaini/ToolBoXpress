@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { createHash } from 'crypto-browserify';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import RatingComponent from '../../Components/RatingComponent';
@@ -12,9 +11,22 @@ const SHA256HashGenerator = () => {
         setInputText(e.target.value);
     };
 
-    const generateSHA256Hash = () => {
-        const hash = createHash('sha256').update(inputText).digest('hex');
-        setSHA256Hash(hash);
+    const generateSHA256Hash = async () => {
+        if (!inputText) {
+            alert('Please enter text to hash.');
+            return;
+        }
+
+        try {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(inputText);
+            const buffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(buffer));
+            const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+            setSHA256Hash(hashHex);
+        } catch (error) {
+            console.error('Error generating SHA-256 hash:', error);
+        }
     };
 
     return (
@@ -46,7 +58,6 @@ const SHA256HashGenerator = () => {
             <RatingComponent />
             <Footer />
         </>
-
     );
 };
 

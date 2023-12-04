@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { randomBytes } from 'crypto';
 import Header from '../../Components/Header';
 import RatingComponent from '../../Components/RatingComponent';
 import Footer from '../../Components/Footer';
@@ -13,8 +12,15 @@ const RandomStringGenerator = () => {
     };
 
     const generateRandomString = () => {
-        const bytes = randomBytes(Math.ceil(stringLength / 2));
-        const hexString = bytes.toString('hex').slice(0, stringLength);
+        if (stringLength <= 0) {
+            alert('String length must be greater than 0.');
+            return;
+        }
+
+        const buffer = new Uint8Array(Math.ceil(stringLength / 2));
+        window.crypto.getRandomValues(buffer);
+
+        const hexString = Array.from(buffer, byte => byte.toString(16).padStart(2, '0')).join('').slice(0, stringLength);
         setGeneratedString(hexString);
     };
 

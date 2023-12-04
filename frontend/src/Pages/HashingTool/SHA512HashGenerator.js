@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { createHash } from 'crypto-browserify';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import RatingComponent from '../../Components/RatingComponent';
@@ -12,9 +11,22 @@ const SHA512HashGenerator = () => {
         setInputText(e.target.value);
     };
 
-    const generateSHA512Hash = () => {
-        const hash = createHash('sha512').update(inputText).digest('hex');
-        setSHA512Hash(hash);
+    const generateSHA512Hash = async () => {
+        if (!inputText) {
+            alert('Please enter text to hash.');
+            return;
+        }
+
+        try {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(inputText);
+            const buffer = await crypto.subtle.digest('SHA-512', data);
+            const hashArray = Array.from(new Uint8Array(buffer));
+            const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+            setSHA512Hash(hashHex);
+        } catch (error) {
+            console.error('Error generating SHA-512 hash:', error);
+        }
     };
 
     return (
@@ -44,7 +56,8 @@ const SHA512HashGenerator = () => {
                 </div>
             </main>
             <RatingComponent />
-            <Footer /></>
+            <Footer />
+        </>
     );
 };
 
