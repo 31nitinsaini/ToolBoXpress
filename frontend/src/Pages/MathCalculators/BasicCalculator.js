@@ -70,7 +70,18 @@ const BasicCalculator = () => {
     </Helmet>
 
    <Header/>
+   <main>
+     {/* Heading Section */}
+     <div className='container my-5'>
+     <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+          <h1 style={{ fontSize: '2em', color: '#333' }}>Basic Calculator</h1>
+          <p style={{ fontSize: '1.2em', color: '#555' }}>
+            Perform basic arithmetic operations with ToolboXpress Basic Calculator. Add, subtract, multiply, and divide
+            effortlessly. Fast, intuitive, and free!
+          </p>
+        </div>
    <div className="calculator my-5">
+      
       <div className="input">{input}</div>
       <div className="result">{result}</div>
       {error && <div className="error">{error}</div>}
@@ -99,6 +110,8 @@ const BasicCalculator = () => {
         <button  onClick={clearInput}>Clear</button>
       </div>
     </div>
+    </div>
+    </main>
     <RatingComponent/>
    <Footer/>
    </>

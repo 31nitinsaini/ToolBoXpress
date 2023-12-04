@@ -108,6 +108,15 @@ const LoremGenerator = () => {
           <Typography variant="h4" align="center" gutterBottom>
             Lorem Ipsum Generator
           </Typography>
+          {/* Description Section */}
+<div style={{ marginBottom: '20px' }}>
+    <p style={{ textAlign: 'center', fontSize: '1.2em', color: '#555' }}>
+        Generate placeholder text with ToolboXpress Lorem Ipsum Generator.
+        Create dummy text for your design projects. Fast, easy, and free!
+        Customize the text length, click "Generate Lorem Ipsum," and copy the result for your use.
+    </p>
+</div>
+
           <Grid container spacing={2}>
             <Grid item xs={12} md={12}>
               <div>

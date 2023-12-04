@@ -14,11 +14,21 @@ const LowerToUpper = () => {
         setOutputText(convertedText);
     };
 
-    const handleCopyToClipboard = () => {
-        navigator.clipboard.writeText(outputText);
-        setIsCopied(true);
+    const handleCopyToClipboard = async () => {
+        try {
+            if (outputText) {
+                await navigator.clipboard.writeText(outputText);
+                setIsCopied(true);
+                setTimeout(() => {
+                    setIsCopied(false);
+                }, 1000);
+            }
+        } catch (error) {
+            console.error('Error copying to clipboard:', error);
+            // Handle the error as needed
+        }
     };
-
+    
     const setInputTextExample = (exampleText) => {
         setInputText(exampleText);
     };
@@ -57,6 +67,16 @@ const LowerToUpper = () => {
                     <Typography variant="h4" align="center" gutterBottom>
                         Convert Lowercase to Uppercase
                     </Typography>
+                    {/* Description Section */}
+<div style={{ marginBottom: '20px' }}>
+    <p style={{ textAlign: 'center', fontSize: '1.2em', color: '#555' }}>
+        Convert lowercase text to uppercase with ToolboXpress Lower to Upper Text Converter.
+        This user-friendly tool allows you to easily change the case of your text.
+        Fast, intuitive, and free! Simply enter your lowercase text, click the
+        "Convert to Uppercase" button, and copy the result to use as needed.
+    </p>
+</div>
+
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={12}>
                             <ToolArea

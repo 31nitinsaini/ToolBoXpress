@@ -133,6 +133,18 @@ const TextToSpeech = () => {
           <Typography variant="h4" align="center" gutterBottom>
             Text to Speech
           </Typography>
+          {/* Description Section */}
+<div style={{ marginBottom: '20px' }}>
+    <p style={{ textAlign: 'center', fontSize: '1.2em', color: '#555' }}>
+        Convert text to speech with ToolboXpress Text-to-Speech Tool.
+        Listen to your written content in a natural-sounding voice.
+        Fast, intuitive, and free! Enter your text, choose a voice,
+        adjust speech rate and pitch, and click "Text to Speech."
+        Clear or replay as needed. Enhance your accessibility or
+        create engaging audio content effortlessly.
+    </p>
+</div>
+
           {error && <Typography color="error">{error}</Typography>}
           <Grid container spacing={2}>
             <Grid item xs={12} md={12}>

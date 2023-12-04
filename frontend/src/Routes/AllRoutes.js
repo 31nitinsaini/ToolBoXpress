@@ -13,6 +13,7 @@ import HashingRoutes from './HashingRoutes'
 import BinaryCalcRoutes from './BinaryCalcRoutes'
 import NumberBaseRoutes from './NumberBaseRoutes'
 import ComputerGraphicsRoutes from './ComputerGraphicsRoutes'
+import OperatingSystemAlgorithmsRoutes from './OperatingSystemAlgorithmsRoutes'
 const AllRoutes = () => {
   return (
     <Routes>
@@ -29,6 +30,7 @@ const AllRoutes = () => {
       <Route path='/number-base-converter/*' element={<NumberBaseRoutes />} />
       <Route path='/binary-calculator/*' element={<BinaryCalcRoutes />} />
       <Route path='/computer-graphics/*' element={<ComputerGraphicsRoutes />} />
+      <Route path='/operating-system-algo/*' element={<OperatingSystemAlgorithmsRoutes />} />
     </Routes>
   )
 };

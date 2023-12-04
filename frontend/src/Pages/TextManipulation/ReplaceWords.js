@@ -48,10 +48,20 @@ const ReplaceWords = () => {
     setOutputText(replacedText);
   };
 
-  const handleCopyToClipboard = () => {
-    navigator.clipboard.writeText(outputText);
-    setIsCopied(true);
-  };
+  const handleCopyToClipboard = async () => {
+    try {
+        if (outputText) {
+            await navigator.clipboard.writeText(outputText);
+            setIsCopied(true);
+            setTimeout(() => {
+                setIsCopied(false);
+            }, 1000);
+        }
+    } catch (error) {
+        console.error('Error copying to clipboard:', error);
+        // Handle the error as needed
+    }
+};
 
   const setInputTextExample = (exampleText) => {
     setInputText(exampleText);
@@ -92,6 +102,16 @@ const ReplaceWords = () => {
           <Typography variant="h4" align="center" gutterBottom>
             Replace Words
           </Typography>
+          {/* Description Section */}
+<div style={{ marginBottom: '20px' }}>
+    <p style={{ textAlign: 'center', fontSize: '1.2em', color: '#555' }}>
+        Replace specific words or phrases in your text effortlessly with the ToolboXpress Replace Words tool.
+        Tailor your content by substituting occurrences of a word with another, either selectively or universally.
+        Customize replacement settings, including case sensitivity and the number of occurrences to replace.
+        Copy the modified text to your clipboard with a single click. Fast, intuitive, and free!
+    </p>
+</div>
+
           <Grid container spacing={2}>
             <Grid item xs={12} md={12}>
               <ToolArea

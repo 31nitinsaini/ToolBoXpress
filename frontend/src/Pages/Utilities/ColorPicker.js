@@ -1,56 +1,37 @@
 import React, { useState } from 'react';
 import { ChromePicker } from 'react-color';
-import { Button, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
+import { Button } from '@mui/material';
 import Header from '../../Components/Header';
 import RatingComponent from '../../Components/RatingComponent';
 import Footer from '../../Components/Footer';
+import { Helmet } from 'react-helmet';
 
 const ColorPicker = () => {
-  const [open, setOpen] = useState(false);
   const [color, setColor] = useState('#FFFFFF');
 
   const handleColorChange = (newColor) => {
     setColor(newColor.hex);
   };
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleSave = () => {
-    // Handle saving the selected color
-    console.log('Selected Color:', color);
-    handleClose();
-  };
 
   return (
     <>
-    <Header/>
-     <main>
-     <Button variant="contained" color="primary" onClick={handleOpen}>
-        Open Color Picker
-      </Button>
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Choose a Color</DialogTitle>
-        <DialogContent>
-          <ChromePicker color={color} onChange={handleColorChange} />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleSave} color="primary">
-            Save
-          </Button>
-        </DialogActions>
-      </Dialog>
-     </main>
-     <RatingComponent/>
-     <Footer/>
+      <Helmet>
+        <title>Color Picker - Choose Your Color</title>
+        <meta name="description" content="Explore the Color Picker tool to choose and preview colors effortlessly. A user-friendly and interactive way to find the perfect color for your projects." />
+      </Helmet>
+      <Header />
+      <main style={{ textAlign: 'center', marginTop: '20px' }}>
+        <div className='container my-5'>
+        <h1 style={{ fontSize: '2em', color: '#333' }}>Color Picker</h1>
+        <p style={{ fontSize: '1.2em', color: '#555' }}>
+          The Color Picker tool allows you to choose and preview colors effortlessly. It provides a user-friendly and interactive way to find the perfect color for your projects. Click the button below to open the Color Picker and explore a spectrum of colors.
+        </p>
+     <center><ChromePicker color={color} onChange={handleColorChange} /></center>
+        </div>
+      </main>
+      <RatingComponent />
+      <Footer />
     </>
   );
 };

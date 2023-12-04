@@ -80,8 +80,19 @@ const MorseCodeConverter = () => {
       <link rel="icon" href="/favicon.ico" />
     </Helmet>
       <Header />
+      <main>
       <div className="container mt-5 mb-5">
         <h2 className="mb-3">Morse Code Converter</h2>
+        {/* Description Section */}
+<div style={{ marginBottom: '20px' }}>
+    <p style={{ textAlign: 'center', fontSize: '1.2em', color: '#555' }}>
+        Convert text to Morse code and vice versa with the ToolboXpress Morse Code Converter.
+        Translate messages using the Morse code system easily and efficiently. Simply enter your
+        text or Morse code, click the corresponding button, and get instant results. Enhance your
+        communication in Morse code or decode Morse messages effortlessly. Fast, intuitive, and free!
+    </p>
+</div>
+
         <div className="row">
           <div className="col-md-6">
             <textarea
@@ -105,6 +116,7 @@ const MorseCodeConverter = () => {
           </div>
         </div>
       </div>
+      </main>
       <RatingComponent/>
       <Footer />
     </>

@@ -291,6 +291,20 @@ const MainSection = () => {
               { to: '/computer-graphics/cyrus-beck-line-cliping-algorithm', label: 'Cyrus Beck Line Clipping Algorithm ' },
             ],
           },
+
+          {
+            "title": "Operating System Algorithms",
+            "dropdown": "os-algos",
+            "items": [
+                  { "to": "/operating-system-algo/fcfs", "label": "First-Come, First-Served (FCFS)" },
+                  { "to": "/operating-system-algo/sjf", "label": "Shortest Job First (SJF)" },
+                  { "to": "/operating-system-algo/rr", "label": "Round Robin (RR)" },
+                  { "to": "/operating-system-algo/priority", "label": "Priority Scheduling" },
+                  { "to": "/operating-system-algo/fifo", "label": "First-In, First-Out (FIFO)" },
+                  { "to": "/operating-system-algo/lru", "label": "Least Recently Used (LRU)" },
+                  { "to": "/operating-system-algo/optimal", "label": "Optimal Page Replacement" },
+                ]
+              },
     ];
     const [searchTerm, setSearchTerm] = useState('');
     const [topTools, setTopTools] = useState([]);

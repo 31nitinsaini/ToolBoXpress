@@ -14,9 +14,19 @@ const RemoveSpace = () => {
         setOutputText(convertedText);
     };
 
-    const handleCopyToClipboard = () => {
-        navigator.clipboard.writeText(outputText);
-        setIsCopied(true);
+    const handleCopyToClipboard = async () => {
+        try {
+            if (outputText) {
+                await navigator.clipboard.writeText(outputText);
+                setIsCopied(true);
+                setTimeout(() => {
+                    setIsCopied(false);
+                }, 1000);
+            }
+        } catch (error) {
+            console.error('Error copying to clipboard:', error);
+            // Handle the error as needed
+        }
     };
 
     const setInputTextExample = (exampleText) => {
@@ -56,6 +66,15 @@ const RemoveSpace = () => {
                     <Typography variant="h4" align="center" gutterBottom>
                         Remove Spaces
                     </Typography>
+                    {/* Description Section */}
+<div style={{ marginBottom: '20px' }}>
+    <p style={{ textAlign: 'center', fontSize: '1.2em', color: '#555' }}>
+        Clean up your text by eliminating unnecessary spaces with the ToolboXpress Remove Spaces tool.
+        Simply paste your text, and watch as extra spaces are effortlessly removed, leaving you with streamlined content.
+        Copy the modified text to your clipboard with ease. Fast, intuitive, and free!
+    </p>
+</div>
+
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={12}>
                             <ToolArea

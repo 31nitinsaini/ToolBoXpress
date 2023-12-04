@@ -67,7 +67,19 @@ const ImageResizeTool = () => {
       <link rel="icon" href="/favicon.ico" />
     </Helmet>
     <Header/>
-    <main style={{ textAlign: 'center', margin: '20px' }}>
+    <main >
+      <div className='container mty-5'>
+      {/* Heading Section */}
+<div style={{ textAlign: 'center', marginBottom: '20px' }}>
+    <h1 style={{ fontSize: '2em', color: '#333' }}>Image Resize Tool</h1>
+    <p style={{ fontSize: '1.2em', color: '#555' }}>
+        Quickly and easily resize images with ToolboXpress Image Resize Tool.
+        Customize dimensions for web and print, ensuring your images fit perfectly.
+        Fast, intuitive, and free! Simply upload your image, set the desired width, height, and quality,
+        and download the resized image instantly.
+    </p>
+</div>
+
       <label>
         Select an Image:
         <input type="file" onChange={handleImageChange} />
@@ -95,6 +107,7 @@ const ImageResizeTool = () => {
           </button>
         </div>
       )}
+      </div>
     </main>
     <RatingComponent/>
     <Footer/>

@@ -72,6 +72,16 @@ const Calculator = () => {
     </Helmet>
 
    <Header/>
+   <main>
+    <div className='container my-5'>
+     {/* Heading Section */}
+     <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+          <h1 style={{ fontSize: '2em', color: '#333' }}>Scientific Calculator</h1>
+          <p style={{ fontSize: '1.2em', color: '#555' }}>
+            Perform advanced mathematical calculations with ToolboXpress Scientific Calculator. Solve trigonometric,
+            logarithmic, and other complex functions. Fast, intuitive, and free!
+          </p>
+        </div>
    <div className="calculator">
    <div className="input">{input}</div>
    <div className="result">{result}</div>
@@ -113,6 +123,8 @@ const Calculator = () => {
      <button onClick={() => handleButtonClick('^')}>^</button>
    </div>
  </div>
+ </div>
+ </main>
  <RatingComponent/>
    <Footer/>
    </>

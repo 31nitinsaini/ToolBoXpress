@@ -87,9 +87,9 @@ const TextCount = () => {
       input: 'This is an example sentence.',
       output: {
         wordCount: 5,
-        characterCount: 27,
-        readingTimeSeconds: 0.25,
-        readingTimeMinutes: 0.00,
+        characterCount: 28,
+        readingTimeSeconds: 1.50,
+        readingTimeMinutes: 0.03,
         readingTimeHours: 0.00,
         sentenceCount: 1,
         paragraphCount: 1,
@@ -98,10 +98,10 @@ const TextCount = () => {
     {
       input: 'Count the number of words in this text.',
       output: {
-        wordCount: 7,
-        characterCount: 34,
-        readingTimeSeconds: 0.35,
-        readingTimeMinutes: 0.01,
+        wordCount: 8,
+        characterCount: 39,
+        readingTimeSeconds: 2.40,
+        readingTimeMinutes: 0.04,
         readingTimeHours: 0.00,
         sentenceCount: 1,
         paragraphCount: 1,
@@ -111,9 +111,9 @@ const TextCount = () => {
       input: 'Word count example',
       output: {
         wordCount: 3,
-        characterCount: 17,
-        readingTimeSeconds: 0.15,
-        readingTimeMinutes: 0.00,
+        characterCount: 18,
+        readingTimeSeconds: 0.90,
+        readingTimeMinutes: 0.01,
         readingTimeHours: 0.00,
         sentenceCount: 1,
         paragraphCount: 1,
@@ -154,6 +154,17 @@ const TextCount = () => {
           <Typography variant="h4" align="center" gutterBottom>
             Text Count
           </Typography>
+          {/* Description Section */}
+<div style={{ marginBottom: '20px' }}>
+    <p style={{ textAlign: 'center', fontSize: '1.2em', color: '#555' }}>
+        Count words, characters, and lines in your text with ToolboXpress Text Count tool.
+        Analyze the length of your content quickly. Simply enter your text, click "Count Text,"
+        and get detailed statistics, including word count, character count, reading time,
+        sentence count, and paragraph count. Enhance your writing and gain insights into your text
+        effortlessly. Fast, intuitive, and free!
+    </p>
+</div>
+
           <Grid container spacing={2}>
             <Grid item xs={12} md={12}>
               <div>

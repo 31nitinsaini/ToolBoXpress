@@ -27,10 +27,20 @@ const TextDecrypt = () => {
     }
   };
 
-  const handleCopyToClipboard = () => {
-    navigator.clipboard.writeText(outputText);
-    setIsCopied(true);
-  };
+  const handleCopyToClipboard = async () => {
+    try {
+        if (outputText) {
+            await navigator.clipboard.writeText(outputText);
+            setIsCopied(true);
+            setTimeout(() => {
+                setIsCopied(false);
+            }, 1000);
+        }
+    } catch (error) {
+        console.error('Error copying to clipboard:', error);
+        // Handle the error as needed
+    }
+};
 
   const setInputTextExample = (exampleText) => {
     setInputText(exampleText);
@@ -70,6 +80,17 @@ const TextDecrypt = () => {
           <Typography variant="h4" align="center" gutterBottom>
             Decrypt Text
           </Typography>
+          {/* Description Section */}
+<div style={{ marginBottom: '20px' }}>
+    <p style={{ textAlign: 'center', fontSize: '1.2em', color: '#555' }}>
+        Decrypt encoded text with ToolboXpress Text Decryption Tool.
+        Decode encrypted messages and reveal the original content.
+        Fast, intuitive, and free! Enter your encrypted text, click the
+        "Decrypt Text" button, and copy the result. Explore examples to
+        understand how the decryption works.
+    </p>
+</div>
+
           <Grid container spacing={2}>
             <Grid item xs={12} md={12}>
               <ToolArea

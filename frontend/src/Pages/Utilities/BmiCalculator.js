@@ -36,51 +36,54 @@ const BMICalculator = () => {
   };
 
   return (
-   <>
-   <Header/>
-   <main>
-   <Container maxWidth="sm">
-      <Box mt={5}>
-        <Typography variant="h4" align="center" gutterBottom>
-          BMI Calculator
-        </Typography>
-        <TextField
-          label="Height (cm)"
-          type="number"
-          fullWidth
-          margin="normal"
-          variant="outlined"
-          value={height}
-          onChange={(e) => setHeight(e.target.value)}
-        />
-        <TextField
-          label="Weight (kg)"
-          type="number"
-          fullWidth
-          margin="normal"
-          variant="outlined"
-          value={weight}
-          onChange={(e) => setWeight(e.target.value)}
-        />
-        <Button variant="contained" color="primary" fullWidth onClick={calculateBMI}>
-          Calculate BMI
-        </Button>
-        {bmiResult !== null && (
-          <Box mt={3}>
-            <Typography variant="h6" align="center">
-              BMI Result: {bmiResult}
+    <>
+      <Header />
+      <main>
+        <Container maxWidth="sm">
+          <Box mt={5}>
+            <Typography variant="h4" align="center" gutterBottom>
+              BMI Calculator
             </Typography>
-            <Typography variant="subtitle1" align="center">
-              Category: {getBmiCategory()}
+            <Typography variant="body1" paragraph>
+              Use the BMI (Body Mass Index) Calculator to estimate your body fat based on your height and weight. BMI is a commonly used method to classify individuals into different weight categories.
             </Typography>
+            <TextField
+              label="Height (cm)"
+              type="number"
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              value={height}
+              onChange={(e) => setHeight(e.target.value)}
+            />
+            <TextField
+              label="Weight (kg)"
+              type="number"
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              value={weight}
+              onChange={(e) => setWeight(e.target.value)}
+            />
+            <Button variant="contained" color="primary" fullWidth onClick={calculateBMI}>
+              Calculate BMI
+            </Button>
+            {bmiResult !== null && (
+              <Box mt={3}>
+                <Typography variant="h6" align="center">
+                  BMI Result: {bmiResult}
+                </Typography>
+                <Typography variant="subtitle1" align="center">
+                  Category: {getBmiCategory()}
+                </Typography>
+              </Box>
+            )}
           </Box>
-        )}
-      </Box>
-    </Container>
-   </main>
-   <RatingComponent/>
-   <Footer/>
-   </>
+        </Container>
+      </main>
+      <RatingComponent />
+      <Footer />
+    </>
   );
 };
 

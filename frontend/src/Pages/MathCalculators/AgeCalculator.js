@@ -46,7 +46,12 @@ const AgeCalculator = () => {
   return (
     <>
       <Header />
-      <main style={{ textAlign: 'center', marginTop: '20px' }}>
+      <main>
+        <div className='container my-5'>
+        <h1 style={{ fontSize: '2em', color: '#333' }}>Age Calculator</h1>
+        <p style={{ fontSize: '1.2em', color: '#555' }}>
+          The Age Calculator is a simple and user-friendly tool that helps you determine your age in years, months, days, and hours based on your selected date of birth. Input your birthdate, click the "Show Age Details" button, and instantly discover various aspects of your age.
+        </p>
         <label htmlFor="date_of_birth">Select your date of birth:</label>
         <input
           type="date"
@@ -70,7 +75,8 @@ const AgeCalculator = () => {
             <p>Your age is approximately {result.days} days</p>
             <p>Your age is approximately {result.hours} hours</p>
           </div>
-        )}
+        )}</div>
+        
       </main>
       <RatingComponent />
       <Footer />

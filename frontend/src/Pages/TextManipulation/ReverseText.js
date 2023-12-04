@@ -16,9 +16,19 @@ const ReverseWords = () => {
         setOutputText(reversedText);
     };
 
-    const handleCopyToClipboard = () => {
-        navigator.clipboard.writeText(outputText);
-        setIsCopied(true);
+    const handleCopyToClipboard = async () => {
+        try {
+            if (outputText) {
+                await navigator.clipboard.writeText(outputText);
+                setIsCopied(true);
+                setTimeout(() => {
+                    setIsCopied(false);
+                }, 1000);
+            }
+        } catch (error) {
+            console.error('Error copying to clipboard:', error);
+            // Handle the error as needed
+        }
     };
 
     const setInputTextExample = (exampleText) => {
@@ -59,6 +69,15 @@ const ReverseWords = () => {
                     <Typography variant="h4" align="center" gutterBottom>
                         Reverse Text
                     </Typography>
+                    {/* Description Section */}
+<div style={{ marginBottom: '20px' }}>
+    <p style={{ textAlign: 'center', fontSize: '1.2em', color: '#555' }}>
+        Get creative and have fun with your text using the ToolboXpress Reverse Text tool!
+        Flip your words or sentences effortlessly, creating unique and playful effects.
+        Just input your text, click the button, and watch your words reverse. Copy the result with a click. Fast, intuitive, and free!
+    </p>
+</div>
+
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={12}>
                             <ToolArea
