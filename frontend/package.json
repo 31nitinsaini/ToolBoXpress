@@ -21,6 +21,8 @@
     "clipboard": "^2.0.11",
     "convert-multiple-files-ul": "^1.0.1",
     "crc32": "^0.2.2",
+    "crypto-browserify": "^3.12.0",
+    "crypto-random-string": "^5.0.0",
     "csso": "^5.0.5",
     "docxtemplater": "^3.42.2",
     "file-saver": "^2.0.5",
