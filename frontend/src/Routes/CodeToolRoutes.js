@@ -8,6 +8,7 @@ import SqlEditor from '../Pages/CodingTool/SqlEditor'
 import MarkdownEditor from '../Pages/CodingTool/MarkdownEditor'
 import JsMinifier from '../Pages/CodingTool/JsMinifier'
 import CssMinifier from '../Pages/CodingTool/CssMinifier'
+import PlantUmlTool from '../Pages/CodingTool/PlantUmlTool'
 
 const CodeToolRoutes = () => {
   return (
@@ -20,6 +21,7 @@ const CodeToolRoutes = () => {
         <Route path='markdown-editor' element={<MarkdownEditor/>}/>
         <Route path='js-minifier' element={<JsMinifier/>}/>
       <Route path='css-minifier' element={<CssMinifier/>}/>
+      <Route path='plant-uml' element={<PlantUmlTool/>}/>
     </Routes>
   )
 }

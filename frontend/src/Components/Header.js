@@ -154,6 +154,7 @@ const Header = () => {
         { to: '/CodingTool/sql-editor', label: 'SQL Formatter' },
         { to: '/CodingTool/markdown-editor', label: 'Markdown Editor' },
         { to: '/CodingTool/code-snippet', label: 'Code Snippet Generator' },
+        { to: '/CodingTool/plant-uml', label: 'Plant UML Tool' },
       ],
     },
     {

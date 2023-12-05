@@ -55,7 +55,7 @@ const FeedbackToast = () => {
                 setCurrentQuestion(currentQuestion + 1);
             } else {
                 // Send feedback to the server
-                await fetch('https://tool-bo-xpress.vercel.app/website-feedback', {
+                await fetch('/website-feedback', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

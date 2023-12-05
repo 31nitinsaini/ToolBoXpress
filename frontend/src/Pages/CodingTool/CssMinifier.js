@@ -36,38 +36,59 @@ const CssMinifier = () => {
     setMinifiedCss('');
     setError('');
   };
+
   const currentUrl = window.location.href;
+
   return (
     <>
-    <Helmet>
-      <title>ToolboXpress - CSS Minifier</title>
-      <meta name="description" content="Minify your CSS code quickly and efficiently with ToolboXpress CSS Minifier. Reduce file sizes for faster web page loading. Fast, easy, and free!" />
-      <meta name="keywords" content="CSS minifier, minify CSS, reduce file size, web development, optimization, ToolboXpress" />
-      <meta name="author" content="Your Name" />
+      <Helmet>
+        <title>ToolBoXpress - CSS Minifier</title>
+        <meta
+          name="description"
+          content="Minify your CSS code quickly and efficiently with ToolBoXpress CSS Minifier. Reduce file sizes for faster web page loading. Fast, easy, and free!"
+        />
+        <meta
+          name="keywords"
+          content="CSS minifier, minify CSS, reduce file size, web development, optimization, ToolBoXpress"
+        />
+        <meta name="author" content="Your Name" />
 
-      {/* Open Graph meta tags for social media sharing */}
-      <meta property="og:title" content="ToolboXpress - CSS Minifier" />
-      <meta property="og:description" content="Minify your CSS code quickly and efficiently with ToolboXpress CSS Minifier. Reduce file sizes for faster web page loading. Fast, easy, and free!" />
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content={currentUrl} />
+        {/* Open Graph meta tags for social media sharing */}
+        <meta property="og:title" content="ToolBoXpress - CSS Minifier" />
+        <meta
+          property="og:description"
+          content="Minify your CSS code quickly and efficiently with ToolBoXpress CSS Minifier. Reduce file sizes for faster web page loading. Fast, easy, and free!"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={currentUrl} />
 
-      {/* Twitter Card meta tags for Twitter sharing */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="ToolboXpress - CSS Minifier" />
-      <meta name="twitter:description" content="Minify your CSS code quickly and efficiently with ToolboXpress CSS Minifier. Reduce file sizes for faster web page loading. Fast, easy, and free!" />
+        {/* Twitter Card meta tags for Twitter sharing */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="ToolBoXpress - CSS Minifier" />
+        <meta
+          name="twitter:description"
+          content="Minify your CSS code quickly and efficiently with ToolBoXpress CSS Minifier. Reduce file sizes for faster web page loading. Fast, easy, and free!"
+        />
 
-      {/* Canonical URL to specify the preferred version of a page */}
-      <link rel="canonical" href={currentUrl} />
+        {/* Canonical URL to specify the preferred version of a page */}
+        <link rel="canonical" href={currentUrl} />
 
-      {/* Favicon */}
-      <link rel="icon" href="/favicon.ico" />
-    </Helmet>
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.ico" />
+      </Helmet>
 
       <Header />
-      <div className="container mt-5">
-        <div className="row">
+    <main>
+    <div className="container my-5">
+        <center>
+        <h2>CSS Minifier</h2>
+            <p>
+              Minify your CSS code quickly and efficiently with ToolBoXpress CSS Minifier. Reduce file sizes for faster web
+              page loading. Fast, easy, and free!
+            </p>
+        </center>
+        <div className="row mt-5">
           <div className="col-md-6 mb-4 mb-md-0">
-            <h2>CSS Minifier</h2>
             <textarea
               rows={10}
               value={cssCode}
@@ -100,7 +121,8 @@ const CssMinifier = () => {
           </div>
         )}
       </div>
-      <RatingComponent/>
+    </main>
+      <RatingComponent />
       <Footer />
     </>
   );

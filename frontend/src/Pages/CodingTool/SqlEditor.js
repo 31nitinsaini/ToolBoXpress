@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
-import { format } from 'sql-formatter'; // Corrected import
+import { format } from 'sql-formatter';
 import RatingComponent from '../../Components/RatingComponent';
 import { Helmet } from 'react-helmet';
+
 const SqlEditor = () => {
   const [sqlQuery, setSqlQuery] = useState('');
   const [formattedQuery, setFormattedQuery] = useState('');
@@ -25,36 +26,54 @@ const SqlEditor = () => {
     setFormattedQuery('');
     setError('');
   };
+
   const currentUrl = window.location.href;
 
   return (
     <>
-     <Helmet>
-      <title>ToolboXpress - SQL Editor</title>
-      <meta name="description" content="Write and execute SQL queries with ease using ToolboXpress SQL Editor. Simplify database management and optimize your SQL workflow. Fast, easy, and free!" />
-      <meta name="keywords" content="SQL editor, SQL queries, database management, SQL optimization, ToolboXpress" />
-      <meta name="author" content="Your Name" />
+      <Helmet>
+        <title>ToolBoXpress - SQL Editor</title>
+        <meta
+          name="description"
+          content="Write and execute SQL queries with ease using ToolBoXpress SQL Editor. Simplify database management and optimize your SQL workflow. Fast, easy, and free!"
+        />
+        <meta
+          name="keywords"
+          content="SQL editor, SQL queries, database management, SQL optimization, ToolboXpress"
+        />
+        <meta name="author" content="Your Name" />
 
-      {/* Open Graph meta tags for social media sharing */}
-      <meta property="og:title" content="ToolboXpress - SQL Editor" />
-      <meta property="og:description" content="Write and execute SQL queries with ease using ToolboXpress SQL Editor. Simplify database management and optimize your SQL workflow. Fast, easy, and free!" />
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content={currentUrl} />
+        {/* Open Graph meta tags for social media sharing */}
+        <meta property="og:title" content="ToolBoXpress - SQL Editor" />
+        <meta
+          property="og:description"
+          content="Write and execute SQL queries with ease using ToolboXpress SQL Editor. Simplify database management and optimize your SQL workflow. Fast, easy, and free!"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={currentUrl} />
 
-      {/* Twitter Card meta tags for Twitter sharing */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="ToolboXpress - SQL Editor" />
-      <meta name="twitter:description" content="Write and execute SQL queries with ease using ToolboXpress SQL Editor. Simplify database management and optimize your SQL workflow. Fast, easy, and free!" />
+        {/* Twitter Card meta tags for Twitter sharing */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="ToolBoXpress - SQL Editor" />
+        <meta
+          name="twitter:description"
+          content="Write and execute SQL queries with ease using ToolboXpress SQL Editor. Simplify database management and optimize your SQL workflow. Fast, easy, and free!"
+        />
 
-      {/* Canonical URL to specify the preferred version of a page */}
-      <link rel="canonical" href={currentUrl} />
+        {/* Canonical URL to specify the preferred version of a page */}
+        <link rel="canonical" href={currentUrl} />
 
-      {/* Favicon */}
-      <link rel="icon" href="/favicon.ico" />
-    </Helmet>
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.ico" />
+      </Helmet>
+
       <Header />
-      <main className="container mt-5">
-        <h2>SQL Formatter</h2>
+      <main >
+        <div className="container my-5">
+        <center><h2>SQL Formatter</h2>
+        <p>
+          Write and execute SQL queries with ease using ToolBoXpress SQL Editor. Simplify database management and optimize your SQL workflow. Fast, easy, and free!
+        </p></center>
         <div className="form-group">
           <label htmlFor="sqlQuery">Enter SQL Query:</label>
           <textarea
@@ -88,8 +107,9 @@ const SqlEditor = () => {
             </div>
           </div>
         )}
+        </div>
       </main>
-      <RatingComponent/>
+      <RatingComponent />
       <Footer />
     </>
   );

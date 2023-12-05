@@ -2,14 +2,14 @@ import React, { useState,useEffect } from 'react';
 import Rating from 'react-rating';
 import axios from 'axios';
 import { Modal, Button } from 'react-bootstrap';
-const AverageRatingComponent = () => {
+const AverageRatingComponent = ({showModal}) => {
   const [averageRating, setAverageRating] = useState(0);
   const [ratingCount, setRatingCount] = useState(0);
 
   const fetchAverageRating = async () => {
     try {
       const currentUrl = window.location.pathname;
-      const response = await axios.get('https://tool-bo-xpress.vercel.app/get-average-rating', {
+      const response = await axios.get('/get-average-rating', {
         params: {
           currentUrl,
         },
@@ -22,7 +22,9 @@ const AverageRatingComponent = () => {
     }
   };
   
-
+useEffect(()=>{
+  fetchAverageRating();
+},[showModal]);
   useEffect(() => {
     // Fetch average rating and count when the component mounts
     fetchAverageRating();
@@ -47,17 +49,19 @@ const AverageRatingComponent = () => {
     fontWeight: 'bold',
   };
 
+  
+
   return (
     <div className="container-fluid mt-4">
       <div className="mb-3">
-       
+      
           Average Rating:{' '}
           <span style={ratingStyle}>{averageRating}</span> (from {ratingCount} ratings)
-       
+      
       </div>
     </div>
   );
- 
+
 };
 const RatingComponent = () => {
   const [rating, setRating] = useState(1);
@@ -66,18 +70,50 @@ const RatingComponent = () => {
   const [modalMessage, setModalMessage] = useState('');
 
   const handleRatingChange = (value) => {
-    setRating(value);
+    setRating(value); 
   };
 
   const handleFeedbackChange = (e) => {
     setFeedback(e.target.value);
   };
+  const [isFavorite, setIsFavorite] = useState(false);
 
+  useEffect(() => {
+    // Check if the tool is in favorites when the component mounts
+    setIsFavorite(checkIfFavorite());
+  }, []);
+  
+  const checkIfFavorite = () => {
+    const currentUrl = window.location.pathname;
+    const favorites = localStorage.getItem('favorites');
+    return favorites && favorites.includes(currentUrl);
+  };
+  
+
+  const toggleFavorite = () => {
+    const currentUrl = window.location.pathname;
+    const favorites = localStorage.getItem('favorites');
+    const favoriteList = favorites ? favorites.split(',') : [];
+  
+    if (favoriteList.includes(currentUrl)) {
+      // Remove from favorites
+      const updatedFavorites = favoriteList.filter((url) => url !== currentUrl);
+      localStorage.setItem('favorites', updatedFavorites.join(','));
+      setIsFavorite(false);
+    } else {
+      // Add to favorites
+      favoriteList.push(currentUrl);
+      localStorage.setItem('favorites', favoriteList.join(','));
+      setIsFavorite(true);
+    }
+  };
+  
+  
   const handleSubmit = async () => {
     try {
       const currentUrl = window.location.pathname;
 
-      await axios.post('https://tool-bo-xpress.vercel.app/submit-feedback', {
+      await axios.post('/submit-feedback', {
         rating,
         feedback,
         url: currentUrl,
@@ -102,11 +138,19 @@ const RatingComponent = () => {
   };
   return (
     <div className="container mt-4 mb-3">
+      {/* Add to Favorites button */}
+      <button
+        className={`btn ${isFavorite ? 'btn-secondary' : 'btn-primary'} my-2`}
+        onClick={toggleFavorite}
+      >
+        {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+      </button>
+
       <h2>Provide your feedback</h2>
-      <AverageRatingComponent/>
+      <AverageRatingComponent showModal={showModal}/>
       <div className="mb-3">
         <label className="mr-2">Rating:</label>
-       
+      
 
     <Rating
       initialRating={rating}
@@ -140,6 +184,7 @@ const RatingComponent = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+      
     </div>
   );
 };

@@ -1,6 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
+  "proxy":"http://localhost:5000",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -43,7 +44,9 @@
     "pdf2img": "^0.5.0",
     "pdfjs-dist": "^4.0.269",
     "pizzip": "^3.1.4",
+    "plantuml-encoder": "^1.4.0",
     "prettier": "^3.1.0",
+    "prettify-html": "^0.0.2",
     "pspdfkit": "^2023.5.2",
     "qr-image": "^3.2.0",
     "qrcode.react": "^3.1.0",
@@ -52,6 +55,7 @@
     "react-barcode": "^1.4.6",
     "react-bootstrap": "^2.8.0",
     "react-color": "^2.19.3",
+    "react-cookies": "^0.1.1",
     "react-dom": "^18.2.0",
     "react-easy-crop": "^5.0.2",
     "react-h5-audio-player": "^3.8.6",
@@ -62,6 +66,7 @@
     "react-monaco-editor": "^0.54.0",
     "react-pdf": "^7.5.1",
     "react-pdf-to-image": "^1.0.2",
+    "react-plantuml": "^0.0.8",
     "react-qrcode-logo": "^2.9.0",
     "react-rating": "^2.0.5",
     "react-router-dom": "^6.19.0",

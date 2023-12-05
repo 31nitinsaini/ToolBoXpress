@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { PDFDocument } from 'pdf-lib';
 import Header from '../../Components/Header';
+import {
+  Typography,
+} from '@mui/material';
 import Footer from '../../Components/Footer';
-import Rating from 'react-rating';
 import RatingComponent from '../../Components/RatingComponent';
 
 const PdfMerger = () => {
@@ -49,9 +51,18 @@ const PdfMerger = () => {
   return (
     <>
       <Header />
-      <main className="container mt-5">
-        <h1 className="mb-4">PDF Merger</h1>
+      <main>
+       <div className='container my-5'>
+       <center>
+       <Typography variant="h4" align="center" gutterBottom>
+        PDF Merger</Typography>
 
+<p className="lead">
+  Combine two PDF files into a single document with ToolboXpress PDF Merger.
+  Select your PDF files, click the "Merge PDFs" button, and download the merged PDF file.
+</p>
+
+        </center>
         <div className="form-group">
           <label htmlFor="file1">Choose PDF 1:</label>
           <input
@@ -91,8 +102,9 @@ const PdfMerger = () => {
             </a>
           </div>
         )}
+       </div>
       </main>
-      <RatingComponent/>
+      <RatingComponent />
       <Footer />
     </>
   );

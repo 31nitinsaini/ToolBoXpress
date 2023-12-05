@@ -61,6 +61,74 @@ const HeroSection = () => {
         </>
     )
 }
+
+
+const FavoritesSection = ({ toolsConfig }) => {
+  const [favoriteTools, setFavoriteTools] = useState([]);
+
+  useEffect(() => {
+    // Fetch favorite tools from localStorage
+    const favorites = localStorage.getItem('favorites');
+    const favoritesList = favorites ? favorites.split(',') : [];
+
+    // Map favorite tools with labels from toolsConfig
+    const favoriteToolsWithLabels = favoritesList.map((favoriteTool) => {
+      const matchingTool = toolsConfig
+        .flatMap((toolGroup) => toolGroup.items)
+        .find((tool) => tool.to === favoriteTool);
+      return matchingTool;
+    });
+
+    setFavoriteTools(favoriteToolsWithLabels);
+  }, [toolsConfig]);
+
+  const handleCardClick = (url) => {
+    window.open(url, '_blank'); // Open the URL in a new tab
+  };
+
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: favoriteTools.length,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
+  return (
+    <div className="favorite-tools-section mb-5 mx-4">
+      {favoriteTools.length > 0 && (
+        <>
+          <h2>Favorite Tools</h2>
+          <Slider {...sliderSettings}>
+            {favoriteTools.map((tool) => (
+              <div key={tool.to} onClick={() => handleCardClick(tool.to)}>
+                <Card className="m-2">
+                  <CardContent>
+                    <Typography variant="body1" color="text.primary">
+                      {tool.label}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
+          </Slider>
+        </>
+      )}
+    </div>
+  );
+};
+
+
+  
 const TopToolsSection = ({ topTools }) => {
     const sliderSettings = {
         dots: true,
@@ -81,6 +149,9 @@ const TopToolsSection = ({ topTools }) => {
     const handleCardClick = (url) => {
         window.open(url, '_blank'); // Open the URL in a new tab
     };
+    if(topTools.length<=0){
+      return null;
+    }
     return (
         <div className="top-tools-section mb-5 mx-4">
             <Typography variant="h5" component="div" sx={{ marginBottom: 2 }}>
@@ -159,6 +230,7 @@ const MainSection = () => {
               { to: '/CodingTool/sql-editor', label: 'SQL Formatter' },
               { to: '/CodingTool/markdown-editor', label: 'Markdown Editor' },
               { to: '/CodingTool/code-snippet', label: 'Code Snippet Generator' },
+              { to: '/CodingTool/plant-uml', label: 'Plant UML Tool' },
             ],
           },
           {
@@ -312,7 +384,7 @@ const MainSection = () => {
     useEffect(() => {
         const fetchTopTools = async () => {
             try {
-                const response = await axios.get('https://tool-bo-xpress.vercel.app/popular-tools');
+                const response = await axios.get('/popular-tools');
                 // Map over the topTools and attach labels from toolsConfig
                 const toolsWithLabels = response.data.map((topTool) => {
                     const matchingTool = toolsConfig
@@ -337,7 +409,8 @@ const MainSection = () => {
             <style dangerouslySetInnerHTML={{ __html: ".tool-group {\n  margin-bottom: 20px;\n}\n\nh2 {\n  font-size: 24px;\n  margin-bottom: 10px;\n}\n\n.tool-list {\n  list-style-type: none;\n  padding: 0;\n}\n\n.tool-list li {\n  margin-bottom: 8px;\n}\n\n.tool-list a {\n  text-decoration: none;\n  color: #333; /* Change the color as needed */\n  font-weight: bold;\n  font-size: 16px;\n  transition: color 0.3s ease-in-out;\n}\n\n.tool-list a:hover {\n  color: #007bff; /* Change the hover color as needed */\n}" }} />
 
             <section className="main-section">
-                <TopToolsSection topTools={topTools} />
+            <FavoritesSection toolsConfig={toolsConfig} />
+            <TopToolsSection topTools={topTools} />
                 <Container>
                     <TextField
                         label="Search Tools"

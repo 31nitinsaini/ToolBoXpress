@@ -4,12 +4,42 @@ import FeedbackToast from './FeedbackToast'
 import axios from 'axios';
 const Footer = () => {
     const [visitorCount, setVisitorCount] = useState(0);
+    const [email, setEmail] = useState('');
     const [showFeedbackToast, setShowFeedbackToast] = useState(false);
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    };
+
+    const handleSubscribe = async (e) => {
+        e.preventDefault();
+      
+        try {
+          // Call your subscription API endpoint here
+          await axios.post('/subscribe', { email });
+          setEmail('');
+          // Show success message to the user
+          alert("Subscribe Successful!");
+        } catch (error) {
+          console.error('Error subscribing:', error);
+          // Handle error feedback here if needed
+          if (error.response && error.response.status === 400) {
+            // Handle specific error status (e.g., Bad Request)
+            setEmail('');
+            alert('Invalid email. Please provide a valid email address.');
+          } else {
+            // Generic error handling
+            alert('Subscription failed. Please try again later.');
+          }
+        }
+      };
+      
+
 
     useEffect(() => {
         const fetchVisitorCount = async () => {
             try {
-                const response = await axios.get('https://tool-bo-xpress.vercel.app/visitor-count');
+                const response = await axios.get('/visitor-count');
                 setVisitorCount(response.data.count);
             } catch (error) {
                 console.error('Error fetching visitor count:', error);
@@ -31,6 +61,27 @@ const Footer = () => {
             <footer className="footer">
                 <div className="container">
                     <div className="row">
+                        <div className='col-md-4'> {/* Subscription Form */}
+                            <form onSubmit={handleSubscribe} className="mt-3 mx-5">
+                                <div className="form-group">
+                                    <label htmlFor="email" className="form-label">Subscribe to updates:</label>
+                                    <div className="input-group">
+                                        <input
+                                            type="email"
+                                            id="email"
+                                            name="email"
+                                            value={email}
+                                            onChange={handleEmailChange}
+                                            className="form-control"
+                                            placeholder="Enter your email"
+                                            required
+                                        />
+                                        <div className="input-group-append">
+                                            <button type="submit" className="btn btn-primary">Subscribe</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form></div>
                         <div className="col-md-4">
                             <h4>Quick Links</h4>
                             <ul>

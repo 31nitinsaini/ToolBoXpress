@@ -5,16 +5,22 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 const PORT = 5000;
-mongoose.connect('mongodb+srv://toolboxpress:toolboxpress123@toolboxpress.vv4dspn.mongodb.net/', { useNewUrlParser: true, useUnifiedTopology: true });
-// Allow requests only from 'https://toolboxpress.vercel.app'
-const corsOptions = {
-  origin: 'https://toolboxpress.vercel.app',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-  optionsSuccessStatus: 204,
+const connectToMongoDB = async () => {
+  try {
+    await mongoose.connect('mongodb+srv://toolboxpress:toolboxpress123@toolboxpress.vv4dspn.mongodb.net/', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+
+    console.log('Connected to MongoDB');
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error.message);
+  }
 };
 
-app.use(cors(corsOptions));
+// Call the function to connect to MongoDB
+connectToMongoDB();
+app.use(cors('*'));
 app.use(express.json())
 app.use(bodyParser.json());
 
@@ -121,7 +127,7 @@ app.use(async (req, res, next) => {
   next();
 });
 // Middleware to handle preflight requests
-app.options('/visitor-count', cors(corsOptions));
+app.options('/visitor-count');
 // Route to get the count of unique visitors
 app.get('/visitor-count', async (req, res) => {
   try {
@@ -145,7 +151,7 @@ const websiteFeedbackSchema = new mongoose.Schema({
 // Create a mongoose model
 const WebsiteFeedback = mongoose.model('WebsiteFeedback', websiteFeedbackSchema);
 // Middleware to handle preflight requests
-app.options('/website-feedback', cors(corsOptions));
+app.options('/website-feedback');
 // API endpoint to store feedback
 app.post('/website-feedback', async (req, res) => {
   try {
@@ -168,6 +174,43 @@ app.post('/website-feedback', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+// ... (existing code)
+
+const subscriptionSchema = new mongoose.Schema({
+  email: { type: String, required: true, unique: true },
+});
+
+const Subscription = mongoose.model('Subscription', subscriptionSchema);
+
+// Middleware to handle preflight requests
+app.options('/subscribe');
+
+// API endpoint to store email subscriptions
+app.post('/subscribe', async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    // Check if the email already exists
+    const existingSubscription = await Subscription.findOne({ email });
+    if (existingSubscription) {
+      return res.json({ error: 'Email already subscribed!' });
+    }
+
+    // Create a new subscription instance
+    const newSubscription = new Subscription({ email });
+
+    // Save the subscription to MongoDB
+    await newSubscription.save();
+
+    res.status(201).json({ message: 'Subscription successful!' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// ... (existing code)
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

@@ -3,6 +3,7 @@ import { Container, Typography, TextareaAutosize, Button, Card, CardContent, Gri
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import { Helmet } from 'react-helmet';
+import RatingComponent from '../../Components/RatingComponent';
 const UpperToLower = () => {
     const [inputText, setInputText] = useState('');
     const [outputText, setOutputText] = useState('');
@@ -94,6 +95,7 @@ const UpperToLower = () => {
                     </Grid>
                 </Container>
             </main>
+            <RatingComponent/>
             <Footer />
         </>
     );

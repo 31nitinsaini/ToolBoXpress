@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import RatingComponent from '../../Components/RatingComponent';
+import { Helmet } from 'react-helmet';
+import Typography from '@mui/material/Typography';
 
 const CohenSutherlandClipping = () => {
   const canvasRef = useRef(null);
@@ -120,79 +122,112 @@ const CohenSutherlandClipping = () => {
   };
 
   return (
-  <>
-  <Header/>
-  <main>
-  <div className="container mt-5">
-      <div className="row">
-        <div className="col-md-6">
-          <div className="form-group">
-            <label>Line Coordinates:</label>
-            <div className="row">
-              <div className="col">
-                <label>X1:</label>
-                <input type="number" className="form-control" value={x1} onChange={(e) => setX1(parseInt(e.target.value))} />
-              </div>
-              <div className="col">
-                <label>Y1:</label>
-                <input type="number" className="form-control" value={y1} onChange={(e) => setY1(parseInt(e.target.value))} />
+    <>
+      <Helmet>
+        <title>Cohen-Sutherland Clipping - ToolboXpress</title>
+        <meta
+          name="description"
+          content="Use the Cohen-Sutherland line clipping algorithm to clip a line segment against a rectangular clipping window. Enter line coordinates and clip window dimensions."
+        />
+      </Helmet>
+      <Header />
+      <main>
+        <div className="container my-5">
+          <center>
+          <Typography variant="h2" className="mb-4">
+            Cohen-Sutherland Clipping
+          </Typography>
+          <Typography variant="body1" paragraph>
+            Use the Cohen-Sutherland line clipping algorithm to clip a line segment against a rectangular clipping window.
+            Enter the coordinates of the line and dimensions of the clipping window below.
+          </Typography>
+
+          </center>
+          <div className="row mt-4">
+            <div className="col">
+              <Typography variant="h4" gutterBottom>
+                Steps for Cohen-Sutherland Clipping Algorithm:
+              </Typography>
+              <ol>
+                <li>Identify the coordinates of the line segment's endpoints (x1, y1) and (x2, y2).</li>
+                <li>Define the rectangular clipping window by specifying its boundaries (Xmin, Ymin, Xmax, Ymax).</li>
+                <li>Determine the region codes for both endpoints using the Cohen-Sutherland region code system.</li>
+                <li>Check if the line is completely inside or outside the clipping window based on the region codes.</li>
+                <li>If the line is partially inside and outside, iteratively clip the line against the window until fully clipped.</li>
+                <li>Update the line coordinates after each clipping iteration.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-md-6">
+              <div className="form-group">
+                <label>Line Coordinates:</label>
+                <div className="row">
+                  <div className="col">
+                    <label>X1:</label>
+                    <input type="number" className="form-control" value={x1} onChange={(e) => setX1(parseInt(e.target.value))} />
+                  </div>
+                  <div className="col">
+                    <label>Y1:</label>
+                    <input type="number" className="form-control" value={y1} onChange={(e) => setY1(parseInt(e.target.value))} />
+                  </div>
+                </div>
+                <div className="row mt-3">
+                  <div className="col">
+                    <label>X2:</label>
+                    <input type="number" className="form-control" value={x2} onChange={(e) => setX2(parseInt(e.target.value))} />
+                  </div>
+                  <div className="col">
+                    <label>Y2:</label>
+                    <input type="number" className="form-control" value={y2} onChange={(e) => setY2(parseInt(e.target.value))} />
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="row mt-3">
-              <div className="col">
-                <label>X2:</label>
-                <input type="number" className="form-control" value={x2} onChange={(e) => setX2(parseInt(e.target.value))} />
-              </div>
-              <div className="col">
-                <label>Y2:</label>
-                <input type="number" className="form-control" value={y2} onChange={(e) => setY2(parseInt(e.target.value))} />
+            <div className="col-md-6">
+              <div className="form-group">
+                <label>Clip Window:</label>
+                <div className="row">
+                  <div className="col">
+                    <label>Xmin:</label>
+                    <input type="number" className="form-control" value={clipXmin} onChange={(e) => setClipXmin(parseInt(e.target.value))} />
+                  </div>
+                  <div className="col">
+                    <label>Ymin:</label>
+                    <input type="number" className="form-control" value={clipYmin} onChange={(e) => setClipYmin(parseInt(e.target.value))} />
+                  </div>
+                </div>
+                <div className="row mt-3">
+                  <div className="col">
+                    <label>Xmax:</label>
+                    <input type="number" className="form-control" value={clipXmax} onChange={(e) => setClipXmax(parseInt(e.target.value))} />
+                  </div>
+                  <div className="col">
+                    <label>Ymax:</label>
+                    <input type="number" className="form-control" value={clipYmax} onChange={(e) => setClipYmax(parseInt(e.target.value))} />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="col-md-6">
-          <div className="form-group">
-            <label>Clip Window:</label>
-            <div className="row">
-              <div className="col">
-                <label>Xmin:</label>
-                <input type="number" className="form-control" value={clipXmin} onChange={(e) => setClipXmin(parseInt(e.target.value))} />
-              </div>
-              <div className="col">
-                <label>Ymin:</label>
-                <input type="number" className="form-control" value={clipYmin} onChange={(e) => setClipYmin(parseInt(e.target.value))} />
-              </div>
+          <div className="row mt-3">
+            <div className="col-md-6">
+              <canvas ref={canvasRef} width={300} height={300} style={{ border: '1px solid black' }} />
             </div>
-            <div className="row mt-3">
-              <div className="col">
-                <label>Xmax:</label>
-                <input type="number" className="form-control" value={clipXmax} onChange={(e) => setClipXmax(parseInt(e.target.value))} />
-              </div>
-              <div className="col">
-                <label>Ymax:</label>
-                <input type="number" className="form-control" value={clipYmax} onChange={(e) => setClipYmax(parseInt(e.target.value))} />
-              </div>
+          </div>
+          <div className="row mt-3">
+            <div className="col">
+              <button className="btn btn-primary" onClick={clipLine}>
+                Clip Line
+              </button>
             </div>
           </div>
         </div>
-      </div>
-      <div className="row mt-3">
-        <div className="col-md-6">
-          <canvas ref={canvasRef} width={300} height={300} style={{ border: '1px solid black' }} />
-        </div>
-      </div>
-      <div className="row mt-3">
-        <div className="col">
-          <button className="btn btn-primary" onClick={clipLine}>
-            Clip Line
-          </button>
-        </div>
-      </div>
-    </div>
-  </main>
-  <RatingComponent/>
-  <Footer/>
-  </>
+      </main>
+      <RatingComponent />
+      <Footer />
+    </>
   );
 };
 
