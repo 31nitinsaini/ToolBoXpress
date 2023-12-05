@@ -9,7 +9,7 @@ const AverageRatingComponent = () => {
   const fetchAverageRating = async () => {
     try {
       const currentUrl = window.location.pathname;
-      const response = await axios.get('/get-average-rating', {
+      const response = await axios.get('https://tool-bo-xpress.vercel.app/get-average-rating', {
         params: {
           currentUrl,
         },
@@ -77,7 +77,7 @@ const RatingComponent = () => {
     try {
       const currentUrl = window.location.pathname;
 
-      await axios.post('/submit-feedback', {
+      await axios.post('https://tool-bo-xpress.vercel.app/submit-feedback', {
         rating,
         feedback,
         url: currentUrl,
