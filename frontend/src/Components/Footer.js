@@ -9,7 +9,7 @@ const Footer = () => {
     useEffect(() => {
         const fetchVisitorCount = async () => {
             try {
-                const response = await axios.get('/visitor-count');
+                const response = await axios.get('https://tool-bo-xpress.vercel.app/visitor-count');
                 setVisitorCount(response.data.count);
             } catch (error) {
                 console.error('Error fetching visitor count:', error);
