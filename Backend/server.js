@@ -120,7 +120,8 @@ app.use(async (req, res, next) => {
 
   next();
 });
-
+// Middleware to handle preflight requests
+app.options('/visitor-count', cors(corsOptions));
 // Route to get the count of unique visitors
 app.get('/visitor-count', async (req, res) => {
   try {
@@ -143,7 +144,8 @@ const websiteFeedbackSchema = new mongoose.Schema({
 
 // Create a mongoose model
 const WebsiteFeedback = mongoose.model('WebsiteFeedback', websiteFeedbackSchema);
-
+// Middleware to handle preflight requests
+app.options('/website-feedback', cors(corsOptions));
 // API endpoint to store feedback
 app.post('/website-feedback', async (req, res) => {
   try {
