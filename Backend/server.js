@@ -5,8 +5,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 const PORT = 5000;
-
-mongoose.connect('mongodb://localhost:27017/ToolBoXpress', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://toolboxpress:toolboxpress123@toolboxpress.vv4dspn.mongodb.net/', { useNewUrlParser: true, useUnifiedTopology: true });
 app.use(cors({ origin: '*' }));
 app.use(express.json())
 app.use(bodyParser.json());
