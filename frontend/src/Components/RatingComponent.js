@@ -150,6 +150,8 @@ const RatingComponent = () => {
     color: 'orange', // Set the color of the full star to gold
     marginRight: '5px', // Adjust as needed
   };
+    const currentUrl = window.location.href;
+
   return (
     <div className="container mt-4 mb-3">
      <ShareIcons url={currentUrl} />
