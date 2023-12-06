@@ -384,7 +384,7 @@ const MainSection = () => {
     useEffect(() => {
         const fetchTopTools = async () => {
             try {
-                const response = await axios.get('/popular-tools');
+                const response = await axios.get('https://toolboxpress-backend.onrender.com/popular-tools');
                 // Map over the topTools and attach labels from toolsConfig
                 const toolsWithLabels = response.data.map((topTool) => {
                     const matchingTool = toolsConfig
