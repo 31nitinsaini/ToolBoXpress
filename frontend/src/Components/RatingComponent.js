@@ -2,19 +2,38 @@ import React, { useState,useEffect } from 'react';
 import Rating from 'react-rating';
 import axios from 'axios';
 import { Modal, Button } from 'react-bootstrap';
+import React from 'react';
+
 const ShareIcons = ({ url }) => (
-  <div className="share-icons">
-    <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
+  <div style={styles.shareIconsContainer}>
+    <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer" style={styles.shareIcon}>
       <i className="fab fa-twitter"></i>
     </a>
-    <a href={`https://www.linkedin.com/shareArticle?url=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
+    <a href={`https://www.linkedin.com/shareArticle?url=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer" style={styles.shareIcon}>
       <i className="fab fa-linkedin"></i>
     </a>
-    <a href={`https://api.whatsapp.com/send?text=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
+    <a href={`https://api.whatsapp.com/send?text=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer" style={styles.shareIcon}>
       <i className="fab fa-whatsapp"></i>
     </a>
   </div>
 );
+
+const styles = {
+  shareIconsContainer: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    marginTop: '20px',
+  },
+  shareIcon: {
+    textDecoration: 'none',
+    color: '#333',
+    fontSize: '24px',
+    margin: '0 10px',
+    transition: 'color 0.3s ease-in-out',
+  },
+};
+
 
 const AverageRatingComponent = ({showModal}) => {
   const [averageRating, setAverageRating] = useState(0);
