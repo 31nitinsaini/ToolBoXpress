@@ -72,7 +72,7 @@ const ReplaceWords = () => {
 
   return (
     <>
-       (
+       
     <Helmet>
       <title>ToolboXpress - Replace Word</title>
       <meta name="description" content="Replace words in your text with ToolboXpress Replace Word tool. Quickly substitute specific words or phrases. Fast, intuitive, and free!" />
