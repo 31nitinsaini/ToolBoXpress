@@ -16,7 +16,7 @@ const Footer = () => {
       
         try {
           // Call your subscription API endpoint here
-          await axios.post('https://toolboxpress-backend.onrender.com/subscribe', { email });
+          await axios.post('/subscribe', { email });
           setEmail('');
           // Show success message to the user
           alert("Subscribe Successful!");
@@ -39,7 +39,7 @@ const Footer = () => {
     useEffect(() => {
         const fetchVisitorCount = async () => {
             try {
-                const response = await axios.get('https://toolboxpress-backend.onrender.com/visitor-count');
+                const response = await axios.get('/visitor-count');
                 setVisitorCount(response.data.count);
             } catch (error) {
                 console.error('Error fetching visitor count:', error);
