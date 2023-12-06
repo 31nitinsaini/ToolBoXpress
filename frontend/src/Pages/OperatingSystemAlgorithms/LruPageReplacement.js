@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import RatingComponent from '../../Components/RatingComponent';
 
-const LruPageReplacement = () => {
+const OptimalPageReplacement = () => {
+  // State variables
   const [pages, setPages] = useState([7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2]);
   const [capacity, setCapacity] = useState(4);
   const [pageFaults, setPageFaults] = useState(null);
@@ -12,6 +14,7 @@ const LruPageReplacement = () => {
   const [pageTable, setPageTable] = useState([]);
   const [pageFrameTable, setPageFrameTable] = useState([]);
 
+  // Function to handle page faults calculation
   const handlePageFaults = () => {
     const { pageFaults, hitPercentage, missPercentage, pageTable, pageFrameTable } = calculatePageFaults();
     setPageFaults(pageFaults);
@@ -21,6 +24,7 @@ const LruPageReplacement = () => {
     setPageFrameTable(pageFrameTable);
   };
 
+  // Function to calculate page faults, hit/miss percentages, page table, and page frame replacement table
   const calculatePageFaults = () => {
     let cache = [];
     let page_faults = 0;
@@ -35,34 +39,87 @@ const LruPageReplacement = () => {
         // Page is already in the cache (hit)
         hits++;
         pageTable.push({ page, status: 'Hit' });
-        // Move the page to the front (most recently used)
-        cache = [page, ...cache.filter((p) => p !== page)];
       } else {
         // Page is not in the cache (miss)
         page_faults++;
         pageTable.push({ page, status: 'Page Fault' });
 
-        if (cache.length === capacity) {
-          // Remove the least recently used page (last element)
-          cache.pop();
+        if (cache.length < capacity) {
+          // If there is space in the cache, add the page
+          cache.push(page);
+        } else {
+          // If cache is full, find the page with the farthest future reference
+          const futureReferences = pages.slice(i + 1);
+          const farthestIndex = cache.reduce((maxIndex, item, currentIndex) => {
+            const nextIndex = futureReferences.indexOf(item);
+            return nextIndex > maxIndex ? nextIndex : maxIndex;
+          }, -1);
+
+          // Replace the page at farthestIndex with the current page
+          cache[cache.indexOf(pages[farthestIndex])] = page;
         }
-        // Add the new page to the front
-        cache = [page, ...cache];
       }
 
       pageFrameTable.push([...cache]);
     }
 
+    // Calculate hit and miss percentages
     const missPercentage = ((page_faults / pages.length) * 100).toFixed(2);
     const hitPercentage = ((hits / pages.length) * 100).toFixed(2);
+
+    // Return calculated values
     return { pageFaults: page_faults, hitPercentage: hitPercentage, missPercentage: missPercentage, pageTable: pageTable, pageFrameTable: pageFrameTable };
   };
 
   return (
     <>
+      <Helmet>
+        <title>Optimal Page Replacement Algorithm - ToolBoXpress</title>
+        <meta
+          name="description"
+          content="Learn and implement the Optimal Page Replacement algorithm with ToolboXpress. Visualize the process of managing page faults, hit percentage, and miss percentage."
+        />
+        <meta
+          name="keywords"
+          content="Optimal algorithm, page replacement, cache management, ToolboXpress"
+        />
+        <meta name="author" content="Your Name" />
+
+        {/* Open Graph meta tags for social media sharing */}
+        <meta property="og:title" content="Optimal Page Replacement Algorithm - ToolBoXpress" />
+        <meta
+          property="og:description"
+          content="Learn and implement the Optimal Page Replacement algorithm with ToolboXpress. Visualize the process of managing page faults, hit percentage, and miss percentage."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={window.location.href} />
+
+        {/* Twitter Card meta tags for Twitter sharing */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Optimal Page Replacement Algorithm - ToolBoXpress"
+        />
+        <meta
+          name="twitter:description"
+          content="Learn and implement the Optimal Page Replacement algorithm with ToolboXpress. Visualize the process of managing page faults, hit percentage, and miss percentage."
+        />
+
+        {/* Canonical URL to specify the preferred version of a page */}
+        <link rel="canonical" href={window.location.href} />
+      </Helmet>
+
       <Header />
-      <main className="px-4">
-        <h1 className="mb-4">LRU Page Replacement Algorithm</h1>
+      <main>
+        <div className='container my-5'>
+        <div className='my-4'>
+        <h2 className="mb-4">Optimal Page Replacement Algorithm</h2>
+        <p>
+          The Optimal Page Replacement Algorithm is a page replacement policy that selects the page that will not be used for the longest period of time in the future.
+          This simulation helps you understand how the algorithm manages page faults based on a given sequence of page requests and the capacity of the page table.
+        </p>
+        </div>
+
         <div className="mb-3">
           <label>
             Enter the page sequence (separated by commas):
@@ -96,7 +153,7 @@ const LruPageReplacement = () => {
         </div>
         <div className="mb-3">
           <h2>Page Table</h2>
-          <table className="table">
+          <table className="table table-bordered">
             <thead>
               <tr>
                 {pageTable.map((entry, index) => (
@@ -118,21 +175,25 @@ const LruPageReplacement = () => {
           <table className="table table-bordered">
             <thead>
               <tr>
-                {pageFrameTable.map((frames, index) => (
-                  <th key={index}>Step {index + 1}</th>
+                <th>Step</th>
+                {Array.from({ length: capacity }, (_, index) => (
+                  <th key={index}>Frame {index + 1}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
-              {Array.from({ length: capacity }, (_, rowIndex) => (
-                <tr key={rowIndex}>
-                  {pageFrameTable.map((frames, colIndex) => (
-                    <td key={colIndex}>{frames[rowIndex] !== undefined ? frames[rowIndex] : '-'}</td>
+              {pageFrameTable.map((frames, step) => (
+                <tr key={step}>
+                  <td>Step {step + 1}</td>
+                  {Array.from({ length: capacity }, (_, index) => (
+                    <td key={index}>{frames[index] !== undefined ? frames[index] : '-'}</td>
                   ))}
                 </tr>
-              )).reverse()} {/* Reverse the order to fix the upside-down table */}
+              ))}
             </tbody>
           </table>
+        </div>
+      
         </div>
       </main>
       <RatingComponent />
@@ -141,4 +202,4 @@ const LruPageReplacement = () => {
   );
 };
 
-export default LruPageReplacement;
+export default OptimalPageReplacement;

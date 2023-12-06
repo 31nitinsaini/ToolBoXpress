@@ -2,7 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const cors = require('cors');
+// const cors = require('cors');
 const app = express();
 const PORT = 5000;
 const connectToMongoDB = async () => {
@@ -17,10 +17,13 @@ const connectToMongoDB = async () => {
     console.error('Error connecting to MongoDB:', error.message);
   }
 };
+app.get('/', (req, res) => {
+  res.send('Hey this is my API running 🥳')
+})
 
 // Call the function to connect to MongoDB
 connectToMongoDB();
-app.use(cors('*'));
+// app.use(cors('*'));
 app.use(express.json())
 app.use(bodyParser.json());
 
@@ -203,6 +206,42 @@ app.post('/subscribe', async (req, res) => {
     await newSubscription.save();
 
     res.status(201).json({ message: 'Subscription successful!' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+//request tool
+const toolRequestSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  toolName: { type: String, required: true },
+  toolDescription: { type: String, required: true },
+  timestamp: { type: Date, default: Date.now },
+});
+const ToolRequest = mongoose.model('ToolRequest', toolRequestSchema);
+
+// Middleware to handle preflight requests
+app.options('/request-tool');
+
+// API endpoint to handle tool requests
+app.post('/request-tool', async (req, res) => {
+  try {
+    const { name, email, toolName, toolDescription } = req.body;
+
+    // Create a new tool request instance
+    const newToolRequest = new ToolRequest({
+      name,
+      email,
+      toolName,
+      toolDescription,
+    });
+
+    // Save the tool request to MongoDB
+    await newToolRequest.save();
+
+    res.status(201).json({ message: 'Tool request submitted successfully!' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });

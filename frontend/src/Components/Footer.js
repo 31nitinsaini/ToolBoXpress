@@ -88,6 +88,7 @@ const Footer = () => {
                                 <li><Link to="/">Home</Link></li>
                                 <li><Link to="/about">About Us</Link></li>
                                 <li><Link to="/privacy-policy">Privacy Policy</Link></li>
+                                <li><Link to="/request-tool">Request Tool</Link></li>
                             </ul>
                         </div>
                         <div className="col-md-4">

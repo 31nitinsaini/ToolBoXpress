@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-
+import Header from '../../Components/Header';
+import Footer from '../../Components/Footer';
+import { Helmet } from 'react-helmet';
+import RatingComponent from '../../Components/RatingComponent';
 const FCFSAlgorithmCalculator = () => {
   const [arrivalTimes, setArrivalTimes] = useState('');
   const [burstTimes, setBurstTimes] = useState('');
@@ -61,8 +64,30 @@ const FCFSAlgorithmCalculator = () => {
   };
 
   return (
-    <div className="container mt-4">
-      <h1>First-Come-First-Serve (FCFS) Scheduling Algorithm Calculator</h1>
+    <>
+    <Helmet>
+      <title>FCFS Algorithm Calculator - ToolBoXpress</title>
+      <meta
+        name="description"
+        content="Calculate Average Turnaround Time, Average Waiting Time, and generate Gantt Chart using the First-Come-First-Serve (FCFS) Scheduling Algorithm with ToolBoXpress."
+      />
+      <meta
+        name="keywords"
+        content="FCFS algorithm, scheduling algorithm, turnaround time, waiting time, Gantt chart, ToolboXpress"
+      />
+      <meta name="author" content="Your Name" />
+      {/* Add additional SEO meta tags as needed */}
+    </Helmet>
+    <Header/>
+    <main>
+    <div className="container my-5">
+      <center>
+      <h2>First-Come-First-Serve (FCFS) Scheduling Algorithm Calculator</h2>
+      <p>
+        Welcome to the ToolBoXpress FCFS Scheduling Algorithm Calculator. Use this tool to calculate Average Turnaround Time, Average Waiting Time, and generate a Gantt Chart based on the First-Come-First-Serve scheduling algorithm.
+      </p>
+      </center>
+      <div className='my-3'>
       <div className="row">
         <div className="col">
           <label>
@@ -134,7 +159,13 @@ const FCFSAlgorithmCalculator = () => {
           </tbody>
         </table>
       </div>
+    
+      </div>
     </div>
+    </main>
+    <RatingComponent/>
+    <Footer/>
+    </>
   );
 };
 

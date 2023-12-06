@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
+import Header from '../../Components/Header';
+import Footer from '../../Components/Footer';
+import RatingComponent from '../../Components/RatingComponent';
 
 const PriorityAlgorithmCalculator = () => {
   // State variables
@@ -111,91 +115,113 @@ const PriorityAlgorithmCalculator = () => {
   };
 
   return (
-    <div className="container mt-4">
-      <h1>Priority Scheduling Algorithm Calculator</h1>
-      <div className="row">
-        <div className="col">
-          <label>
-            Arrival Times (comma-separated):
-            <input
-              type="text"
-              className="form-control"
-              value={arrivalTimes}
-              onChange={(e) => setArrivalTimes(e.target.value)}
-            />
-          </label>
-        </div>
-        <div className="col">
-          <label>
-            Burst Times (comma-separated):
-            <input
-              type="text"
-              className="form-control"
-              value={burstTimes}
-              onChange={(e) => setBurstTimes(e.target.value)}
-            />
-          </label>
-        </div>
-        <div className="col">
-          <label>
-            Priorities (comma-separated):
-            <input
-              type="text"
-              className="form-control"
-              value={priorities}
-              onChange={(e) => setPriorities(e.target.value)}
-            />
-          </label>
-        </div>
-      </div>
-      <button className="btn btn-primary mt-2" onClick={handleCalculate}>
-        Calculate
-      </button>
+    <>
+      <Helmet>
+        <title>Priority Scheduling Algorithm Calculator</title>
+        <meta
+          name="description"
+          content="Calculate average turnaround time, waiting time, and generate Gantt chart for Priority Scheduling Algorithm. Enter arrival times, burst times, and priorities."
+        />
+        <meta
+          name="keywords"
+          content="Priority Scheduling, CPU Scheduling, Process Scheduling, Gantt Chart, Algorithm Calculator"
+        />
+        <meta name="author" content="Your Name" />
 
-      <div className="mt-4">
-        <h2>Gantt Chart</h2>
-        <div className="d-flex">
-          {ganttChart.map((entry, index) => (
-            <div key={index} className="flex-grow-1 border text-center p-2">
-              {entry.process}
-              <br />
-              {entry.startTime} - {entry.endTime}
-            </div>
-          ))}
+        {/* Add more SEO-related meta tags as needed */}
+      </Helmet>
+
+      <Header />
+     <main>
+     <div className="container my-4">
+        <h1>Priority Scheduling Algorithm Calculator</h1>
+        <div className="row">
+          <div className="col">
+            <label>
+              Arrival Times (comma-separated):
+              <input
+                type="text"
+                className="form-control"
+                value={arrivalTimes}
+                onChange={(e) => setArrivalTimes(e.target.value)}
+              />
+            </label>
+          </div>
+          <div className="col">
+            <label>
+              Burst Times (comma-separated):
+              <input
+                type="text"
+                className="form-control"
+                value={burstTimes}
+                onChange={(e) => setBurstTimes(e.target.value)}
+              />
+            </label>
+          </div>
+          <div className="col">
+            <label>
+              Priorities (comma-separated):
+              <input
+                type="text"
+                className="form-control"
+                value={priorities}
+                onChange={(e) => setPriorities(e.target.value)}
+              />
+            </label>
+          </div>
         </div>
-      </div>
+        <button className="btn btn-primary mt-2" onClick={handleCalculate}>
+          Calculate
+        </button>
 
-      <h3>Average Turnaround Time: {averageTurnaroundTime.toFixed(2)}</h3>
-      <h3>Average Waiting Time: {averageWaitingTime.toFixed(2)}</h3>
-
-      <div className="mt-4">
-        <h2>Process Table</h2>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Process</th>
-              <th>Arrival Time</th>
-              <th>Burst Time</th>
-              <th>Completion Time</th>
-              <th>Turnaround Time</th>
-              <th>Waiting Time</th>
-            </tr>
-          </thead>
-          <tbody>
-            {processTable.map((row, index) => (
-              <tr key={index}>
-                <td>{row.process}</td>
-                <td>{row.arrivalTime}</td>
-                <td>{row.burstTime}</td>
-                <td>{row.completionTime}</td>
-                <td>{row.turnaroundTime}</td>
-                <td>{row.waitingTime}</td>
-              </tr>
+        <div className="mt-4">
+          <h2>Gantt Chart</h2>
+          <div className="d-flex">
+            {ganttChart.map((entry, index) => (
+              <div key={index} className="flex-grow-1 border text-center p-2">
+                {entry.process}
+                <br />
+                {entry.startTime} - {entry.endTime}
+              </div>
             ))}
-          </tbody>
-        </table>
+          </div>
+        </div>
+
+        <h3>Average Turnaround Time: {averageTurnaroundTime.toFixed(2)}</h3>
+        <h3>Average Waiting Time: {averageWaitingTime.toFixed(2)}</h3>
+
+        <div className="mt-4">
+          <h2>Process Table</h2>
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Process</th>
+                <th>Arrival Time</th>
+                <th>Burst Time</th>
+                <th>Completion Time</th>
+                <th>Turnaround Time</th>
+                <th>Waiting Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              {processTable.map((row, index) => (
+                <tr key={index}>
+                  <td>{row.process}</td>
+                  <td>{row.arrivalTime}</td>
+                  <td>{row.burstTime}</td>
+                  <td>{row.completionTime}</td>
+                  <td>{row.turnaroundTime}</td>
+                  <td>{row.waitingTime}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+     </main>
+      <RatingComponent/>  
+      <Footer />
+    </>
   );
 };
 

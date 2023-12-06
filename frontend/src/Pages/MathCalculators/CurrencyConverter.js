@@ -74,7 +74,9 @@ const CurrencyConverter = () => {
       <link rel="icon" href="/favicon.ico" />
     </Helmet>
       <Header />
-      <div className="container mt-5 mb-4">
+      <main>
+        
+      <div className="container my-5 ">
         <h2>Currency Converter</h2>
         <div className="mb-3">
           <label>
@@ -116,6 +118,7 @@ const CurrencyConverter = () => {
           </div>
         )}
       </div>
+      </main>
       <RatingComponent/>
       <Footer />
     </>

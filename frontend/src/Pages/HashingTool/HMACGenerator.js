@@ -3,14 +3,14 @@ import Header from '../../Components/Header';
 import RatingComponent from '../../Components/RatingComponent';
 import Footer from '../../Components/Footer';
 
-const hmacGenerator = (key, message) => {
+const hmacGenerator = async (key, message) => {
     const blocksize = 64; // Block size for SHA-256
     const ipad = 0x36;
     const opad = 0x5c;
 
     // If the key is longer than the block size, hash it
     if (key.length > blocksize) {
-        key = window.crypto.subtle.digest('SHA-256', new TextEncoder().encode(key));
+        key = await window.crypto.subtle.digest('SHA-256', new TextEncoder().encode(key));
     }
 
     // Pad the key with zeros to the block size
@@ -21,10 +21,10 @@ const hmacGenerator = (key, message) => {
     const oKeyPad = key.map((byte) => byte ^ opad);
 
     // Concatenate inner pad and message, then hash
-    const innerHash = window.crypto.subtle.digest('SHA-256', new Uint8Array([...iKeyPad, ...new TextEncoder().encode(message)]));
+    const innerHash = await window.crypto.subtle.digest('SHA-256', new Uint8Array([...iKeyPad, ...new TextEncoder().encode(message)]));
 
     // Concatenate outer pad and inner hash, then hash again
-    const finalHash = window.crypto.subtle.digest('SHA-256', new Uint8Array([...oKeyPad, ...new Uint8Array(innerHash)]));
+    const finalHash = await window.crypto.subtle.digest('SHA-256', new Uint8Array([...oKeyPad, ...new Uint8Array(innerHash)]));
 
     // Convert the final hash to a hex string
     return Array.from(new Uint8Array(finalHash), (byte) => byte.toString(16).padStart(2, '0')).join('');
@@ -43,14 +43,19 @@ const HMACGenerator = () => {
         setSecretKey(e.target.value);
     };
 
-    const generateHMAC = () => {
+    const generateHMAC = async () => {
         if (!inputText || !secretKey) {
             alert('Please enter input text and secret key.');
             return;
         }
 
-        const hmac = hmacGenerator(secretKey, inputText);
-        setHMACResult(hmac);
+        try {
+            const hmac = await hmacGenerator(secretKey, inputText);
+            setHMACResult(hmac);
+        } catch (error) {
+            console.error('Error generating HMAC:', error);
+            // Handle the error, e.g., display an error message to the user
+        }
     };
 
     return (

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import RatingComponent from '../../Components/RatingComponent';
@@ -66,6 +67,42 @@ const OptimalPageReplacement = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Optimal Page Replacement Algorithm - ToolBoXpress</title>
+        <meta
+          name="description"
+          content="Learn and implement the Optimal Page Replacement algorithm with ToolboXpress. Visualize the process of managing page faults, hit percentage, and miss percentage."
+        />
+        <meta
+          name="keywords"
+          content="Optimal algorithm, page replacement, cache management, ToolboXpress"
+        />
+        <meta name="author" content="Your Name" />
+
+        {/* Open Graph meta tags for social media sharing */}
+        <meta property="og:title" content="Optimal Page Replacement Algorithm - ToolBoXpress" />
+        <meta
+          property="og:description"
+          content="Learn and implement the Optimal Page Replacement algorithm with ToolboXpress. Visualize the process of managing page faults, hit percentage, and miss percentage."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={window.location.href} />
+
+        {/* Twitter Card meta tags for Twitter sharing */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Optimal Page Replacement Algorithm - ToolBoXpress"
+        />
+        <meta
+          name="twitter:description"
+          content="Learn and implement the Optimal Page Replacement algorithm with ToolboXpress. Visualize the process of managing page faults, hit percentage, and miss percentage."
+        />
+
+        {/* Canonical URL to specify the preferred version of a page */}
+        <link rel="canonical" href={window.location.href} />
+      </Helmet>
+
       <Header />
       <main className="px-4">
         <h1 className="mb-4">Optimal Page Replacement Algorithm</h1>
@@ -102,7 +139,7 @@ const OptimalPageReplacement = () => {
         </div>
         <div className="mb-3">
           <h2>Page Table</h2>
-          <table className="table">
+          <table className="table table-bordered">
             <thead>
               <tr>
                 {pageTable.map((entry, index) => (

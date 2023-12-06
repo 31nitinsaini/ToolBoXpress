@@ -14,12 +14,14 @@ import BinaryCalcRoutes from './BinaryCalcRoutes'
 import NumberBaseRoutes from './NumberBaseRoutes'
 import ComputerGraphicsRoutes from './ComputerGraphicsRoutes'
 import OperatingSystemAlgorithmsRoutes from './OperatingSystemAlgorithmsRoutes'
+import RequestTool from '../Pages/RequestTool'
 const AllRoutes = () => {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/about' element={<AboutUs />} />
       <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+      <Route path='/request-tool' element={<RequestTool />} />
       <Route path='/text-manipulation/*' element={<TextManipulationRoutes />} />
       <Route path='/utility/*' element={<UtilityRoutes />} />
       <Route path='/MathCalculator/*' element={<CalculatorRoutes />} />
