@@ -9,7 +9,7 @@ const AverageRatingComponent = ({showModal}) => {
   const fetchAverageRating = async () => {
     try {
       const currentUrl = window.location.pathname;
-      const response = await axios.get('/get-average-rating', {
+      const response = await axios.get('https://toolboxpress-backend.onrender.com/get-average-rating', {
         params: {
           currentUrl,
         },
@@ -113,7 +113,7 @@ const RatingComponent = () => {
     try {
       const currentUrl = window.location.pathname;
 
-      await axios.post('/submit-feedback', {
+      await axios.post('https://toolboxpress-backend.onrender.com/submit-feedback', {
         rating,
         feedback,
         url: currentUrl,
