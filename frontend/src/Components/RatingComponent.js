@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react';
 import Rating from 'react-rating';
 import axios from 'axios';
 import { Modal, Button } from 'react-bootstrap';
-import React from 'react';
+
 
 const ShareIcons = ({ url }) => (
   <div style={styles.shareIconsContainer}>
