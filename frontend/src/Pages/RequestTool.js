@@ -21,7 +21,7 @@ const RequestTool = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/request-tool', formData);
+      const response = await axios.post('https://toolboxpress-backend.onrender.com/request-tool', formData);
       if (response.status === 201) {
         setSubmissionStatus('success');
         console.log('Tool request submitted successfully!');
