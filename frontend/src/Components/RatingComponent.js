@@ -2,6 +2,20 @@ import React, { useState,useEffect } from 'react';
 import Rating from 'react-rating';
 import axios from 'axios';
 import { Modal, Button } from 'react-bootstrap';
+const ShareIcons = ({ url }) => (
+  <div className="share-icons">
+    <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
+      <i className="fab fa-facebook-f"></i>
+    </a>
+    <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
+      <i className="fab fa-twitter"></i>
+    </a>
+    <a href={`https://www.linkedin.com/shareArticle?url=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
+      <i className="fab fa-linkedin"></i>
+    </a>
+  </div>
+);
+
 const AverageRatingComponent = ({showModal}) => {
   const [averageRating, setAverageRating] = useState(0);
   const [ratingCount, setRatingCount] = useState(0);
@@ -138,6 +152,7 @@ const RatingComponent = () => {
   };
   return (
     <div className="container mt-4 mb-3">
+     <ShareIcons url={currentUrl} />
       {/* Add to Favorites button */}
       <button
         className={`btn ${isFavorite ? 'btn-secondary' : 'btn-primary'} my-2`}
