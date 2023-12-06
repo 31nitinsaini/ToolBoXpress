@@ -55,7 +55,7 @@ const FeedbackToast = () => {
                 setCurrentQuestion(currentQuestion + 1);
             } else {
                 // Send feedback to the server
-                await fetch('/website-feedback', {
+                await fetch('https://toolboxpress-backend.onrender.com/website-feedback', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
