@@ -4,14 +4,14 @@ import axios from 'axios';
 import { Modal, Button } from 'react-bootstrap';
 const ShareIcons = ({ url }) => (
   <div className="share-icons">
-    <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
-      <i className="fab fa-facebook-f"></i>
-    </a>
     <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
       <i className="fab fa-twitter"></i>
     </a>
     <a href={`https://www.linkedin.com/shareArticle?url=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
       <i className="fab fa-linkedin"></i>
+    </a>
+    <a href={`https://api.whatsapp.com/send?text=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
+      <i className="fab fa-whatsapp"></i>
     </a>
   </div>
 );
