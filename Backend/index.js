@@ -248,7 +248,6 @@ app.post('/request-tool', async (req, res) => {
   }
 });
 
-// ... (existing code)
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

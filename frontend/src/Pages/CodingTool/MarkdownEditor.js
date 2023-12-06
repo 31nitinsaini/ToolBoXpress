@@ -95,7 +95,7 @@ function greet(name) {
       />
 
       <main>
-      <div className="container-fluid my-5">
+      <div className="container my-5">
         <center>  <h2>Markdown Editor</h2>
             <p>
               Create and edit Markdown content easily with ToolBoXpress Markdown Editor. Write and format your documents
