@@ -1,8 +1,7 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Rating from 'react-rating';
 import axios from 'axios';
 import { Modal, Button } from 'react-bootstrap';
-
 
 const ShareIcons = ({ url }) => (
   <div style={styles.shareIconsContainer}>
@@ -21,21 +20,21 @@ const ShareIcons = ({ url }) => (
 const styles = {
   shareIconsContainer: {
     display: 'flex',
-    justifyContent: 'space-around',
+    justifyContent: 'flex-end', // Align to the right end of the container
     alignItems: 'center',
     marginTop: '20px',
+    marginBottom: '20px', // Add margin at the bottom
   },
   shareIcon: {
     textDecoration: 'none',
     color: '#333',
     fontSize: '24px',
-    margin: '0 10px',
+    marginLeft: '10px', // Add margin to each icon
     transition: 'color 0.3s ease-in-out',
   },
 };
 
-
-const AverageRatingComponent = ({showModal}) => {
+const AverageRatingComponent = ({ showModal }) => {
   const [averageRating, setAverageRating] = useState(0);
   const [ratingCount, setRatingCount] = useState(0);
 
@@ -47,23 +46,19 @@ const AverageRatingComponent = ({showModal}) => {
           currentUrl,
         },
       });
-  
+
       setAverageRating(response.data.averageRating);
       setRatingCount(response.data.count);
     } catch (error) {
       console.error('Error fetching average rating:', error);
     }
   };
-  
-useEffect(()=>{
-  fetchAverageRating();
-},[showModal]);
+
   useEffect(() => {
-    // Fetch average rating and count when the component mounts
     fetchAverageRating();
-  }, []);
+  }, [showModal]);
+
   const getColor = () => {
-    // Choose colors based on the average rating (customize as needed)
     if (averageRating >= 4) {
       return 'green';
     } else if (averageRating >= 3) {
@@ -82,66 +77,57 @@ useEffect(()=>{
     fontWeight: 'bold',
   };
 
-  
-
   return (
     <div className="container-fluid mt-4">
       <div className="mb-3">
-      
-          Average Rating:{' '}
-          <span style={ratingStyle}>{averageRating}</span> (from {ratingCount} ratings)
-      
+        Average Rating:{' '}
+        <span style={ratingStyle}>{averageRating}</span> (from {ratingCount} ratings)
       </div>
     </div>
   );
-
 };
+
 const RatingComponent = () => {
   const [rating, setRating] = useState(1);
   const [feedback, setFeedback] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
-
-  const handleRatingChange = (value) => {
-    setRating(value); 
-  };
-
-  const handleFeedbackChange = (e) => {
-    setFeedback(e.target.value);
-  };
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
-    // Check if the tool is in favorites when the component mounts
     setIsFavorite(checkIfFavorite());
   }, []);
-  
+
   const checkIfFavorite = () => {
     const currentUrl = window.location.pathname;
     const favorites = localStorage.getItem('favorites');
     return favorites && favorites.includes(currentUrl);
   };
-  
 
   const toggleFavorite = () => {
     const currentUrl = window.location.pathname;
     const favorites = localStorage.getItem('favorites');
     const favoriteList = favorites ? favorites.split(',') : [];
-  
+
     if (favoriteList.includes(currentUrl)) {
-      // Remove from favorites
       const updatedFavorites = favoriteList.filter((url) => url !== currentUrl);
       localStorage.setItem('favorites', updatedFavorites.join(','));
       setIsFavorite(false);
     } else {
-      // Add to favorites
       favoriteList.push(currentUrl);
       localStorage.setItem('favorites', favoriteList.join(','));
       setIsFavorite(true);
     }
   };
-  
-  
+
+  const handleRatingChange = (value) => {
+    setRating(value);
+  };
+
+  const handleFeedbackChange = (e) => {
+    setFeedback(e.target.value);
+  };
+
   const handleSubmit = async () => {
     try {
       const currentUrl = window.location.pathname;
@@ -152,7 +138,6 @@ const RatingComponent = () => {
         url: currentUrl,
       });
 
-      // Update modal message and show modal
       setModalMessage('Feedback submitted successfully!');
       setShowModal(true);
     } catch (error) {
@@ -161,20 +146,21 @@ const RatingComponent = () => {
   };
 
   const handleCloseModal = () => {
-    // Close modal and reset state
     setShowModal(false);
     setModalMessage('');
   };
+
   const starStyle = {
-    color: 'orange', // Set the color of the full star to gold
-    marginRight: '5px', // Adjust as needed
+    color: 'orange',
+    marginRight: '5px',
   };
-    const currentUrl = window.location.href;
+
+  const currentUrl = window.location.href;
 
   return (
     <div className="container mt-4 mb-3">
-     <ShareIcons url={currentUrl} />
-      {/* Add to Favorites button */}
+      <ShareIcons url={currentUrl} />
+
       <button
         className={`btn ${isFavorite ? 'btn-secondary' : 'btn-primary'} my-2`}
         onClick={toggleFavorite}
@@ -183,18 +169,15 @@ const RatingComponent = () => {
       </button>
 
       <h2>Provide your feedback</h2>
-      <AverageRatingComponent showModal={showModal}/>
+      <AverageRatingComponent showModal={showModal} />
       <div className="mb-3">
         <label className="mr-2">Rating:</label>
-      
-
-    <Rating
-      initialRating={rating}
-      emptySymbol={<i className="far fa-star" style={starStyle}></i>}
-      fullSymbol={<i className="fas fa-star" style={starStyle}></i>}
-      onChange={handleRatingChange}
-    />
-  
+        <Rating
+          initialRating={rating}
+          emptySymbol={<i className="far fa-star" style={starStyle}></i>}
+          fullSymbol={<i className="fas fa-star" style={starStyle}></i>}
+          onChange={handleRatingChange}
+        />
       </div>
       <div className="mb-3">
         <label>Feedback:</label>
@@ -208,7 +191,6 @@ const RatingComponent = () => {
         Submit Feedback
       </button>
 
-      {/* Modal */}
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>Feedback Submission</Modal.Title>
@@ -220,7 +202,6 @@ const RatingComponent = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-      
     </div>
   );
 };
