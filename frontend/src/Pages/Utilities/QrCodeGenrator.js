@@ -4,7 +4,7 @@ import html2canvas from 'html2canvas';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import { Helmet } from 'react-helmet';
-
+import RatingComponent from '../../Components/RatingComponent';
 const QrCodeGenrator = () => {
   const [qrContent, setQrContent] = useState('');
   const [qrColor, setQrColor] = useState('#000000');
@@ -106,6 +106,7 @@ const QrCodeGenrator = () => {
           </Paper>
         </Container>
       </main>
+      <RatingComponent/>      
       <Footer />
     </>
   );
