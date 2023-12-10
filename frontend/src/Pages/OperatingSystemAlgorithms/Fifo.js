@@ -5,8 +5,8 @@ import { Helmet } from 'react-helmet';
 import RatingComponent from '../../Components/RatingComponent';
 
 const FifoPageReplacement = () => {
-  const [pages, setPages] = useState([3, 1, 2, 1, 6, 5, 1, 3]);
-  const [capacity, setCapacity] = useState(3);
+  const [pages, setPages] = useState([6, 7, 8, 9, 6, 7, 1, 6, 7, 8, 9, 1]);
+  const [capacity, setCapacity] = useState(4);
   const [pageFaults, setPageFaults] = useState(null);
   const [hitPercentage, setHitPercentage] = useState(null);
   const [missPercentage, setMissPercentage] = useState(null);
@@ -36,6 +36,7 @@ const FifoPageReplacement = () => {
     let hits = 0;
     let pageTable = [];
     let pageFrameTable = [];
+    let lastRemovedIndex = 0;
 
     for (let i = 0; i < pages.length; i++) {
       if (queue.length < capacity) {
@@ -49,8 +50,9 @@ const FifoPageReplacement = () => {
         }
       } else {
         if (!queue.includes(pages[i])) {
-          let removedPage = queue.shift(); // Don't replace frames
-          queue.push(pages[i]);
+          let removedPage = queue[lastRemovedIndex];
+          queue[lastRemovedIndex] = pages[i];
+          lastRemovedIndex = (lastRemovedIndex + 1) % capacity;
           page_faults++;
           pageTable.push({ page: pages[i], status: 'Page Fault' });
         } else {
@@ -158,16 +160,13 @@ const FifoPageReplacement = () => {
             Toggle Page Faults
           </button>
 
-          {showTable && (
+          {showTable && (<>
             <div className="mb-3">
               <h2>Page Faults and Hit/Miss Ratios</h2>
               <p>{`Page Faults: ${pageFaults !== null ? pageFaults : 'Click the button to calculate page faults.'}`}</p>
               <p>{`Hit Percentage: ${hitPercentage !== null ? hitPercentage + '%' : ''}`}</p>
               <p>{`Miss Percentage: ${missPercentage !== null ? missPercentage + '%' : ''}`}</p>
             </div>
-          )}
-
-          {showTable && (
             <div className="mb-3">
               <h2>Page Table</h2>
               <table className="table">
@@ -187,9 +186,6 @@ const FifoPageReplacement = () => {
                 </tbody>
               </table>
             </div>
-          )}
-
-          {showTable && (
             <div>
               <table className="table table-bordered">
                 <thead>
@@ -210,6 +206,7 @@ const FifoPageReplacement = () => {
                 </tbody>
               </table>
             </div>
+          </>
           )}
         </div>
       </main>
