@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 import RatingComponent from '../../Components/RatingComponent';
 
 const FifoPageReplacement = () => {
-  const [pages, setPages] = useState([7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2]);
+  const [pages, setPages] = useState([6, 7, 8, 9, 6, 7, 1, 6, 7, 8, 9, 1]);
   const [capacity, setCapacity] = useState(4);
   const [pageFaults, setPageFaults] = useState(null);
   const [hitPercentage, setHitPercentage] = useState(null);
@@ -160,16 +160,13 @@ const FifoPageReplacement = () => {
             Toggle Page Faults
           </button>
 
-          {showTable && (
+          {showTable && (<>
             <div className="mb-3">
               <h2>Page Faults and Hit/Miss Ratios</h2>
-              <p>{`Page Faults: ${pageFaults !== null ? pageFaults : 'Click the button to calculate page faults.'}`}</p>
-              <p>{`Hit Percentage: ${hitPercentage !== null ? hitPercentage + '%' : ''}`}</p>
-              <p>{`Miss Percentage: ${missPercentage !== null ? missPercentage + '%' : ''}`}</p>
+              <p>{Page Faults: ${pageFaults !== null ? pageFaults : 'Click the button to calculate page faults.'}}</p>
+              <p>{Hit Percentage: ${hitPercentage !== null ? hitPercentage + '%' : ''}}</p>
+              <p>{Miss Percentage: ${missPercentage !== null ? missPercentage + '%' : ''}}</p>
             </div>
-          )}
-
-          {showTable && (
             <div className="mb-3">
               <h2>Page Table</h2>
               <table className="table">
@@ -189,9 +186,6 @@ const FifoPageReplacement = () => {
                 </tbody>
               </table>
             </div>
-          )}
-
-          {showTable && (
             <div>
               <table className="table table-bordered">
                 <thead>
@@ -212,6 +206,7 @@ const FifoPageReplacement = () => {
                 </tbody>
               </table>
             </div>
+          </>
           )}
         </div>
       </main>
