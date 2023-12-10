@@ -17,41 +17,41 @@ const CyrusBeckLineClipingAlgorithm = () => {
     setClipWindow((prevWindow) => ({ ...prevWindow, [key]: value }));
   };
 
-  const cyrusBeckLineClip = () => {
-    // Implement the Cyrus-Beck algorithm logic here
-    // Modify the line coordinates based on the clipping window
-    // This is a simplified example; you may need to adjust it based on your specific requirements
-    const dx = line.x2 - line.x1;
-    const dy = line.y2 - line.y1;
+const cyrusBeckLineClip = () => {
+  // Implement the Cyrus-Beck algorithm logic here
+  // Modify the line coordinates based on the clipping window
+  // This is a simplified example; you may need to adjust it based on your specific requirements
+  const dx = line.x2 - line.x1;
+  const dy = line.y2 - line.y1;
 
-    const p1 = -dx;
-    const p2 = dx;
-    const p3 = -dy;
-    const p4 = dy;
+  const p1 = -dx;
+  const p2 = dx;
+  const p3 = -dy;
+  const p4 = dy;
 
-    const q1 = line.x1 - clipWindow.xMin;
-    const q2 = clipWindow.xMax - line.x1;
-    const q3 = line.y1 - clipWindow.yMin;
-    const q4 = clipWindow.yMax - line.y1;
+  const q1 = line.x1 - clipWindow.xMin;
+  const q2 = clipWindow.xMax - line.x1;
+  const q3 = line.y1 - clipWindow.yMin;
+  const q4 = clipWindow.yMax - line.y1;
 
-    const t1 = q1 / p1;
-    const t2 = q2 / p2;
-    const t3 = q3 / p3;
-    const t4 = q4 / p4;
+  const t1 = q1 / p1;
+  const t2 = q2 / p2;
+  const t3 = q3 / p3;
+  const t4 = q4 / p4;
 
-    const tIn = Math.max(0, Math.max(t1, t3));
-    const tOut = Math.min(1, Math.min(t2, t4));
+  const tIn = Math.max(0, Math.max(t1, t3));
+  const tOut = Math.min(1, Math.min(t2, t4));
 
-    if (tIn <= tOut) {
-      const clippedX1 = line.x1 + tIn * dx;
-      const clippedY1 = line.y1 + tIn * dy;
-      const clippedX2 = line.x1 + tOut * dx;
-      const clippedY2 = line.y1 + tOut * dy;
+  if (tIn <= tOut) {
+    const clippedX1 = line.x1 + tIn * dx;
+    const clippedY1 = line.y1 + tIn * dy;
+    const clippedX2 = line.x1 + tOut * dx;
+    const clippedY2 = line.y1 + tOut * dy;
 
-      // Update the line coordinates based on the clipping
-      setLine({ x1: clippedX1, y1: clippedY1, x2: clippedX2, y2: clippedY2 });
+    // Update the line coordinates based on the clipping
+    setLine({ x1: clippedX1, y1: clippedY1, x2: clippedX2, y2: clippedY2 });
 
-      if (tIn === 0 && tOut === 1) {
+    if (tIn === 0 && tOut === 1) {
       alert('The entire line is within the clipping window.');
     } else {
       if (tIn === 0) {
@@ -63,8 +63,12 @@ const CyrusBeckLineClipingAlgorithm = () => {
   } else {
     alert('The entire line is outside the clipping window.');
   }
-  };
 
+  // Handle the case when the line is not clipped at all
+  if (tIn > tOut) {
+    alert('The line is not clipped at all and is outside the clipping window.');
+  }
+};
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
