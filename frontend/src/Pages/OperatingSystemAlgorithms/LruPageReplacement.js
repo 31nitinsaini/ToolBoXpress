@@ -95,7 +95,7 @@ const LRUPageReplacement = () => {
   return (
     <>
       <Helmet>
-        <title>Optimal Page Replacement Algorithm - ToolBoXpress</title>
+        <title>LRU Page Replacement Algorithm - ToolBoXpress</title>
         <meta
           name="description"
           content="Learn and implement the Optimal Page Replacement algorithm with ToolboXpress. Visualize the process of managing page faults, hit percentage, and miss percentage."
