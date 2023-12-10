@@ -156,30 +156,36 @@ const DDAAlgorithmTable = () => {
           </button>
 
           {/* Points Table */}
-          {pointsTable.length > 0 && (
-            <div className="mt-3">
-              <Typography variant="h3">Points Table:</Typography>
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Point</th>
-                    <th scope="col">X</th>
-                    <th scope="col">Y</th>
+           {pointsTable.length > 0 && (
+        <div className="mt-3">
+          <Typography variant="h3">Points Table:</Typography>
+          <table className="table">
+            <thead>
+              <tr>
+                <th scope="col">Point</th>
+                <th scope="col">X</th>
+                <th scope="col">Y</th>
+                <th scope="col">X+1</th>
+                <th scope="col">Y+1</th>
+              </tr>
+            </thead>
+            <tbody>
+              {pointsTable.map((point, index) => {
+                const nextPoint = pointsTable[index + 1];
+                return (
+                  <tr key={index}>
+                    <th scope="row">{index + 1}</th>
+                    <td>{point.x}</td>
+                    <td>{point.y}</td>
+                    <td>{nextPoint ? nextPoint.x : '-'}</td>
+                    <td>{nextPoint ? nextPoint.y : '-'}</td>
                   </tr>
-                </thead>
-                <tbody>
-                  {pointsTable.map((point, index) => (
-                    <tr key={index}>
-                      <th scope="row">{index + 1}</th>
-                      <td>{point.x}</td>
-                      <td>{point.y}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
+                );
+              })}
+            </tbody>
+          </table>
         </div>
+      )}        </div>
       </main>
       <RatingComponent />
       <Footer />
