@@ -52,9 +52,17 @@ const CyrusBeckLineClipingAlgorithm = () => {
       setLine({ x1: clippedX1, y1: clippedY1, x2: clippedX2, y2: clippedY2 });
 
       if (tIn === 0 && tOut === 1) {
-        alert('The entire line is within the clipping window.');
+      alert('The entire line is within the clipping window.');
+    } else {
+      if (tIn === 0) {
+        alert('The line is completely outside the clipping window on the starting point side.');
+      } else if (tOut === 1) {
+        alert('The line is completely outside the clipping window on the ending point side.');
       }
     }
+  } else {
+    alert('The entire line is outside the clipping window.');
+  }
   };
 
   useEffect(() => {
