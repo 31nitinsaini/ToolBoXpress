@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import RatingComponent from '../../Components/RatingComponent';
 
 const OptimalPageReplacement = () => {
-  const [pages, setPages] = useState([6, 7, 8, 9, 6, 7, 1, 6, 7, 8, 9, 1]);
-  const [capacity, setCapacity] = useState(4);
+  // State variables
+  const [pages, setPages] = useState([3, 1, 2, 1, 6, 5, 1, 3]);
+  const [capacity, setCapacity] = useState(3);
   const [pageFaults, setPageFaults] = useState(null);
   const [hitPercentage, setHitPercentage] = useState(null);
   const [missPercentage, setMissPercentage] = useState(null);
   const [pageTable, setPageTable] = useState([]);
   const [pageFrameTable, setPageFrameTable] = useState([]);
-  const [showTable, setShowTable] = useState(false);
+
+  // Function to handle page faults calculation
   const handlePageFaults = () => {
     const { pageFaults, hitPercentage, missPercentage, pageTable, pageFrameTable } = calculatePageFaults();
     setPageFaults(pageFaults);
@@ -20,13 +22,9 @@ const OptimalPageReplacement = () => {
     setMissPercentage(missPercentage);
     setPageTable(pageTable);
     setPageFrameTable(pageFrameTable);
-    setShowTable(true);
   };
-  useEffect(() => {
-    if (showTable) {
-      handlePageFaults();
-    }
-  }, [showTable]);
+
+  // Function to calculate page faults, hit/miss percentages, page table, and page frame replacement table
   const calculatePageFaults = () => {
     let cache = [];
     let page_faults = 0;
@@ -65,8 +63,11 @@ const OptimalPageReplacement = () => {
       pageFrameTable.push([...cache]);
     }
 
+    // Calculate hit and miss percentages
     const missPercentage = ((page_faults / pages.length) * 100).toFixed(2);
     const hitPercentage = ((hits / pages.length) * 100).toFixed(2);
+
+    // Return calculated values
     return { pageFaults: page_faults, hitPercentage: hitPercentage, missPercentage: missPercentage, pageTable: pageTable, pageFrameTable: pageFrameTable };
   };
 
@@ -109,7 +110,7 @@ const OptimalPageReplacement = () => {
       </Helmet>
 
       <Header />
-      <main className='px-5'>
+      <main>
         <div className='container my-5'>
           <div className='my-4'>
             <h2 className="mb-4">Optimal Page Replacement Algorithm</h2>
@@ -117,114 +118,81 @@ const OptimalPageReplacement = () => {
               The Optimal Page Replacement Algorithm is a page replacement policy that selects the page that will not be used for the longest period of time in the future.
               This simulation helps you understand how the algorithm manages page faults based on a given sequence of page requests and the capacity of the page table.
             </p>
-            <p>
-              <strong>Steps to Calculate Optimal Page Replacement:</strong>
-            </p>
-            <ol>
-              <li>Initialize an empty cache to store pages.</li>
-              <li>For each page request in the sequence:</li>
-              <ul>
-                <li>
-                  If the page is already in the cache (hit):
-                  <ul>
-                    <li>Increment the hit count.</li>
-                  </ul>
-                </li>
-                <li>
-                  If the page is not in the cache (miss):
-                  <ul>
-                    <li>Increment the page fault count.</li>
-                    <li>
-                      If there is space in the cache, add the page.
-                    </li>
-                    <li>
-                      If the cache is full:
-                      <ul>
-                        <li>Find the page with the farthest future reference (not used for the longest time).</li>
-                        <li>Replace the page at that index with the current page.</li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li>Record the current state of the cache after each page request.</li>
-              </ul>
-              <li>Calculate hit and miss percentages based on the recorded counts.</li>
-            </ol>
           </div>
 
-        <div className="mb-3">
-          <label>
-            Enter the page sequence (separated by commas):
-            <input
-              className="form-control"
-              type="text"
-              value={pages.join(', ')}
-              onChange={(e) => setPages(e.target.value.split(',').map((page) => Number(page.trim())))}
-            />
-          </label>
-        </div>
-        <div className="mb-3">
-          <label>
-            Enter the capacity:
-            <input
-              className="form-control"
-              type="number"
-              value={capacity}
-              onChange={(e) => setCapacity(Number(e.target.value))}
-            />
-          </label>
-        </div>
-          <button className="btn btn-primary mb-3" onClick={() => setShowTable(true)}>
-          Toggle Page Faults
-        </button>
-          {showTable && (<>
-            <div className="mb-3">
-              <h2>Page Faults and Hit/Miss Ratios</h2>
-              <p>{Page Faults: ${pageFaults !== null ? pageFaults : 'Click the button to calculate page faults.'}}</p>
-              <p>{Hit Percentage: ${hitPercentage !== null ? hitPercentage + '%' : ''}}</p>
-              <p>{Miss Percentage: ${missPercentage !== null ? missPercentage + '%' : ''}}</p>
-            </div>
-            <div className="mb-3">
-              <h2>Page Table</h2>
-              <table className="table">
-                <thead>
-                  <tr>
-                    {pageTable.map((entry, index) => (
-                      <th key={index}>{entry.page}</th>
+          <div className="mb-3">
+            <label>
+              Enter the page sequence (separated by commas):
+              <input
+                className="form-control"
+                type="text"
+                value={pages.join(', ')}
+                onChange={(e) => setPages(e.target.value.split(',').map((page) => Number(page.trim())))}
+              />
+            </label>
+          </div>
+          <div className="mb-3">
+            <label>
+              Enter the capacity:
+              <input
+                className="form-control"
+                type="number"
+                value={capacity}
+                onChange={(e) => setCapacity(Number(e.target.value))}
+              />
+            </label>
+          </div>
+          <button className="btn btn-primary mb-3" onClick={handlePageFaults}>
+            Toggle Page Faults
+          </button>
+          <div className="mb-3">
+            <h2>Page Faults and Hit/Miss Ratios</h2>
+            <p>{`Page Faults: ${pageFaults !== null ? pageFaults : 'Click the button to calculate page faults.'}`}</p>
+            <p>{`Hit Percentage: ${hitPercentage !== null ? hitPercentage + '%' : ''}`}</p>
+            <p>{`Miss Percentage: ${missPercentage !== null ? missPercentage + '%' : ''}`}</p>
+          </div>
+          <div className="mb-3">
+            <h2>Page Table</h2>
+            <table className="table table-bordered">
+              <thead>
+                <tr>
+                  {pageTable.map((entry, index) => (
+                    <th key={index}>Step {index + 1}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  {pageTable.map((entry, index) => (
+                    <td key={index}>{entry.status === 'Hit' ? '✔' : '✘'}</td>
+                  ))}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className="mb-3">
+            <h2>Page Frame Replacement Table</h2>
+            <table className="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Step</th>
+                  {Array.from({ length: capacity }, (_, index) => (
+                    <th key={index}>Frame {index + 1}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {pageFrameTable.map((frames, step) => (
+                  <tr key={step}>
+                    <td>Step {step + 1}</td>
+                    {frames.map((frame, index) => (
+                      <td key={index}>{frame !== undefined ? frame : '-'}</td>
                     ))}
                   </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    {pageTable.map((entry, index) => (
-                      <td key={index}>{entry.status === 'Hit' ? '✔' : '✘'}</td>
-                    ))}
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div>
-              <table className="table table-bordered">
-                <thead>
-                  <tr>
-                    {pageFrameTable.map((frames, index) => (
-                      <th key={index}>Step {index + 1}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {Array.from({ length: capacity }, (_, rowIndex) => (
-                    <tr key={rowIndex}>
-                      {pageFrameTable.map((frames, colIndex) => (
-                        <td key={colIndex}>{frames[rowIndex] !== undefined ? frames[rowIndex] : '-'}</td>
-                      ))}
-                    </tr>
-                  )).reverse()}
-                </tbody>
-              </table>
-            </div>
-          </>
-          )}
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </main>
       <RatingComponent />
